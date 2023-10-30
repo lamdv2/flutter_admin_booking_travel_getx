@@ -1,0 +1,15 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Iconly/Light-Outline/Arrow - Down 3">
+<g id="Arrow - Down 3">
+<path id="Fill 1" fill-rule="evenodd" clip-rule="evenodd" d="M11.7511 13.4502C11.3371 13.4502 11.0011 13.1142 11.0011 12.7002V3.75024C11.0011 3.33624 11.3371 3.00024 11.7511 3.00024C12.1651 3.00024 12.5011 3.33624 12.5011 3.75024V12.7002C12.5011 13.1142 12.1651 13.4502 11.7511 13.4502Z" fill="black"/>
+<g id="Group 5">
+<mask id="mask0_33437_5151" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="6" y="11" width="12" height="11">
+<path id="Clip 4" fill-rule="evenodd" clip-rule="evenodd" d="M6 11.9502H17.502V21.3867H6V11.9502Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_33437_5151)">
+<path id="Fill 3" fill-rule="evenodd" clip-rule="evenodd" d="M8.10955 13.4502L11.7516 19.2292L15.3926 13.4502H8.10955ZM11.7516 21.3872C11.4936 21.3872 11.2546 21.2552 11.1166 21.0362L6.11555 13.0992C5.96955 12.8692 5.96155 12.5772 6.09355 12.3382C6.22555 12.0982 6.47655 11.9502 6.75055 11.9502H16.7526C17.0256 11.9502 17.2766 12.0982 17.4086 12.3382C17.5416 12.5772 17.5326 12.8692 17.3866 13.0992L12.3856 21.0362C12.2486 21.2552 12.0086 21.3872 11.7516 21.3872Z" fill="black"/>
+</g>
+</g>
+</g>
+</g>
+</svg>
