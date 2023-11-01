@@ -1,4 +1,4 @@
-package com.example.doan_clean_achitec;
+package com.admin.dreamtravel;
 
 import io.flutter.embedding.android.FlutterActivity;
 
