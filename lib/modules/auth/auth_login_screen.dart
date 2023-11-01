@@ -1,20 +1,13 @@
 import 'package:doan_clean_achitec/shared/constants/app_style.dart';
-import 'package:doan_clean_achitec/shared/constants/assets_helper.dart';
-import 'package:doan_clean_achitec/shared/constants/string_constants.dart';
 import 'package:doan_clean_achitec/shared/shared.dart';
 import 'package:doan_clean_achitec/shared/utils/regex.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../shared/services/auth_service.dart';
-import '../../shared/widgets/my_button.dart';
-import '../../shared/widgets/my_textfield.dart';
-import '../../shared/widgets/square_tile.dart';
 import 'auth_controller.dart';
 
 class LoginScreen extends StatelessWidget {
-  final Function()? onTap;
-  LoginScreen({super.key, this.onTap});
+  LoginScreen({super.key});
 
   final AuthController controller = Get.put(AuthController());
 
@@ -93,19 +86,6 @@ class LoginScreen extends StatelessWidget {
                             },
                           ),
                           const SizedBox(
-                            height: 10,
-                          ),
-                          const Align(
-                            alignment: Alignment.centerRight,
-                            child: Text(
-                              "Forgot password?",
-                              style: TextStyle(
-                                color: Colors.blueAccent,
-                                fontStyle: FontStyle.italic,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
                             height: 45,
                           ),
                           MyButton(
@@ -151,13 +131,32 @@ class LoginScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        // google
                         SquareTile(
-                          onTap: () => AuthService().signInWithGoogle(),
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              barrierDismissible: false,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: const Text('Warning!!!'),
+                                  content:
+                                      const Text("The feature is coming soon"),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: Get.back,
+                                      child: Text(
+                                        StringConst.ok.tr,
+                                        style:
+                                            AppStyles.blue000Size14Fw600FfMont,
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          },
                           imgPath: AssetHelper.imgGoogle,
                         ),
-
-                        //Image(image: AssetImage('lib/images/apple.png'), height: 30,),
                         const SizedBox(
                           width: 24,
                         ),
@@ -189,35 +188,6 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-
-                    // not a member? register
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Not a member?',
-                          style: TextStyle(
-                            color: Colors.grey.shade700,
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 4,
-                        ),
-                        GestureDetector(
-                          onTap: onTap,
-                          child: const Text(
-                            'Register',
-                            style: TextStyle(
-                                color: Colors.blueAccent,
-                                fontStyle: FontStyle.italic,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        )
-                      ],
-                    )
                   ],
                 ),
               ),

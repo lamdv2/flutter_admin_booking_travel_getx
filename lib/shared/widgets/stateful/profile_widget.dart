@@ -18,7 +18,7 @@ class ProfileWidget extends StatelessWidget {
 
   final UserController userController;
   final AppController appController = Get.find();
-  final ProfileController profileController = Get.find();
+  final ProfileController profileController = Get.put(ProfileController());
   final HomeController homeController = Get.find();
 
   @override

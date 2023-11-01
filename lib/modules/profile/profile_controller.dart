@@ -237,10 +237,6 @@ class ProfileController extends GetxController {
         );
 
         try {
-          await auth.signOut();
-
-          await googleSignIn.signOut();
-
           userController.clearUserName();
 
           userController.userName.value = '';
@@ -248,6 +244,8 @@ class ProfileController extends GetxController {
           userController.userEmail.value = '';
 
           profileController.imageFonts.value.clear();
+
+          Get.offAllNamed(Routes.AUTH);
 
           clearEditController();
         } catch (e) {

@@ -5,6 +5,7 @@ import 'package:doan_clean_achitec/routes/app_pages.dart';
 import 'package:doan_clean_achitec/shared/constants/app_style.dart';
 import 'package:doan_clean_achitec/shared/utils/app_bar_widget.dart';
 import 'package:doan_clean_achitec/shared/widgets/stateful/search_bar.dart';
+import 'package:doan_clean_achitec/shared/widgets/stateless/drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rive/rive.dart';
@@ -66,9 +67,12 @@ class _AdminScreenState extends State<AdminScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
-        titles: StringConst.admins.tr,
-        iconBgrColor: ColorConstants.grayTextField,
+      appBar: AppBar(
+        backgroundColor: appController.isDarkModeOn.value
+            ? ColorConstants.darkAppBar
+            : ColorConstants.primaryButton,
+        title: Text(StringConst.admins.tr),
+        centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -80,6 +84,7 @@ class _AdminScreenState extends State<AdminScreen> {
           size: getSize(24),
         ),
       ),
+      drawer: DrawerWidget(),
       body: RefreshIndicator(
         onRefresh: adminController.refreshTourList,
         child: isShowLoading
@@ -175,15 +180,18 @@ class _AdminScreenState extends State<AdminScreen> {
                                                     StringConst
                                                         .doYouWantDelete.tr,
                                                     style: AppStyles
-                                                        .black000Size16Fw700FfMont,
+                                                        .black000Size16Fw400FfMont,
                                                   ),
                                                   actions: <Widget>[
                                                     TextButton(
                                                       onPressed: () {
                                                         Get.back();
                                                       },
-                                                      child: Text(StringConst
-                                                          .cancel.tr),
+                                                      child: Text(
+                                                        StringConst.cancel.tr,
+                                                        style: AppStyles
+                                                            .botTitle000Size14Fw400FfMont,
+                                                      ),
                                                     ),
                                                     TextButton(
                                                       onPressed: () {
@@ -200,7 +208,10 @@ class _AdminScreenState extends State<AdminScreen> {
                                                             .getAllTourModelData();
                                                       },
                                                       child: Text(
-                                                          StringConst.ok.tr),
+                                                        StringConst.ok.tr,
+                                                        style: AppStyles
+                                                            .blue000Size14Fw600FfMont,
+                                                      ),
                                                     ),
                                                   ],
                                                 );

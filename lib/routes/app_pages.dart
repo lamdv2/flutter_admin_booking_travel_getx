@@ -17,8 +17,6 @@ import 'package:doan_clean_achitec/modules/hotel_detail/hotel_detail_binding.dar
 import 'package:doan_clean_achitec/modules/hotel_detail/hotel_detail_screen.dart';
 import 'package:doan_clean_achitec/modules/intro/intro_binding.dart';
 import 'package:doan_clean_achitec/modules/intro/intro_screen.dart';
-import 'package:doan_clean_achitec/modules/otp/otp_binding.dart';
-import 'package:doan_clean_achitec/modules/otp/otp_screen.dart';
 import 'package:doan_clean_achitec/modules/pay/pay.dart';
 import 'package:doan_clean_achitec/modules/profile/edit_profile.dart';
 import 'package:doan_clean_achitec/modules/profile/profile.dart';
@@ -28,13 +26,11 @@ import 'package:doan_clean_achitec/modules/splash/splash_binding.dart';
 import 'package:doan_clean_achitec/modules/splash/splash_screen.dart';
 import 'package:doan_clean_achitec/modules/tour/tour.dart';
 import 'package:doan_clean_achitec/shared/utils/select_date.dart';
-import 'package:doan_clean_achitec/shared/widgets/stateless/google_map_widget.dart';
 import 'package:get/get.dart';
 
 import '../models/history_tour/history_tour_screen.dart';
 import '../modules/auth/auth_binding.dart';
 import '../modules/auth/auth_login_screen.dart';
-import '../modules/auth/auth_register_screen.dart';
 import '../modules/auth/auth_screen.dart';
 import '../modules/favorite/favorite_binding.dart';
 
@@ -69,10 +65,6 @@ class AppPages {
       page: () => AuthScreen(),
       binding: AuthBinding(),
       children: [
-        GetPage(
-          name: Routes.REGISTER,
-          page: () => RegisterScreen(),
-        ),
         GetPage(
           name: Routes.LOGIN,
           page: () => LoginScreen(),
@@ -136,11 +128,6 @@ class AppPages {
       name: Routes.TOUR,
       page: () => const TourScreen(),
       binding: TourBinding(),
-    ),
-    GetPage(
-      name: Routes.OTP_SCREEN,
-      page: () => OtpScreen(),
-      binding: OtpBinding(),
     ),
     GetPage(
       name: Routes.TOUR_DETAILS,
