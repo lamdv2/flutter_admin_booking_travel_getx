@@ -139,4 +139,9 @@ class StringConst {
   static String email = 'email';
   static String phoneNumber = 'phoneNumber';
   static String save = 'save';
+
+  // Admin
+  static String adminEmail = 'dreamtraveladmin@gmail.com';
+  static String adminPassword = 'Admin123!@#';
+
 }

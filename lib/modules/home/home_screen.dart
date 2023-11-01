@@ -1,5 +1,6 @@
 import 'package:doan_clean_achitec/dark_mode.dart';
 import 'package:doan_clean_achitec/models/Destination.dart';
+import 'package:doan_clean_achitec/modules/admin/admin_screen.dart';
 import 'package:doan_clean_achitec/modules/booking/booking.dart';
 import 'package:doan_clean_achitec/modules/favorite/favorite.dart';
 import 'package:doan_clean_achitec/modules/home/home.dart';
@@ -87,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List<SpeedDialChild> _buildLanguageOptions() {
     return [
       _buildLanguageOption('🇺🇸 English', 'en'),
-      _buildLanguageOption('🇰🇷 China', 'ko'),
+      _buildLanguageOption('🇨🇳 China', 'ko'),
       _buildLanguageOption('🇻🇳 Vietnamese', 'vi'),
     ];
   }
@@ -163,35 +164,40 @@ class _HomeScreenState extends State<HomeScreen> {
           duration: const Duration(milliseconds: 1000),
           items: [
             SalomonBottomBarItem(
-                icon: const Icon(
-                  FontAwesomeIcons.house,
-                  size: kDefaultIconSize,
-                ),
-                title: const Text('Home')),
+              icon: const Icon(
+                FontAwesomeIcons.house,
+                size: kDefaultIconSize,
+              ),
+              title: const Text('Home'),
+            ),
             SalomonBottomBarItem(
-                icon: const Icon(
-                  FontAwesomeIcons.solidHeart,
-                  size: kDefaultIconSize,
-                ),
-                title: const Text('Likes')),
+              icon: const Icon(
+                FontAwesomeIcons.solidHeart,
+                size: kDefaultIconSize,
+              ),
+              title: const Text('Likes'),
+            ),
             SalomonBottomBarItem(
-                icon: const Icon(
-                  FontAwesomeIcons.ccDiscover,
-                  size: kDefaultIconSize,
-                ),
-                title: const Text('Discover')),
+              icon: const Icon(
+                FontAwesomeIcons.ccDiscover,
+                size: kDefaultIconSize,
+              ),
+              title: const Text('Discover'),
+            ),
             SalomonBottomBarItem(
-                icon: const Icon(
-                  FontAwesomeIcons.briefcase,
-                  size: kDefaultIconSize,
-                ),
-                title: const Text('Booking')),
+              icon: const Icon(
+                FontAwesomeIcons.briefcase,
+                size: kDefaultIconSize,
+              ),
+              title: const Text('Booking'),
+            ),
             SalomonBottomBarItem(
-                icon: const Icon(
-                  FontAwesomeIcons.solidUser,
-                  size: kDefaultIconSize,
-                ),
-                title: const Text('Profile')),
+              icon: const Icon(
+                FontAwesomeIcons.solidUser,
+                size: kDefaultIconSize,
+              ),
+              title: const Text('Profile'),
+            ),
           ],
         ),
       ),
@@ -200,7 +206,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List<Widget> _widgetOptions() {
     return [
-      const HomeTab(),
+      const AdminScreen(),
       const FavotiteScreen(),
       const DiscoverScreen(),
       const BookingScreen(),

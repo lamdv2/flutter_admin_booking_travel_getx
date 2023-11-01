@@ -17,15 +17,10 @@ void main() async {
 
   await darkMode.loadDarkMode();
 
-  await Firebase.initializeApp(
-    options: const FirebaseOptions(
-      apiKey: "AIzaSyAHthPE5I3tqFM0IH27imDAQlsduedNNNs",
-      appId: "1:997595921202:android:f72bbf84b5ebfe912fb52b",
-      messagingSenderId: "997595921202",
-      projectId: "doan-final-travel",
-      storageBucket: "doan-final-travel.appspot.com",
-    ),
-  );
+  if (Firebase.apps.isEmpty) {
+    await Firebase.initializeApp();
+  }
+
   final fcmToken = await FirebaseMessaging.instance.getToken();
   print(fcmToken);
   runApp(MyApp());
