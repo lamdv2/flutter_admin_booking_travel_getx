@@ -116,32 +116,32 @@ class _HomeScreenState extends State<HomeScreen> {
                 index: homeController.currentIndex.value,
                 children: _widgetOptions(),
               ),
-              Padding(
-                padding: const EdgeInsetsDirectional.all(12),
-                child: Align(
-                  alignment: Alignment.bottomRight,
-                  child: SizedBox(
-                    width: getSize(45),
-                    height: getSize(45),
-                    child: Card(
-                      color: ColorConstants.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50.0),
-                      ),
-                      elevation: 3.0,
-                      child: SpeedDial(
-                        icon: Icons.language,
-                        direction: SpeedDialDirection.up,
-                        curve: Curves.bounceOut,
-                        animatedIconTheme: const IconThemeData(size: 12.0),
-                        backgroundColor: ColorConstants.blue,
-                        foregroundColor: ColorConstants.white,
-                        children: _buildLanguageOptions(),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsetsDirectional.all(12),
+              //   child: Align(
+              //     alignment: Alignment.bottomRight,
+              //     child: SizedBox(
+              //       width: getSize(45),
+              //       height: getSize(45),
+              //       child: Card(
+              //         color: ColorConstants.white,
+              //         shape: RoundedRectangleBorder(
+              //           borderRadius: BorderRadius.circular(50.0),
+              //         ),
+              //         elevation: 3.0,
+              //         child: SpeedDial(
+              //           icon: Icons.language,
+              //           direction: SpeedDialDirection.up,
+              //           curve: Curves.bounceOut,
+              //           animatedIconTheme: const IconThemeData(size: 12.0),
+              //           backgroundColor: ColorConstants.blue,
+              //           foregroundColor: ColorConstants.white,
+              //           children: _buildLanguageOptions(),
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),

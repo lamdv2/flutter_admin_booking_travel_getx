@@ -230,6 +230,7 @@ class AdminController extends GetxController {
     try {
       final result = await ref.getMetadata();
 
+      // ignore: unnecessary_null_comparison
       if (result != null) {
         String downloadUrl = await ref.getDownloadURL();
         return downloadUrl;

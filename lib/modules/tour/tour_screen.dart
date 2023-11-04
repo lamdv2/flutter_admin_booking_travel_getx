@@ -1,7 +1,6 @@
 import 'package:doan_clean_achitec/dark_mode.dart';
 import 'package:doan_clean_achitec/modules/auth/auth.dart';
 import 'package:doan_clean_achitec/modules/booking/booking.dart';
-import 'package:doan_clean_achitec/modules/profile/profile_controller.dart';
 import 'package:doan_clean_achitec/modules/tour/tour.dart';
 import 'package:doan_clean_achitec/shared/constants/app_style.dart';
 import 'package:doan_clean_achitec/shared/utils/app_bar_widget.dart';
@@ -23,7 +22,6 @@ class TourScreen extends StatefulWidget {
   State<TourScreen> createState() => _TourScreenState();
 }
 
-final ProfileController profileController = Get.put(ProfileController());
 final AuthController authController = Get.put(AuthController());
 final TourController tourController = Get.put(TourController());
 final BookingController bookingController = Get.find();
@@ -299,7 +297,7 @@ class _TourScreenState extends State<TourScreen> {
                               width: getSize(24),
                               colorFilter: ColorFilter.mode(
                                 appController.isDarkModeOn.value
-                                    ? ColorConstants.lightBackground!
+                                    ? ColorConstants.lightBackground
                                     : ColorConstants.titleSearch,
                                 BlendMode.srcIn,
                               ),

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doan_clean_achitec/models/city/city_model.dart';
 import 'package:doan_clean_achitec/models/tour/tour_model.dart';
+import 'package:doan_clean_achitec/modules/profile/image_full_screen.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -125,6 +126,17 @@ class TourController extends GetxController {
       getListTourImages.value = links;
     // ignore: empty_catches
     } catch (e) {}
+  }
+
+  void showFullImageDialog(BuildContext context, String imageUrl) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => FullImageScreen(
+          imageUrl: imageUrl,
+        ),
+      ),
+    );
   }
 
   // Filter List Tour

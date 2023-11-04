@@ -3,7 +3,6 @@ import 'package:doan_clean_achitec/routes/app_pages.dart';
 import 'package:doan_clean_achitec/shared/constants/app_style.dart';
 import 'package:doan_clean_achitec/shared/constants/colors.dart';
 import 'package:doan_clean_achitec/shared/constants/string_constants.dart';
-import 'package:doan_clean_achitec/shared/widgets/stateful/profile_widget.dart';
 import 'package:doan_clean_achitec/shared/widgets/stateless/item_setting_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,7 +11,6 @@ import '../../shared/constants/assets_helper.dart';
 import '../../shared/utils/size_utils.dart';
 import '../auth/user_controller.dart';
 import '../home/widgets/home_header.dart';
-import '../profile/profile_controller.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({super.key});
@@ -20,8 +18,6 @@ class SettingScreen extends StatefulWidget {
   @override
   State<SettingScreen> createState() => _SettingScreenState();
 }
-
-final ProfileController controller = Get.find();
 
 class _SettingScreenState extends State<SettingScreen> {
   final UserController userController = Get.find();
@@ -45,15 +41,6 @@ class _SettingScreenState extends State<SettingScreen> {
               children: [
                 HomeHeader(
                   size: size,
-                ),
-                SizedBox(
-                  height: getSize(32),
-                ),
-                GestureDetector(
-                  onTap: () => Get.toNamed(Routes.PROFILE),
-                  child: ProfileWidget(
-                    userController: userController,
-                  ),
                 ),
                 SizedBox(
                   height: getSize(32),

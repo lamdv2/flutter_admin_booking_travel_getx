@@ -18,8 +18,6 @@ import 'package:doan_clean_achitec/modules/hotel_detail/hotel_detail_screen.dart
 import 'package:doan_clean_achitec/modules/intro/intro_binding.dart';
 import 'package:doan_clean_achitec/modules/intro/intro_screen.dart';
 import 'package:doan_clean_achitec/modules/pay/pay.dart';
-import 'package:doan_clean_achitec/modules/profile/edit_profile.dart';
-import 'package:doan_clean_achitec/modules/profile/profile.dart';
 import 'package:doan_clean_achitec/modules/room/room.dart';
 import 'package:doan_clean_achitec/modules/setting/setting_screen.dart';
 import 'package:doan_clean_achitec/modules/splash/splash_binding.dart';
@@ -54,11 +52,6 @@ class AppPages {
       name: Routes.HOME,
       page: () => const HomeScreen(),
       binding: HomeBinding(),
-    ),
-    GetPage(
-      name: Routes.PROFILE,
-      page: () => const ProfileScreen(),
-      binding: ProfileBinding(),
     ),
     GetPage(
       name: Routes.AUTH,
@@ -99,11 +92,6 @@ class AppPages {
     GetPage(
       name: Routes.SETTING,
       page: () => const SettingScreen(),
-    ),
-    GetPage(
-      name: Routes.EDIT_PROFILE,
-      page: () => const EditProfileScreen(),
-      binding: ProfileBinding(),
     ),
     GetPage(
       name: Routes.ROOM,

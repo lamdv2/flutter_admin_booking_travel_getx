@@ -3,11 +3,11 @@ import 'package:doan_clean_achitec/modules/home/home.dart';
 import 'package:doan_clean_achitec/modules/tour/tour_item_widget.dart';
 import 'package:doan_clean_achitec/routes/app_pages.dart';
 import 'package:doan_clean_achitec/shared/constants/app_style.dart';
-import 'package:doan_clean_achitec/shared/utils/app_bar_widget.dart';
 import 'package:doan_clean_achitec/shared/widgets/stateful/search_bar.dart';
 import 'package:doan_clean_achitec/shared/widgets/stateless/drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:rive/rive.dart';
 import 'package:slideable/slideable.dart';
 
@@ -135,7 +135,8 @@ class _AdminScreenState extends State<AdminScreen> {
                           height: getSize(32),
                         ),
                         Obx(
-                          () => adminController.getListTour.value != null
+                          () => adminController.getListTour.value != null &&
+                                  adminController.getListTour.value!.isNotEmpty
                               ? ListView.builder(
                                   shrinkWrap: true,
                                   physics: const NeverScrollableScrollPhysics(),
@@ -238,8 +239,15 @@ class _AdminScreenState extends State<AdminScreen> {
                                     );
                                   },
                                 )
-                              : const SizedBox.shrink(),
-                        )
+                              : Center(
+                                  child: Lottie.asset(
+                                    AssetHelper.imgLottieNodate,
+                                    width: getSize(200),
+                                    height: getSize(200),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                        ),
                       ],
                     ),
                   ),
