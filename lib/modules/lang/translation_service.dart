@@ -4,23 +4,23 @@ import 'package:doan_clean_achitec/modules/lang/value/en_US.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'value/ko_KR.dart';
+import 'value/cn_CN.dart';
 import 'value/vi_VN.dart';
 
 class TranslationService extends Translations {
   static Locale? get locale => fallbackLocale;
   static const fallbackLocale = Locale('en', 'US');
 
-  static final langCodes = ['en', 'vi', 'ko'];
+  static final langCodes = ['en', 'vi', 'cn'];
 
   static final locales = [
     const Locale('en', 'US'),
     const Locale('vi', 'VN'),
-    const Locale('ko', 'KR'),
+    const Locale('cn', 'CN'),
   ];
 
   static final langs =
-      LinkedHashMap.from({'en': 'English', 'vi': 'Tiếng Việt', 'ko': 'Korea'});
+      LinkedHashMap.from({'en': 'English', 'vi': 'Tiếng Việt', 'cn': 'China'});
 
   static void changeLocale(String langCode) {
     final locale = _getLocaleFromLanguage(langCode: langCode);
@@ -30,7 +30,7 @@ class TranslationService extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
         'en_US': en,
-        'ko_KR': ko,
+        'cn_CN': cn,
         'vi_VN': vi,
       };
 

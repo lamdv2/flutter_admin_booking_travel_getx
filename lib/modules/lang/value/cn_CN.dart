@@ -1,5 +1,5 @@
 // ignore: file_names
-const Map<String, String> ko = {
+const Map<String, String> cn = {
   //home screen
   'all': '全部',
   'popular': '流行',

@@ -88,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List<SpeedDialChild> _buildLanguageOptions() {
     return [
       _buildLanguageOption('🇺🇸 English', 'en'),
-      _buildLanguageOption('🇨🇳 China', 'ko'),
+      _buildLanguageOption('🇨🇳 China', 'cn'),
       _buildLanguageOption('🇻🇳 Vietnamese', 'vi'),
     ];
   }
