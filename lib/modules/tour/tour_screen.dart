@@ -1,6 +1,5 @@
 import 'package:doan_clean_achitec/dark_mode.dart';
 import 'package:doan_clean_achitec/modules/auth/auth.dart';
-import 'package:doan_clean_achitec/modules/booking/booking.dart';
 import 'package:doan_clean_achitec/modules/tour/tour.dart';
 import 'package:doan_clean_achitec/shared/constants/app_style.dart';
 import 'package:doan_clean_achitec/shared/utils/app_bar_widget.dart';
@@ -24,7 +23,6 @@ class TourScreen extends StatefulWidget {
 
 final AuthController authController = Get.put(AuthController());
 final TourController tourController = Get.put(TourController());
-final BookingController bookingController = Get.find();
 final AppController appController = Get.find();
 
 class _TourScreenState extends State<TourScreen> {
@@ -142,8 +140,8 @@ class _TourScreenState extends State<TourScreen> {
                             onTap: () {
                               tourController.isCheckSearch.value =
                                   !tourController.isCheckSearch.value;
-                              tourController.filterListTourByCity(
-                                  bookingController.selectedValue.value);
+                              // tourController.filterListTourByCity(
+                              //     bookingController.selectedValue.value);
                             },
                             child: Container(
                               padding: EdgeInsets.symmetric(

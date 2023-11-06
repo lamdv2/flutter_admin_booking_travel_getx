@@ -2,13 +2,7 @@ import 'package:doan_clean_achitec/modules/admin/admin_binding.dart';
 import 'package:doan_clean_achitec/modules/admin/admin_create_tour_screen.dart';
 import 'package:doan_clean_achitec/modules/admin/admin_screen.dart';
 import 'package:doan_clean_achitec/modules/admin/admin_update_tour_screen.dart';
-import 'package:doan_clean_achitec/modules/booking/booking.dart';
-import 'package:doan_clean_achitec/modules/booking/booking_requied.dart';
-import 'package:doan_clean_achitec/modules/call_firebase/image_binding.dart';
-import 'package:doan_clean_achitec/modules/call_firebase/loading_image.dart';
 import 'package:doan_clean_achitec/modules/detail_place/detail_place.dart';
-import 'package:doan_clean_achitec/modules/discover/discover.dart';
-import 'package:doan_clean_achitec/modules/favorite/favorite_screen.dart';
 import 'package:doan_clean_achitec/modules/google_map/google_map.dart';
 import 'package:doan_clean_achitec/modules/home/home.dart';
 import 'package:doan_clean_achitec/modules/hotel/hotel_all_screen.dart';
@@ -17,7 +11,6 @@ import 'package:doan_clean_achitec/modules/hotel_detail/hotel_detail_binding.dar
 import 'package:doan_clean_achitec/modules/hotel_detail/hotel_detail_screen.dart';
 import 'package:doan_clean_achitec/modules/intro/intro_binding.dart';
 import 'package:doan_clean_achitec/modules/intro/intro_screen.dart';
-import 'package:doan_clean_achitec/modules/pay/pay.dart';
 import 'package:doan_clean_achitec/modules/room/room.dart';
 import 'package:doan_clean_achitec/modules/setting/setting_screen.dart';
 import 'package:doan_clean_achitec/modules/splash/splash_binding.dart';
@@ -27,14 +20,12 @@ import 'package:doan_clean_achitec/shared/utils/select_date.dart';
 import 'package:get/get.dart';
 
 import '../models/history_tour/history_tour_screen.dart';
-import '../modules/auth/auth_binding.dart';
 import '../modules/auth/auth_login_screen.dart';
-import '../modules/auth/auth_screen.dart';
-import '../modules/favorite/favorite_binding.dart';
 
 part 'app_routes.dart';
 
 class AppPages {
+  // ignore: constant_identifier_names
   static const INITIAL = Routes.SPLASH;
 
   static final routes = [
@@ -54,20 +45,8 @@ class AppPages {
       binding: HomeBinding(),
     ),
     GetPage(
-      name: Routes.AUTH,
-      page: () => AuthScreen(),
-      binding: AuthBinding(),
-      children: [
-        GetPage(
-          name: Routes.LOGIN,
-          page: () => LoginScreen(),
-        ),
-      ],
-    ),
-    GetPage(
-      name: Routes.DISCOVER,
-      page: () => const DiscoverScreen(),
-      binding: DiscoverBinding(),
+      name: Routes.LOGIN,
+      page: () => LoginScreen(),
     ),
     GetPage(
       name: Routes.DETAIL_PLACE,
@@ -85,11 +64,6 @@ class AppPages {
       binding: HotelDetailBinding(),
     ),
     GetPage(
-      name: Routes.FAVORITE,
-      page: () => const FavotiteScreen(),
-      binding: FavoriteBinding(),
-    ),
-    GetPage(
       name: Routes.SETTING,
       page: () => const SettingScreen(),
     ),
@@ -104,11 +78,6 @@ class AppPages {
       binding: HotelDetailBinding(),
     ),
     GetPage(
-      name: Routes.LOADING_IMAGE,
-      page: () => const LoadingImage(),
-      binding: ImageBinding(),
-    ),
-    GetPage(
       name: Routes.HOTEL_ALL,
       page: () => const HotelAllScreen(),
     ),
@@ -121,16 +90,6 @@ class AppPages {
       name: Routes.TOUR_DETAILS,
       page: () => TourDetailsScreen(),
       binding: TourBinding(),
-    ),
-    GetPage(
-      name: Routes.PAY_SCREEN,
-      page: () => const PaymentScreen(),
-      binding: PayBinding(),
-    ),
-    GetPage(
-      name: Routes.BOOKING_REQUIED,
-      page: () => BookingRequiedScreen(),
-      binding: BookingBinding(),
     ),
     GetPage(
       name: Routes.SELECT_DATE,

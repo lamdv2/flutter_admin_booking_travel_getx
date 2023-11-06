@@ -46,6 +46,8 @@ const Map<String, String> cn = {
   'history': '历史',
   'tours': '旅游',
   'admins': '管理员',
+  'request': '要求',
+
   //profile screen
   'myProfile': '我的个人资料',
   'personalDetail': '个人详细信息',

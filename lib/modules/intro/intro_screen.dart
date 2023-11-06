@@ -126,7 +126,7 @@ class _IntroScreenState extends State<IntroScreen> {
                                 duration: const Duration(milliseconds: 200),
                                 curve: Curves.easeIn);
                           } else {
-                            Get.toNamed(Routes.AUTH);
+                            Get.toNamed(Routes.LOGIN);
                           }
                         },
                       ),

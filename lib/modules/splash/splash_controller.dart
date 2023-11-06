@@ -16,7 +16,7 @@ class SplashController extends GetxController {
 
     try {
       if (checkIntroScreen != null && checkIntroScreen) {
-        Get.offNamed(Routes.AUTH);
+        Get.offNamed(Routes.LOGIN);
       } else {
         LocalStorageHelper.setValue(StringConst.checkIntro, true);
         Get.offNamed(Routes.INTRO);

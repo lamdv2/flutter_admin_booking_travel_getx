@@ -62,7 +62,7 @@ dependencies:
   # google_sign_in:
   google_sign_in: ^6.1.4
   # firebase_core:
-  firebase_core: ^2.15.0
+  firebase_core: ^2.21.0
   # firebase_auth:
   firebase_auth: ^4.7.1
   # firebase_messaging:

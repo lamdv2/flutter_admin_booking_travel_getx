@@ -57,6 +57,7 @@ class StringConst {
   static String history = 'history';
   static String tours = 'tours';
   static String admins = 'admins';
+  static String request = 'request';
 
   //Profile screen
   static String myProfile = 'myProfile';

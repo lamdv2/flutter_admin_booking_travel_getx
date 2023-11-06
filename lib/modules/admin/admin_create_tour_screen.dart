@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:doan_clean_achitec/dark_mode.dart';
 import 'package:doan_clean_achitec/models/tour/tour_model.dart';
 import 'package:doan_clean_achitec/modules/admin/admin_controller.dart';
@@ -521,6 +523,22 @@ class _AdminCreateScreenState extends State<AdminCreateScreen> {
                               active: true,
                               specialOffers: List.empty(),
                               status: adminController.statusController.text,
+                            );
+                            // ignore: use_build_context_synchronously
+                            await showDialog(
+                              context: context,
+                              barrierDismissible: true,
+                              builder: (context) {
+                                Timer(
+                                  const Duration(seconds: 1),
+                                  () {
+                                    Get.back();
+                                  },
+                                );
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              },
                             );
                             adminController.createTour(tourModel);
                           }

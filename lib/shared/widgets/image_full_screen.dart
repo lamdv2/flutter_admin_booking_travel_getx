@@ -1,10 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:doan_clean_achitec/dark_mode.dart';
 import 'package:doan_clean_achitec/shared/constants/assets_helper.dart';
 import 'package:doan_clean_achitec/shared/utils/app_bar_widget.dart';
 import 'package:doan_clean_achitec/shared/utils/size_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 
 import '../../../../../../shared/constants/colors.dart';
 
@@ -19,11 +19,9 @@ class FullImageScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(
-          height: getSize(150),
           backgroundColor: appController.isDarkModeOn.value
               ? ColorConstants.gray
               : ColorConstants.white,
-          // leadingWidth: getSize(68),
         ),
         body: imageUrl == ""
             ? Center(
@@ -34,9 +32,8 @@ class FullImageScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: Image.asset(
-                    imageUrl,
-                    fit: BoxFit.fitWidth,
+                  child: CachedNetworkImage(
+                    imageUrl: imageUrl,
                   ),
                 ),
               ),

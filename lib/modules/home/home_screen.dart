@@ -1,24 +1,18 @@
 import 'package:doan_clean_achitec/dark_mode.dart';
 import 'package:doan_clean_achitec/models/Destination.dart';
 import 'package:doan_clean_achitec/modules/admin/admin_screen.dart';
-import 'package:doan_clean_achitec/modules/booking/booking.dart';
-import 'package:doan_clean_achitec/modules/favorite/favorite.dart';
 import 'package:doan_clean_achitec/modules/home/home.dart';
+import 'package:doan_clean_achitec/modules/requests/request.dart';
 import 'package:doan_clean_achitec/modules/tour/tour.dart';
 import 'package:doan_clean_achitec/shared/constants/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
-import '../../shared/utils/size_utils.dart';
 import '../../shared/widgets/stateless/drawer_widget.dart';
 import '../auth/user_controller.dart';
-import '../discover/discover_screen.dart';
-import '../lang/language.dart';
-import '../lang/translation_service.dart';
 import '../setting/setting_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -65,42 +59,6 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       addListDestination(destiList);
     });
-  }
-
-  final _selectedLanguage = Language(1, "🇺🇸", "English", "en").obs;
-  Language get selectedLanguage => _selectedLanguage.value;
-
-  void handleLanguageSelection(Language? language) {
-    if (language != null) {
-      _selectedLanguage.value = language;
-      String code = language.code;
-
-      if (code == 'vi') {
-        TranslationService.changeLocale('vi');
-      } else if (code == 'en') {
-        TranslationService.changeLocale('en');
-      } else if (code == 'ko') {
-        TranslationService.changeLocale('ko');
-      }
-    }
-  }
-
-  List<SpeedDialChild> _buildLanguageOptions() {
-    return [
-      _buildLanguageOption('🇺🇸 English', 'en'),
-      _buildLanguageOption('🇨🇳 China', 'cn'),
-      _buildLanguageOption('🇻🇳 Vietnamese', 'vi'),
-    ];
-  }
-
-  SpeedDialChild _buildLanguageOption(String label, String locale) {
-    return SpeedDialChild(
-      backgroundColor: ColorConstants.blue,
-      label: label,
-      onTap: () {
-        TranslationService.changeLocale(locale);
-      },
-    );
   }
 
   @override
@@ -172,10 +130,10 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             SalomonBottomBarItem(
               icon: const Icon(
-                FontAwesomeIcons.solidHeart,
+                FontAwesomeIcons.redditSquare,
                 size: kDefaultIconSize,
               ),
-              title: const Text('Likes'),
+              title: const Text('Requests'),
             ),
             SalomonBottomBarItem(
               icon: const Icon(
@@ -207,9 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Widget> _widgetOptions() {
     return [
       const AdminScreen(),
-      const FavotiteScreen(),
-      const DiscoverScreen(),
-      const BookingScreen(),
+      const RequestScreen(),
       const SettingScreen(),
     ];
   }

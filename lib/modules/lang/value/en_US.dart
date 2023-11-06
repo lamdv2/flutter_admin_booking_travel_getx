@@ -51,6 +51,7 @@ const Map<String, String> en = {
   'history': 'History',
   'tours': 'Tours',
   'admins': 'Admins',
+  'request': 'Requests',
 
   //Profile screen
   'myProfile': 'My Profile',

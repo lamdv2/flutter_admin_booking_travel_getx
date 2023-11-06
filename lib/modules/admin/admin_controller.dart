@@ -100,7 +100,7 @@ class AdminController extends GetxController {
           "Success",
           "New tour added!",
           snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: ColorConstants.blue.withOpacity(.1),
+          backgroundColor: ColorConstants.blue.withOpacity(.05),
           colorText: ColorConstants.blue,
         );
         clearController();
@@ -147,6 +147,9 @@ class AdminController extends GetxController {
     activeController.clear();
     statusController.clear();
     specialOffersController.clear();
+    listImageTours.value?.clear();
+    listImageToursChecked.value?.clear();
+    imageTours.value.clear();
   }
 
   // Refresh Tour List

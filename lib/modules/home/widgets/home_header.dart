@@ -57,10 +57,7 @@ class HomeHeader extends StatelessWidget {
               ),
               avatar != null
                   ? GestureDetector(
-                      onTap: () {
-                        Get.toNamed(Routes.PROFILE,
-                            arguments: StringConst.userName);
-                      },
+                      onTap: () {},
                       child: Container(
                         width: getSize(36),
                         height: getSize(36),

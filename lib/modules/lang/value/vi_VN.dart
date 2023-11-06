@@ -46,6 +46,8 @@ const Map<String, String> vi = {
   'history': 'Lịch sử',
   'tours': 'Tour du lịch',
   'admins': 'Quản trị viên',
+  'request': 'Các yêu cầu',
+
   //Profile screen
   'myProfile': 'Hồ sơ cá nhân',
   'personalDetail': 'Chi tiết cá nhân',

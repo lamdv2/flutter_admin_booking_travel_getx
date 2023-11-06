@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-class FavoriteController extends GetxController {
+class RequestController extends GetxController {
   @override
   void onReady() {
     // TODO: implement onReady

@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:doan_clean_achitec/dark_mode.dart';
 import 'package:doan_clean_achitec/shared/constants/constants.dart';
 import 'package:doan_clean_achitec/shared/widgets/stateless/google_map_widget.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,7 @@ class TourDetailsScreen extends StatelessWidget {
   TourDetailsScreen({Key? key}) : super(key: key);
   final TourController tourController = Get.find();
   final TourModel? tourModel = Get.arguments;
+  final AppController appController = Get.find();
   final int selectedIndex = 0;
 
   @override
@@ -89,15 +91,13 @@ class TourDetailsScreen extends StatelessWidget {
                           _buildTourUtilities(),
                           SizedBox(height: getSize(kPadding)),
                           _buildTripPlan(tourModel),
-                          SizedBox(height: getSize(kTop28Padding)),
                           _buildPhotoGallery(),
                           SizedBox(height: getSize(kTop28Padding)),
                           _buildLocation(tourController),
                           SizedBox(height: getSize(kMediumPadding)),
                           ButtonWidget(
                             textBtn: StringConst.bookTour.tr,
-                            onTap: () => Get.toNamed(Routes.BOOKING_REQUIED,
-                                arguments: tourModel),
+                            onTap: () {},
                           ),
                           SizedBox(height: getSize(kMediumPadding)),
                         ],

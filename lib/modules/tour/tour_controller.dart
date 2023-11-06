@@ -1,11 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doan_clean_achitec/models/city/city_model.dart';
 import 'package:doan_clean_achitec/models/tour/tour_model.dart';
-import 'package:doan_clean_achitec/modules/profile/image_full_screen.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../shared/widgets/image_full_screen.dart';
 
 class TourController extends GetxController {
   final _db = FirebaseFirestore.instance;
