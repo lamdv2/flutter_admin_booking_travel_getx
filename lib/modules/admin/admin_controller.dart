@@ -69,24 +69,30 @@ class AdminController extends GetxController {
         throw Exception('Failed to read asset data');
       }
     }
-
     return resultList;
   }
 
   Future<List<String>> uploadImagesToStorage(
-      String childName, List<Uint8List> files) async {
+    String childName,
+    List<Uint8List> files,
+  ) async {
     List<String> uploadPaths = [];
+    List<String> temporaryPaths = [];
 
     for (Uint8List file in files) {
       var uuid = const Uuid();
       Reference ref =
           _storage.ref().child('tours').child(childName).child(uuid.v4());
-      UploadTask uploadTask = ref.putData(file);
-      TaskSnapshot snapshot = await uploadTask;
 
-      uploadPaths.add(ref.fullPath);
+      SettableMetadata metadata = SettableMetadata(contentType: 'image/jpeg');
+      UploadTask uploadTask = ref.putData(file, metadata);
+
+      await uploadTask;
+
+      temporaryPaths.add(ref.fullPath);
     }
 
+    uploadPaths.addAll(temporaryPaths);
     return uploadPaths;
   }
 
