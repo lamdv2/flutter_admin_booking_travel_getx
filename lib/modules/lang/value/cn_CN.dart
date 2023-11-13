@@ -70,6 +70,8 @@ const Map<String, String> cn = {
   'confirmation': '确认',
   'doYouWantDelete': '您确定要删除吗？',
   'ok': '好的',
+  'approve': '批准',
+
   //Detail place screen
   'letsExplore': '让我们探索新地方',
   'wind': '风',

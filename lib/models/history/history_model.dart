@@ -6,7 +6,7 @@ class HistoryModel {
   final String? idTour;
   final bool isActive;
   final Timestamp? bookingDate;
-  final String? status;
+  String? status;
 
   HistoryModel({
     this.id,

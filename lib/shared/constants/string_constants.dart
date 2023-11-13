@@ -84,6 +84,7 @@ class StringConst {
   static String confirmation = 'confirmation';
   static String doYouWantDelete = 'doYouWantDelete';
   static String ok = 'ok';
+  static String approve = 'approve';
 
   //Detail place screen
   static String letsExplore = 'letsExplore';

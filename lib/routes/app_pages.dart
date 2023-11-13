@@ -11,6 +11,7 @@ import 'package:doan_clean_achitec/modules/hotel_detail/hotel_detail_binding.dar
 import 'package:doan_clean_achitec/modules/hotel_detail/hotel_detail_screen.dart';
 import 'package:doan_clean_achitec/modules/intro/intro_binding.dart';
 import 'package:doan_clean_achitec/modules/intro/intro_screen.dart';
+import 'package:doan_clean_achitec/modules/requests/request.dart';
 import 'package:doan_clean_achitec/modules/room/room.dart';
 import 'package:doan_clean_achitec/modules/setting/setting_screen.dart';
 import 'package:doan_clean_achitec/modules/splash/splash_binding.dart';
@@ -118,6 +119,11 @@ class AppPages {
     GetPage(
       name: Routes.GOOGLE_MAP_SCREEN,
       page: () => GoogleMapScreen(),
+    ),
+    GetPage(
+      name: Routes.REQUEST_TOUR,
+      page: () => const RequestScreen(),
+      binding: RequestBinding(),
     ),
   ];
 }

@@ -78,6 +78,7 @@ const Map<String, String> en = {
   'confirmation': 'Confirmation',
   'doYouWantDelete': 'Do you want to delete?',
   'ok': 'OK',
+  'approve': 'Approve',
 
   //Detail place screen
   'letsExplore': "Let's explore new place",
