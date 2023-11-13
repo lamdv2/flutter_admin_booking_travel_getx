@@ -130,31 +130,24 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             SalomonBottomBarItem(
               icon: const Icon(
-                FontAwesomeIcons.redditSquare,
+                FontAwesomeIcons.codePullRequest,
                 size: kDefaultIconSize,
               ),
               title: const Text('Requests'),
             ),
             SalomonBottomBarItem(
               icon: const Icon(
-                FontAwesomeIcons.ccDiscover,
+                FontAwesomeIcons.toriiGate,
                 size: kDefaultIconSize,
               ),
-              title: const Text('Discover'),
+              title: const Text('Tours'),
             ),
             SalomonBottomBarItem(
               icon: const Icon(
-                FontAwesomeIcons.briefcase,
+                FontAwesomeIcons.gears,
                 size: kDefaultIconSize,
               ),
-              title: const Text('Booking'),
-            ),
-            SalomonBottomBarItem(
-              icon: const Icon(
-                FontAwesomeIcons.solidUser,
-                size: kDefaultIconSize,
-              ),
-              title: const Text('Profile'),
+              title: const Text('Settings'),
             ),
           ],
         ),
@@ -166,6 +159,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return [
       const AdminScreen(),
       const RequestScreen(),
+      const TourScreen(),
       const SettingScreen(),
     ];
   }

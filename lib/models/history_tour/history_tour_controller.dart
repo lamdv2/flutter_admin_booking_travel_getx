@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doan_clean_achitec/models/history/history_model.dart';
 import 'package:doan_clean_achitec/models/tour/tour_model.dart';
-import 'package:doan_clean_achitec/modules/auth/user_controller.dart';
 import 'package:doan_clean_achitec/modules/home/home.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -30,7 +29,7 @@ class HistoryTourController extends GetxController {
     final listTourHistoryData =
         snapShot.docs.map((doc) => HistoryModel.fromJson(doc)).toList();
     getAllListHistoryToDate.value = listTourHistoryData;
-    
+
     List<TourModel> listTourModel = [];
 
     if (listTourHistoryData.isNotEmpty) {
@@ -57,7 +56,20 @@ class HistoryTourController extends GetxController {
     try {
       DateTime dateTime = timestamp.toDate();
 
-      String formattedDate = DateFormat('dd-MM-yyyy HH:mm').format(dateTime);
+      String formattedDate = DateFormat('dd-MM-yyyy').format(dateTime);
+
+      return formattedDate;
+    } catch (e) {
+      return 'Lỗi: $e';
+    }
+  }
+
+  String timestampToStringHour(Timestamp timestamp) {
+    try {
+      DateTime dateTime = timestamp.toDate();
+
+      String formattedDate =
+          DateFormat('dd-MM-yyyy  HH:mm:ss').format(dateTime);
 
       return formattedDate;
     } catch (e) {

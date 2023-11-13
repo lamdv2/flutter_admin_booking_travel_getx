@@ -70,6 +70,8 @@ const Map<String, String> vi = {
   'confirmation': 'Xác nhận',
   'doYouWantDelete': 'Bạn có muốn xóa không?',
   'ok': 'Đồng ý',
+  'approve': 'Phê duyệt',
+
   //Detail place screen
   'letsExplore': 'Hãy khám phá nơi mới',
   'wind': 'Gió',

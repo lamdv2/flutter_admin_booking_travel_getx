@@ -204,7 +204,7 @@ class DrawerWidget extends StatelessWidget {
               ],
             ),
             onTap: () {
-              Get.toNamed(Routes.TOUR);
+              Get.toNamed(Routes.REQUEST_TOUR);
             },
           ),
           Divider(
