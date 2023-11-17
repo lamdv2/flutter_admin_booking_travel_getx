@@ -84,21 +84,14 @@ class HistoryItemFinish extends StatelessWidget {
                         itemBuilder: (BuildContext context, int rowIndex) {
                           return GestureDetector(
                             onTap: () {
-                              // if (status == "waiting") {
-                              //   Get.snackbar('Notice',
-                              //       'Wait for the admin to approve the tour');
-                              // } else if (status == "canceled") {
-                              //   Get.snackbar('Notice', 'Tour canceled!!!');
-                              // } else if (status == "coming") {
-                              //   Get.toNamed(
-                              //     Routes.TOUR_QR_CODE,
-                              //     arguments: {
-                              //       'arg1': controller
-                              //           .getListHisWaiting.value?[rowIndex],
-                              //       'arg2': "upcoming",
-                              //     },
-                              //   );
-                              // }
+                              // Get.toNamed(
+                              //   Routes.TOUR_QR_CODE,
+                              //   arguments: {
+                              //     'arg1': controller
+                              //         .getListHisWaiting.value?[rowIndex],
+                              //     'arg2': "upcoming",
+                              //   },
+                              // );
                             },
                             child: Padding(
                               padding:
@@ -110,8 +103,6 @@ class HistoryItemFinish extends StatelessWidget {
                                     .getListHisWaitingToDate.value?[rowIndex],
                                 userModel: controller
                                     .getAllListUserWaiting.value?[rowIndex],
-                                imageTour: controller
-                                    .getAllListImageTour.value?[rowIndex],
                               ),
                             ),
                           );
@@ -168,12 +159,10 @@ class _buildItemHistory extends GetView<RequestController> {
   TourModel? tourModel;
   HistoryModel? historyModel;
   UserModel? userModel;
-  String? imageTour;
   _buildItemHistory({
     required this.tourModel,
     required this.historyModel,
     required this.userModel,
-    required this.imageTour,
   });
 
   HistoryTourController historyTourController =
@@ -192,12 +181,12 @@ class _buildItemHistory extends GetView<RequestController> {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(getSize(8)),
-            child: imageTour != ''
+            child: tourModel?.images != null && tourModel?.images != []
                 ? CachedNetworkImage(
                     height: getSize(200),
                     width: double.infinity,
                     fit: BoxFit.cover,
-                    imageUrl: imageTour ?? '',
+                    imageUrl: tourModel?.images?.first ?? '',
                   )
                 : Image.asset(
                     AssetHelper.city_1,
@@ -323,7 +312,7 @@ class _buildItemHistory extends GetView<RequestController> {
                     onPressed: () {
                       controller.showAlertDialog(
                         context,
-                        historyModel?.id ?? '',
+                        historyModel!,
                       );
                     },
                     style: ButtonStyle(

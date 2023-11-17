@@ -89,7 +89,9 @@ class AdminController extends GetxController {
 
       await uploadTask;
 
-      temporaryPaths.add(ref.fullPath);
+      String imageHttp = await getImageStorage(ref.fullPath);
+
+      temporaryPaths.add(imageHttp);
     }
 
     uploadPaths.addAll(temporaryPaths);

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:doan_clean_achitec/dark_mode.dart';
 import 'package:doan_clean_achitec/models/tour/tour_model.dart';
 import 'package:doan_clean_achitec/modules/tour/tour_controller.dart';
@@ -38,7 +39,7 @@ class TourItemWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(getSize(16)),
           border: Border.all(
             color: appController.isDarkModeOn.value
-                ? ColorConstants.darkCard!.withOpacity(.4)
+                ? ColorConstants.darkCard.withOpacity(.4)
                 : ColorConstants.dividerColor.withOpacity(.4),
             width: 2,
           ),
@@ -57,10 +58,15 @@ class TourItemWidget extends StatelessWidget {
                       aspectRatio: 1.0,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(getSize(16)),
-                        child: Image.asset(
-                          AssetHelper.imgPrevHotel01,
-                          fit: BoxFit.cover,
-                        ),
+                        child: listTour.images != null && listTour.images != []
+                            ? CachedNetworkImage(
+                                fit: BoxFit.cover,
+                                imageUrl: listTour.images?.first ?? '',
+                              )
+                            : Image.asset(
+                                AssetHelper.imgPrevHotel01,
+                                fit: BoxFit.cover,
+                              ),
                       ),
                     ),
                     Positioned(

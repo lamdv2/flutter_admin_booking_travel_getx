@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:doan_clean_achitec/models/notification/notification_model.dart';
 import 'package:doan_clean_achitec/models/user/user_model.dart';
+import 'package:doan_clean_achitec/modules/push_notification/push_notification.dart';
 import 'package:doan_clean_achitec/shared/constants/constants.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +26,6 @@ class RequestController extends GetxController {
 
   final getAllListUser = Rxn<List<UserModel>>([]);
   final getAllListUserWaiting = Rxn<List<UserModel>>([]);
-  final getAllListImageTour = Rxn<List<String>>([]);
 
   RxString urlImage = ''.obs;
 
@@ -108,7 +109,6 @@ class RequestController extends GetxController {
     if (listTourHistoryData.isNotEmpty) {
       getListHisWaitingToDate.value?.clear();
       getListHisWaitingToDate.value = listTourHistoryData;
-      getAllListImageTour.value = [];
 
       for (int i = 0; i < listTourHistoryData.length; i++) {
         final snapShotTour = await _db
@@ -118,12 +118,6 @@ class RequestController extends GetxController {
 
         if (snapShotTour.exists) {
           listTourModel.add(TourModel.fromJson(snapShotTour));
-          String imageTour = await getImageStorage(
-              TourModel.fromJson(snapShotTour).images?.isNotEmpty == true
-                  ? TourModel.fromJson(snapShotTour).images!.first
-                  : '/assets/images/city_7.jpg');
-
-          getAllListImageTour.value?.add(imageTour);
         }
       }
     }
@@ -131,7 +125,7 @@ class RequestController extends GetxController {
     return listTourModel;
   }
 
-  showAlertDialog(BuildContext context, String idTour) {
+  showAlertDialog(BuildContext context, HistoryModel historyModel) {
     Widget cancelButton = TextButton(
       child: Text(
         StringConst.cancel.tr,
@@ -146,7 +140,7 @@ class RequestController extends GetxController {
     Widget continueButton = TextButton(
       child: Text(StringConst.ok.tr),
       onPressed: () {
-        approveTour(idTour);
+        approveTour(historyModel);
         Get.back();
       },
     );
@@ -168,26 +162,52 @@ class RequestController extends GetxController {
     );
   }
 
-  Future<void> approveTour(String idTour) async {
+  Future<void> approveTour(HistoryModel historyModel) async {
     try {
-      DocumentSnapshot<Map<String, dynamic>> snapshot =
-          await _db.collection('historyModel').doc(idTour).get();
+      historyModel.status = 'done';
 
-      if (snapshot.exists) {
-        HistoryModel historyModel = HistoryModel.fromJson(snapshot);
+      await _db
+          .collection('historyModel')
+          .doc(historyModel.id)
+          .update(historyModel.toJson());
+      getAllTourModelData();
+      Get.snackbar("Success", "Approved tour!!!");
+      pushNotificationDone(historyModel);
+    } catch (e) {
+      Get.snackbar("Errrrr", "Approved tour!!!");
+    }
+  }
 
-        historyModel.status = 'done';
+  void pushNotificationDone(HistoryModel historyModel) async {
+    try {
+      final snapshot = await _db
+          .collection('pushNotification')
+          .where('idUser', isEqualTo: historyModel.idUser)
+          .get();
 
-        await _db
-            .collection('historyModel')
-            .doc(idTour)
-            .update(historyModel.toJson());
-        getAllTourModelData();
+      if (snapshot.docs.isNotEmpty) {
+        final notificationModel = snapshot.docs
+            .map((doc) => NotificationModel.fromJson(doc))
+            .toList();
+
+        if (notificationModel.first.fcmToken != null &&
+            notificationModel.first.fcmToken!.isNotEmpty) {
+          sendNotification(
+            "Success",
+            "string",
+            "You are booked successfully",
+            notificationModel.first.fcmToken ?? "",
+          );
+        } else {
+          Get.snackbar("Error", "FCM token is missing!");
+        }
       } else {
-        Get.snackbar("Error", "Something went wrong!!!");
+        Get.snackbar("Error", "Document does not exist!");
       }
-      // ignore: empty_catches
-    } catch (e) {}
+    } catch (e) {
+      print("Error: $e");
+      Get.snackbar("Error", "Something went wrong!");
+    }
   }
 
   Future<void> refreshHistory() async {

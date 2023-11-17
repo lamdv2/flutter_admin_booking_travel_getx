@@ -125,7 +125,7 @@ class TourController extends GetxController {
         links.add(linkImage);
       }
       getListTourImages.value = links;
-    // ignore: empty_catches
+      // ignore: empty_catches
     } catch (e) {}
   }
 
@@ -165,12 +165,15 @@ class TourController extends GetxController {
     } else {
       getListTour.value = filterListTourData.value
           ?.where(
-            (listTour) => listTour.nameTour.toLowerCase().contains(
-                  keyword.toLowerCase(),
-                ),
-          )
+              (listTour) => _containsAllKeywords(listTour.nameTour, keyword))
           .toList();
     }
+  }
+
+  bool _containsAllKeywords(String tourName, String keyword) {
+    List<String> searchTerms = keyword.toLowerCase().split(' ');
+
+    return searchTerms.every((term) => tourName.toLowerCase().contains(term));
   }
 
   // Filter by State
