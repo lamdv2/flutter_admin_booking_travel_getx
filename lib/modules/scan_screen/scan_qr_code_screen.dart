@@ -21,15 +21,10 @@ class ScanQRCodeScreen extends GetView<ScanQrCodeController> {
             padding: const EdgeInsets.symmetric(vertical: 28, horizontal: 6),
             child: Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Scan QR Code',
-                      style: AppStyles.white000Size24Fw400FfMont,
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
+                Text(
+                  'Scan QR Code',
+                  style: AppStyles.white000Size24Fw400FfMont,
+                  textAlign: TextAlign.center,
                 ),
                 Obx(
                   () => Padding(
