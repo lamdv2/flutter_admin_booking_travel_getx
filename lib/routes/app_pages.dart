@@ -13,6 +13,8 @@ import 'package:doan_clean_achitec/modules/intro/intro_binding.dart';
 import 'package:doan_clean_achitec/modules/intro/intro_screen.dart';
 import 'package:doan_clean_achitec/modules/requests/request.dart';
 import 'package:doan_clean_achitec/modules/room/room.dart';
+import 'package:doan_clean_achitec/modules/scan_screen/scan_qr_code_biding.dart';
+import 'package:doan_clean_achitec/modules/scan_screen/scan_qr_code_screen.dart';
 import 'package:doan_clean_achitec/modules/setting/setting_screen.dart';
 import 'package:doan_clean_achitec/modules/splash/splash_binding.dart';
 import 'package:doan_clean_achitec/modules/splash/splash_screen.dart';
@@ -98,7 +100,7 @@ class AppPages {
     ),
     GetPage(
       name: Routes.HISTORY_TOUR_SCREEN,
-      page: () => HistoryScreen(),
+      page: () => const HistoryScreen(),
       binding: HomeBinding(),
     ),
     GetPage(
@@ -118,12 +120,17 @@ class AppPages {
     ),
     GetPage(
       name: Routes.GOOGLE_MAP_SCREEN,
-      page: () => GoogleMapScreen(),
+      page: () => const GoogleMapScreen(),
     ),
     GetPage(
       name: Routes.REQUEST_TOUR,
       page: () => const RequestScreen(),
       binding: RequestBinding(),
+    ),
+    GetPage(
+      name: Routes.QR_CODE,
+      page: () => const ScanQRCodeScreen(),
+      binding: ScanQrCodeBinding(),
     ),
   ];
 }

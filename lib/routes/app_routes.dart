@@ -27,4 +27,5 @@ abstract class Routes {
   static const GOOGLE_MAP_SCREEN = '/google_map_screen';
   static const REQUEST_TOUR = '/request_tour';
   static const TOUR_QR_CODE = '/tour_qr_code';
+  static const QR_CODE = '/qr_code';
 }

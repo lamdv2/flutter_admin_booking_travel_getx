@@ -109,6 +109,7 @@ dependencies:
   image_save: ^5.0.0
   image_gallery_saver: ^2.0.3
   pretty_qr_code: ^3.0.0
+  qr_code_scanner: ^1.0.1
 
 dev_dependencies:
   flutter_test:
