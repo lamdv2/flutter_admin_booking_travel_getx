@@ -7,6 +7,9 @@ class HistoryModel {
   final bool isActive;
   final Timestamp? bookingDate;
   String? status;
+  double? adult;
+  double? children;
+  double? totalPrice;
 
   HistoryModel({
     this.id,
@@ -14,6 +17,9 @@ class HistoryModel {
     this.idTour,
     this.bookingDate,
     this.status,
+    this.adult,
+    this.children,
+    this.totalPrice,
     required this.isActive,
   });
 
@@ -27,6 +33,9 @@ class HistoryModel {
       bookingDate:
           json['bookingDate'] != null ? json['bookingDate'] as Timestamp : null,
       status: json['status'],
+      adult: json['adult']?.toDouble(),
+      children: json['children']?.toDouble(),
+      totalPrice: json['totalPrice']?.toDouble(),
       isActive: json['isActive'] ?? true,
     );
   }
@@ -39,6 +48,9 @@ class HistoryModel {
       'bookingDate': bookingDate,
       'status': status,
       'isActive': isActive,
+      'adult': adult,
+      'children': children,
+      'totalPrice': totalPrice,
     };
   }
 }

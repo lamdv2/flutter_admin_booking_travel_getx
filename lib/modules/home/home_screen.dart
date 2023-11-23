@@ -1,6 +1,7 @@
 import 'package:doan_clean_achitec/dark_mode.dart';
 import 'package:doan_clean_achitec/models/Destination.dart';
 import 'package:doan_clean_achitec/modules/admin/admin_screen.dart';
+import 'package:doan_clean_achitec/modules/chart/chart.dart';
 import 'package:doan_clean_achitec/modules/home/home.dart';
 import 'package:doan_clean_achitec/modules/requests/request.dart';
 import 'package:doan_clean_achitec/modules/tour/tour.dart';
@@ -74,32 +75,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 index: homeController.currentIndex.value,
                 children: _widgetOptions(),
               ),
-              // Padding(
-              //   padding: const EdgeInsetsDirectional.all(12),
-              //   child: Align(
-              //     alignment: Alignment.bottomRight,
-              //     child: SizedBox(
-              //       width: getSize(45),
-              //       height: getSize(45),
-              //       child: Card(
-              //         color: ColorConstants.white,
-              //         shape: RoundedRectangleBorder(
-              //           borderRadius: BorderRadius.circular(50.0),
-              //         ),
-              //         elevation: 3.0,
-              //         child: SpeedDial(
-              //           icon: Icons.language,
-              //           direction: SpeedDialDirection.up,
-              //           curve: Curves.bounceOut,
-              //           animatedIconTheme: const IconThemeData(size: 12.0),
-              //           backgroundColor: ColorConstants.blue,
-              //           foregroundColor: ColorConstants.white,
-              //           children: _buildLanguageOptions(),
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ),
             ],
           ),
         ),
@@ -144,10 +119,10 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             SalomonBottomBarItem(
               icon: const Icon(
-                FontAwesomeIcons.gears,
+                FontAwesomeIcons.chartGantt,
                 size: kDefaultIconSize,
               ),
-              title: const Text('Settings'),
+              title: const Text('Analytics'),
             ),
           ],
         ),
@@ -160,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
       const AdminScreen(),
       const RequestScreen(),
       const TourScreen(),
-      const SettingScreen(),
+      const ChartScreen(),
     ];
   }
 }

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:doan_clean_achitec/dark_mode.dart';
 import 'package:doan_clean_achitec/models/tour/tour_model.dart';
+import 'package:doan_clean_achitec/models/tour/type_service_search.dart';
 import 'package:doan_clean_achitec/modules/admin/admin_controller.dart';
 import 'package:doan_clean_achitec/modules/tour/tour.dart';
 import 'package:doan_clean_achitec/routes/app_pages.dart';
@@ -30,10 +31,82 @@ class _AdminCreateScreenState extends State<AdminCreateScreen> {
   AppController appController = Get.find();
   final _formCreateKey = GlobalKey<FormState>();
 
-  final List<String> items = [
-    '50HCM',
-    '43DN',
-    '30HN',
+  final List<TypeServiceSearch> itemsTypeTour = [
+    TypeServiceSearch(
+      isCheck: false,
+      typeNub: 0,
+      valueType: 'Places to visit and sightsee',
+    ),
+    TypeServiceSearch(
+      isCheck: false,
+      typeNub: 1,
+      valueType: 'Historical sites',
+    ),
+    TypeServiceSearch(
+      isCheck: false,
+      typeNub: 2,
+      valueType: 'Sports events',
+    ),
+    TypeServiceSearch(
+      isCheck: false,
+      typeNub: 3,
+      valueType: 'Sports event',
+    ),
+    TypeServiceSearch(
+      isCheck: false,
+      typeNub: 4,
+      valueType: 'Entertainment',
+    ),
+    TypeServiceSearch(
+      isCheck: false,
+      typeNub: 5,
+      valueType: 'Adventure activities & extreme sports',
+    ),
+    TypeServiceSearch(
+      isCheck: false,
+      typeNub: 6,
+      valueType: 'Farm tourism',
+    ),
+    TypeServiceSearch(
+      isCheck: false,
+      typeNub: 7,
+      valueType: 'Underwater activities',
+    ),
+    TypeServiceSearch(
+      isCheck: false,
+      typeNub: 8,
+      valueType: 'Cultural experience',
+    ),
+    TypeServiceSearch(
+      isCheck: false,
+      typeNub: 9,
+      valueType: 'Half day tour/Day tour',
+    ),
+    TypeServiceSearch(
+      isCheck: false,
+      typeNub: 10,
+      valueType: 'Multi-day tour',
+    ),
+    TypeServiceSearch(
+      isCheck: false,
+      typeNub: 11,
+      valueType: 'Retaurant',
+    ),
+    TypeServiceSearch(
+      isCheck: false,
+      typeNub: 12,
+      valueType: 'Desserts & drinks',
+    ),
+    TypeServiceSearch(
+      isCheck: false,
+      typeNub: 13,
+      valueType: 'Hotel',
+    ),
+    TypeServiceSearch(
+      isCheck: false,
+      typeNub: 14,
+      valueType: 'Travel equipment & related services',
+    ),
   ];
 
   String startDateSelected = 'Select start date';
@@ -46,6 +119,13 @@ class _AdminCreateScreenState extends State<AdminCreateScreen> {
 
   @override
   Widget build(BuildContext context) {
+    adminController.createTypeService();
+    final List<String> items = [
+      StringConst.popular.tr,
+      StringConst.newType.tr,
+      StringConst.sale.tr,
+    ];
+
     return Scaffold(
       appBar: CustomAppBar(
         titles: StringConst.createTour.tr,
@@ -106,6 +186,170 @@ class _AdminCreateScreenState extends State<AdminCreateScreen> {
                     MyTextField(
                       controller: adminController.descriptionController,
                       hintText: StringConst.enterDescriptionTour.tr,
+                      obscureText: false,
+                    ),
+                    SizedBox(
+                      height: getSize(16),
+                    ),
+                    Text(
+                      "Type Tour".tr,
+                      style: TextStyle(
+                        color: appController.isDarkModeOn.value
+                            ? ColorConstants.bgrLight
+                            : ColorConstants.graySub,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    SizedBox(
+                      height: getSize(12),
+                    ),
+                    Obx(
+                      () => DropdownButtonHideUnderline(
+                        child: DropdownButton2<String>(
+                          isExpanded: true,
+                          hint: Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  adminController.selectedValueTypeTour.value,
+                                  style: AppStyles.titleSearchSize16Fw400FfMont,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ],
+                          ),
+                          items: adminController.listTypeSearchService.value !=
+                                      null &&
+                                  adminController
+                                      .listTypeSearchService.value!.isNotEmpty
+                              ? adminController.listTypeSearchService.value!
+                                  .map(
+                                    (TypeServiceSearch item) =>
+                                        DropdownMenuItem<String>(
+                                      value: item.valueType,
+                                      child: Text(
+                                        item.valueType,
+                                        style: appController.isDarkModeOn.value
+                                            ? AppStyles.graySize14Fw400FfMont
+                                            : AppStyles
+                                                .titleSearchSize14Fw400FfMont,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                  )
+                                  .toList()
+                              : itemsTypeTour
+                                  .map(
+                                    (TypeServiceSearch item) =>
+                                        DropdownMenuItem<String>(
+                                      value: item.valueType,
+                                      child: Text(
+                                        item.valueType,
+                                        style: appController.isDarkModeOn.value
+                                            ? AppStyles.graySize14Fw400FfMont
+                                            : AppStyles
+                                                .titleSearchSize14Fw400FfMont,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                  )
+                                  .toList(),
+                          value: adminController.selectedValueTypeTour.value,
+                          onChanged: (value) {
+                            adminController.selectedValueTypeTour.value =
+                                value!;
+                            adminController.typeTourController.text =
+                                adminController
+                                    .typeTourIndex(adminController
+                                        .selectedValueTypeTour.value)
+                                    .toString();
+                          },
+                          buttonStyleData: ButtonStyleData(
+                            height: getSize(50),
+                            width: double.infinity,
+                            padding: EdgeInsets.symmetric(
+                              horizontal: getSize(16),
+                              vertical: getSize(8),
+                            ),
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: appController.isDarkModeOn.value
+                                    ? ColorConstants.accent1
+                                    : ColorConstants.darkGray.withOpacity(.5),
+                                width: 1,
+                              ),
+                              borderRadius: BorderRadius.circular(
+                                getSize(8),
+                              ),
+                              boxShadow: const [],
+                              color: appController.isDarkModeOn.value
+                                  ? ColorConstants.darkCard
+                                  : ColorConstants.white,
+                            ),
+                            elevation: 2,
+                          ),
+                          iconStyleData: IconStyleData(
+                            icon: SvgPicture.asset(
+                              AssetHelper.icFilter,
+                              width: getSize(24),
+                              colorFilter: ColorFilter.mode(
+                                appController.isDarkModeOn.value
+                                    ? ColorConstants.white
+                                    : ColorConstants.accent1,
+                                BlendMode.srcIn,
+                              ),
+                            ),
+                            iconEnabledColor: appController.isDarkModeOn.value
+                                ? ColorConstants.lightCard
+                                : ColorConstants.botTitle,
+                            iconDisabledColor: Colors.grey,
+                          ),
+                          dropdownStyleData: DropdownStyleData(
+                            maxHeight: getSize(360),
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(14),
+                              color: appController.isDarkModeOn.value
+                                  ? ColorConstants.darkCard
+                                  : Colors.grey.shade100,
+                            ),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: getSize(20),
+                            ),
+                            offset: const Offset(-20, -4),
+                            scrollbarTheme: ScrollbarThemeData(
+                              radius: const Radius.circular(40),
+                              thickness: MaterialStateProperty.all(6),
+                              thumbVisibility: MaterialStateProperty.all(true),
+                            ),
+                          ),
+                          menuItemStyleData: MenuItemStyleData(
+                            height: getSize(40),
+                            padding: const EdgeInsets.only(left: 14, right: 14),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: getSize(16),
+                    ),
+                    Text(
+                      "Start At".tr,
+                      style: TextStyle(
+                        color: appController.isDarkModeOn.value
+                            ? ColorConstants.bgrLight
+                            : ColorConstants.graySub,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    SizedBox(
+                      height: getSize(12),
+                    ),
+                    MyTextField(
+                      controller: adminController.accommodationController,
+                      hintText: "Enter location start",
                       obscureText: false,
                     ),
                     SizedBox(
@@ -175,6 +419,125 @@ class _AdminCreateScreenState extends State<AdminCreateScreen> {
                             adminController.selectedValue.value = value!;
                             adminController.idCityController.text =
                                 adminController.selectedValue.value;
+                          },
+                          buttonStyleData: ButtonStyleData(
+                            height: getSize(50),
+                            width: double.infinity,
+                            padding: EdgeInsets.symmetric(
+                              horizontal: getSize(16),
+                              vertical: getSize(8),
+                            ),
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: appController.isDarkModeOn.value
+                                    ? ColorConstants.accent1
+                                    : ColorConstants.darkGray.withOpacity(.5),
+                                width: 1,
+                              ),
+                              borderRadius: BorderRadius.circular(
+                                getSize(8),
+                              ),
+                              boxShadow: const [],
+                              color: appController.isDarkModeOn.value
+                                  ? ColorConstants.darkCard
+                                  : ColorConstants.white,
+                            ),
+                            elevation: 2,
+                          ),
+                          iconStyleData: IconStyleData(
+                            icon: SvgPicture.asset(
+                              AssetHelper.icFilter,
+                              width: getSize(24),
+                              colorFilter: ColorFilter.mode(
+                                appController.isDarkModeOn.value
+                                    ? ColorConstants.white
+                                    : ColorConstants.accent1,
+                                BlendMode.srcIn,
+                              ),
+                            ),
+                            iconEnabledColor: appController.isDarkModeOn.value
+                                ? ColorConstants.lightCard
+                                : ColorConstants.botTitle,
+                            iconDisabledColor: Colors.grey,
+                          ),
+                          dropdownStyleData: DropdownStyleData(
+                            maxHeight: getSize(200),
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(14),
+                              color: appController.isDarkModeOn.value
+                                  ? ColorConstants.darkCard
+                                  : Colors.grey.shade100,
+                            ),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: getSize(20),
+                            ),
+                            offset: const Offset(-20, -4),
+                            scrollbarTheme: ScrollbarThemeData(
+                              radius: const Radius.circular(40),
+                              thickness: MaterialStateProperty.all(6),
+                              thumbVisibility: MaterialStateProperty.all(true),
+                            ),
+                          ),
+                          menuItemStyleData: MenuItemStyleData(
+                            height: getSize(40),
+                            padding: const EdgeInsets.only(left: 14, right: 14),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: getSize(16),
+                    ),
+                    Text(
+                      "Sale Tour".tr,
+                      style: TextStyle(
+                        color: appController.isDarkModeOn.value
+                            ? ColorConstants.bgrLight
+                            : ColorConstants.graySub,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    SizedBox(
+                      height: getSize(12),
+                    ),
+                    Obx(
+                      () => DropdownButtonHideUnderline(
+                        child: DropdownButton2<String>(
+                          isExpanded: true,
+                          hint: Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  adminController.selectedValueSaleTour.value,
+                                  style: AppStyles.titleSearchSize16Fw400FfMont,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ],
+                          ),
+                          items: items
+                              .map(
+                                (String item) => DropdownMenuItem<String>(
+                                  value: item,
+                                  child: Text(
+                                    item,
+                                    style: appController.isDarkModeOn.value
+                                        ? AppStyles.graySize14Fw400FfMont
+                                        : AppStyles
+                                            .titleSearchSize14Fw400FfMont,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              )
+                              .toList(),
+                          value: adminController.selectedValueSaleTour.value,
+                          onChanged: (value) {
+                            adminController.selectedValueSaleTour.value =
+                                value!;
+                            adminController.statusController.text =
+                                adminController.selectedValueSaleTour.value;
                           },
                           buttonStyleData: ButtonStyleData(
                             height: getSize(50),
@@ -511,7 +874,12 @@ class _AdminCreateScreenState extends State<AdminCreateScreen> {
                               price: double.parse(
                                   adminController.priceController.text),
                               images: adminController.listImageTours.value,
-                              duration: adminController.durationController.text,
+                              duration: adminController.calculateDaysDifference(
+                                adminController.formatDateTime(
+                                    adminController.startDateController.text),
+                                adminController.formatDateTime(
+                                    adminController.endDateController.text),
+                              ),
                               accommodation:
                                   adminController.accommodationController.text,
                               itinerary: listIti,
@@ -521,6 +889,8 @@ class _AdminCreateScreenState extends State<AdminCreateScreen> {
                               rating: double.parse(
                                   adminController.ratingController.text),
                               active: true,
+                              type: double.parse(
+                                  adminController.typeTourController.text),
                               specialOffers: List.empty(),
                               status: adminController.statusController.text,
                             );

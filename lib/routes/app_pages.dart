@@ -2,6 +2,7 @@ import 'package:doan_clean_achitec/modules/admin/admin_binding.dart';
 import 'package:doan_clean_achitec/modules/admin/admin_create_tour_screen.dart';
 import 'package:doan_clean_achitec/modules/admin/admin_screen.dart';
 import 'package:doan_clean_achitec/modules/admin/admin_update_tour_screen.dart';
+import 'package:doan_clean_achitec/modules/chart/chart.dart';
 import 'package:doan_clean_achitec/modules/detail_place/detail_place.dart';
 import 'package:doan_clean_achitec/modules/google_map/google_map.dart';
 import 'package:doan_clean_achitec/modules/home/home.dart';
@@ -12,6 +13,7 @@ import 'package:doan_clean_achitec/modules/hotel_detail/hotel_detail_screen.dart
 import 'package:doan_clean_achitec/modules/intro/intro_binding.dart';
 import 'package:doan_clean_achitec/modules/intro/intro_screen.dart';
 import 'package:doan_clean_achitec/modules/requests/request.dart';
+import 'package:doan_clean_achitec/modules/requests/tour_request_details.dart';
 import 'package:doan_clean_achitec/modules/room/room.dart';
 import 'package:doan_clean_achitec/modules/scan_screen/scan_qr_code_biding.dart';
 import 'package:doan_clean_achitec/modules/scan_screen/scan_qr_code_screen.dart';
@@ -131,6 +133,16 @@ class AppPages {
       name: Routes.QR_CODE,
       page: () => const ScanQRCodeScreen(),
       binding: ScanQrCodeBinding(),
+    ),
+    GetPage(
+      name: Routes.TOUR_REQUEST_DETAILS,
+      page: () => TourRequestDetails(),
+      binding: RequestBinding(),
+    ),
+    GetPage(
+      name: Routes.CHART_SCREEN,
+      page: () => const ChartScreen(),
+      binding: ChartBinding(),
     ),
   ];
 }

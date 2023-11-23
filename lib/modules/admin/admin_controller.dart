@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doan_clean_achitec/models/tour/tour_model.dart';
+import 'package:doan_clean_achitec/models/tour/type_service_search.dart';
 import 'package:doan_clean_achitec/shared/constants/colors.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class AdminController extends GetxController {
 
   final nameTourController = TextEditingController();
   final descriptionController = TextEditingController();
+  final startAtController = TextEditingController();
   final idCityController = TextEditingController();
   final startDateController = TextEditingController();
   late final endDateController = TextEditingController();
@@ -27,11 +29,14 @@ class AdminController extends GetxController {
   final excludedServicesController = TextEditingController();
   final reviewsController = TextEditingController();
   final ratingController = TextEditingController();
+  final typeTourController = TextEditingController();
   final activeController = TextEditingController();
   final statusController = TextEditingController();
   final specialOffersController = TextEditingController();
 
   Rx<String> selectedValue = '50HCM'.obs;
+  Rx<String> selectedValueTypeTour = 'Places to visit and sightsee'.obs;
+  Rx<String> selectedValueSaleTour = 'Popular'.obs;
   final getListTour = Rxn<List<TourModel>>();
   final filterListTourData = Rxn<List<TourModel>>();
 
@@ -41,6 +46,12 @@ class AdminController extends GetxController {
   final listImageToursChecked = Rxn<List<Uint8List>>([]);
   final listImageTours = Rxn<List<String>>([]);
   final FirebaseStorage _storage = FirebaseStorage.instance;
+
+  @override
+  void onInit() {
+    createTypeService();
+    super.onInit();
+  }
 
   Future<void> filterListTourByName(String keyword) async {
     if (keyword.isEmpty) {
@@ -140,6 +151,7 @@ class AdminController extends GetxController {
   void clearController() {
     nameTourController.clear();
     descriptionController.clear();
+    startAtController.clear();
     idCityController.clear();
     startDateController.clear();
     endDateController.clear();
@@ -152,12 +164,20 @@ class AdminController extends GetxController {
     excludedServicesController.clear();
     reviewsController.clear();
     ratingController.clear();
+    typeTourController.clear();
     activeController.clear();
     statusController.clear();
     specialOffersController.clear();
     listImageTours.value?.clear();
     listImageToursChecked.value?.clear();
     imageTours.value.clear();
+
+    selectedValue = '50HCM'.obs;
+    selectedValueTypeTour = 'Places to visit and sightsee'.obs;
+    selectedValueSaleTour = 'Popular'.obs;
+    imageTours.value = [];
+    listImageToursChecked.value = [];
+    listImageTours.value = [];
   }
 
   // Refresh Tour List
@@ -251,5 +271,109 @@ class AdminController extends GetxController {
     } catch (e) {
       return '';
     }
+  }
+
+  // type tour
+  final Rxn<List<TypeServiceSearch>> listTypeSearchService =
+      Rxn<List<TypeServiceSearch>>([]);
+
+  void createTypeService() {
+    listTypeSearchService.value = [
+      TypeServiceSearch(
+        isCheck: false,
+        typeNub: 0,
+        valueType: 'Places to visit and sightsee',
+      ),
+      TypeServiceSearch(
+        isCheck: false,
+        typeNub: 1,
+        valueType: 'Historical sites',
+      ),
+      TypeServiceSearch(
+        isCheck: false,
+        typeNub: 2,
+        valueType: 'Sports events',
+      ),
+      TypeServiceSearch(
+        isCheck: false,
+        typeNub: 3,
+        valueType: 'Sports event',
+      ),
+      TypeServiceSearch(
+        isCheck: false,
+        typeNub: 4,
+        valueType: 'Entertainment',
+      ),
+      TypeServiceSearch(
+        isCheck: false,
+        typeNub: 5,
+        valueType: 'Adventure activities & extreme sports',
+      ),
+      TypeServiceSearch(
+        isCheck: false,
+        typeNub: 6,
+        valueType: 'Farm tourism',
+      ),
+      TypeServiceSearch(
+        isCheck: false,
+        typeNub: 7,
+        valueType: 'Underwater activities',
+      ),
+      TypeServiceSearch(
+        isCheck: false,
+        typeNub: 8,
+        valueType: 'Cultural experience',
+      ),
+      TypeServiceSearch(
+        isCheck: false,
+        typeNub: 9,
+        valueType: 'Half day tour/Day tour',
+      ),
+      TypeServiceSearch(
+        isCheck: false,
+        typeNub: 10,
+        valueType: 'Multi-day tour',
+      ),
+      TypeServiceSearch(
+        isCheck: false,
+        typeNub: 11,
+        valueType: 'Retaurant',
+      ),
+      TypeServiceSearch(
+        isCheck: false,
+        typeNub: 12,
+        valueType: 'Desserts & drinks',
+      ),
+      TypeServiceSearch(
+        isCheck: false,
+        typeNub: 13,
+        valueType: 'Hotel',
+      ),
+      TypeServiceSearch(
+        isCheck: false,
+        typeNub: 14,
+        valueType: 'Travel equipment & related services',
+      ),
+    ];
+  }
+
+  double typeTourIndex(String value) {
+    if (listTypeSearchService.value != null) {
+      for (var item in listTypeSearchService.value!) {
+        if (item.valueType == value) {
+          return item.typeNub;
+        }
+      }
+    }
+    return -1;
+  }
+
+  String calculateDaysDifference(Timestamp startDate, Timestamp endDate) {
+    DateTime startDateTime = startDate.toDate();
+    DateTime endDateTime = endDate.toDate();
+
+    Duration difference = endDateTime.difference(startDateTime);
+
+    return (difference.inDays + 1).toString();
   }
 }

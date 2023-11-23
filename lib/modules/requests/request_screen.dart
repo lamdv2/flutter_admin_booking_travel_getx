@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doan_clean_achitec/dark_mode.dart';
 import 'package:doan_clean_achitec/models/user/user_model.dart';
 import 'package:doan_clean_achitec/modules/requests/request.dart';
+import 'package:doan_clean_achitec/routes/app_pages.dart';
 import 'package:doan_clean_achitec/shared/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -172,161 +173,170 @@ class _buildItemHistory extends GetView<RequestController> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: ColorConstants.lightCard,
-      ),
-      child: Column(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(getSize(8)),
-            child: tourModel?.images != null && tourModel?.images != []
-                ? CachedNetworkImage(
-                    height: getSize(200),
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                    imageUrl: tourModel?.images?.first ?? '',
-                  )
-                : Image.asset(
-                    AssetHelper.city_1,
-                    height: getSize(200),
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                  ),
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: getSize(20),
-              vertical: getSize(16),
+    return GestureDetector(
+      onTap: () {
+        Get.toNamed(Routes.TOUR_REQUEST_DETAILS, arguments: {
+          'arg1': tourModel,
+          'arg2': historyModel,
+          'arg3': userModel,
+        });
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: ColorConstants.lightCard,
+        ),
+        child: Column(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(getSize(8)),
+              child: tourModel?.images != null && tourModel?.images != []
+                  ? CachedNetworkImage(
+                      height: getSize(200),
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                      imageUrl: tourModel?.images?.first ?? '',
+                    )
+                  : Image.asset(
+                      AssetHelper.city_1,
+                      height: getSize(200),
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
             ),
-            width: double.infinity,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  historyModel?.bookingDate == null
-                      ? ""
-                      : historyTourController.timestampToStringHour(
-                          historyModel?.bookingDate ?? Timestamp.now()),
-                  style: AppStyles.titleSearchSize16Fw400FfMont.copyWith(
-                    color: ColorConstants.flights,
-                    fontWeight: FontWeight.w500,
+            Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: getSize(20),
+                vertical: getSize(16),
+              ),
+              width: double.infinity,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    historyModel?.bookingDate == null
+                        ? ""
+                        : historyTourController.timestampToStringHour(
+                            historyModel?.bookingDate ?? Timestamp.now()),
+                    style: AppStyles.titleSearchSize16Fw400FfMont.copyWith(
+                      color: ColorConstants.flights,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                SizedBox(
-                  height: getSize(8),
-                ),
-                Text(
-                  tourModel?.nameTour ?? '',
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.left,
-                  maxLines: 2,
-                  style: AppStyles.black000Size16Fw500FfMont,
-                ),
-                SizedBox(
-                  height: getSize(8),
-                ),
-                Row(
-                  children: [
-                    SvgPicture.asset(
-                      AssetHelper.icSend,
-                      width: getSize(20),
-                      color: appController.isDarkModeOn.value
-                          ? ColorConstants.dividerColor
-                          : ColorConstants.botTitle,
-                    ),
-                    SizedBox(
-                      width: getSize(16),
-                    ),
-                    Text(
-                      userModel?.email ?? '',
-                      style: AppStyles.titleSearchSize16Fw400FfMont.copyWith(
+                  SizedBox(
+                    height: getSize(8),
+                  ),
+                  Text(
+                    tourModel?.nameTour ?? '',
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.left,
+                    maxLines: 2,
+                    style: AppStyles.black000Size16Fw500FfMont,
+                  ),
+                  SizedBox(
+                    height: getSize(8),
+                  ),
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        AssetHelper.icSend,
+                        width: getSize(20),
                         color: appController.isDarkModeOn.value
                             ? ColorConstants.dividerColor
                             : ColorConstants.botTitle,
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: getSize(8),
-                ),
-                Row(
-                  children: [
-                    SvgPicture.asset(
-                      AssetHelper.icCalendar,
-                      width: getSize(20),
-                      color: appController.isDarkModeOn.value
-                          ? ColorConstants.dividerColor
-                          : ColorConstants.botTitle,
-                    ),
-                    SizedBox(
-                      width: getSize(16),
-                    ),
-                    Text(
-                      '${controller.timestampToString(
-                        tourModel?.startDate ?? Timestamp.now(),
-                      )} - ${controller.timestampToString(
-                        tourModel?.endDate ?? Timestamp.now(),
-                      )}',
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: AppStyles.titleSearchSize14Fw400FfMont.copyWith(
+                      SizedBox(
+                        width: getSize(16),
+                      ),
+                      Text(
+                        userModel?.email ?? '',
+                        style: AppStyles.titleSearchSize16Fw400FfMont.copyWith(
+                          color: appController.isDarkModeOn.value
+                              ? ColorConstants.dividerColor
+                              : ColorConstants.botTitle,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: getSize(8),
+                  ),
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        AssetHelper.icCalendar,
+                        width: getSize(20),
                         color: appController.isDarkModeOn.value
                             ? ColorConstants.dividerColor
                             : ColorConstants.botTitle,
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                Row(
-                  children: [
-                    SvgPicture.asset(
-                      AssetHelper.icBuy,
-                      width: getSize(20),
-                      color: appController.isDarkModeOn.value
-                          ? ColorConstants.dividerColor
-                          : ColorConstants.botTitle,
-                    ),
-                    SizedBox(
-                      width: getSize(16),
-                    ),
-                    Text(
-                      '${tourModel?.price} VND',
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.left,
-                      style: AppStyles.blue000Size14Fw400FfMont,
-                    ),
-                  ],
-                ),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      controller.showAlertDialog(
-                        context,
-                        historyModel!,
-                      );
-                    },
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                        ColorConstants.primaryButton,
+                      SizedBox(
+                        width: getSize(16),
                       ),
-                    ),
-                    child: Text(StringConst.approve.tr),
+                      Text(
+                        '${controller.timestampToString(
+                          tourModel?.startDate ?? Timestamp.now(),
+                        )} - ${controller.timestampToString(
+                          tourModel?.endDate ?? Timestamp.now(),
+                        )}',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: AppStyles.titleSearchSize14Fw400FfMont.copyWith(
+                          color: appController.isDarkModeOn.value
+                              ? ColorConstants.dividerColor
+                              : ColorConstants.botTitle,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        AssetHelper.icBuy,
+                        width: getSize(20),
+                        color: appController.isDarkModeOn.value
+                            ? ColorConstants.dividerColor
+                            : ColorConstants.botTitle,
+                      ),
+                      SizedBox(
+                        width: getSize(16),
+                      ),
+                      Text(
+                        '${historyModel?.totalPrice} VND',
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.left,
+                        style: AppStyles.blue000Size14Fw400FfMont,
+                      ),
+                    ],
+                  ),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        controller.showAlertDialog(
+                          context,
+                          historyModel!,
+                        );
+                      },
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                          ColorConstants.primaryButton,
+                        ),
+                      ),
+                      child: Text(StringConst.approve.tr),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

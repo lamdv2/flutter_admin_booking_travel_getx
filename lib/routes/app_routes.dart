@@ -28,4 +28,6 @@ abstract class Routes {
   static const REQUEST_TOUR = '/request_tour';
   static const TOUR_QR_CODE = '/tour_qr_code';
   static const QR_CODE = '/qr_code';
+  static const TOUR_REQUEST_DETAILS = '/tour_request_details';
+  static const CHART_SCREEN = '/chart_screen';
 }

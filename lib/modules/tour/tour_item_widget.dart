@@ -61,7 +61,9 @@ class TourItemWidget extends StatelessWidget {
                         child: listTour.images != null && listTour.images != []
                             ? CachedNetworkImage(
                                 fit: BoxFit.cover,
-                                imageUrl: listTour.images?.first ?? '',
+                                imageUrl: listTour.images?.isNotEmpty == true
+                                    ? listTour.images!.first
+                                    : 'https://firebasestorage.googleapis.com/v0/b/doan-final-travel.appspot.com/o/assets%2Fsystem%2Fic_nodata.png?alt=media&token=51128304-2989-4d9e-84b2-81155f0d06f8',
                               )
                             : Image.asset(
                                 AssetHelper.imgPrevHotel01,

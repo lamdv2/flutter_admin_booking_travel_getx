@@ -19,6 +19,8 @@ class TourModel {
   final bool active;
   final String? status;
   final List<String>? specialOffers;
+  final double? type;
+  final String? imgqr;
 
   TourModel({
     this.idTour,
@@ -39,6 +41,8 @@ class TourModel {
     required this.active,
     this.specialOffers,
     this.status,
+    this.type,
+    this.imgqr,
   });
 
   factory TourModel.fromJson(DocumentSnapshot<Map<String, dynamic>> document) {
@@ -72,6 +76,8 @@ class TourModel {
           ? List<String>.from(json['specialOffers'])
           : null,
       status: json['status'],
+      type: json['type']?.toDouble(),
+      imgqr: json['imgqr'],
     );
   }
 
@@ -95,6 +101,8 @@ class TourModel {
       'active': active,
       'specialOffers': specialOffers,
       'status': status,
+      'type': type,
+      'imgqr': imgqr,
     };
   }
 }
