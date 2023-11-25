@@ -218,11 +218,27 @@ class AdminController extends GetxController {
     }
   }
 
-  // Delete Tour By Id
-
-  Future<void> deleteTourById(String idTour) async {
+  // Deactive Tour
+  Future<void> deActiveTour(TourModel deActiveTour) async {
     try {
-      await _db.collection('tourModel').doc(idTour).delete();
+      deActiveTour.active = false;
+      await _db
+          .collection('tourModel')
+          .doc(deActiveTour.idTour)
+          .update(deActiveTour.toJson());
+    } catch (e) {
+      throw Exception("Error updating tour: $e");
+    }
+  }
+
+  // Deactive Tour
+  Future<void> activeTour(TourModel activeTour) async {
+    try {
+      activeTour.active = true;
+      await _db
+          .collection('tourModel')
+          .doc(activeTour.idTour)
+          .update(activeTour.toJson());
     } catch (e) {
       throw Exception("Error updating tour: $e");
     }

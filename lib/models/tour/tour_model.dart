@@ -16,7 +16,7 @@ class TourModel {
   final List<String>? excludedServices;
   final List<String>? reviews;
   final double? rating;
-  final bool active;
+  bool active;
   final String? status;
   final List<String>? specialOffers;
   final double? type;

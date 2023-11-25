@@ -107,6 +107,25 @@ class TourItemWidget extends StatelessWidget {
                         ),
                       ),
                     ),
+                    listTour.active
+                        ? const SizedBox.shrink()
+                        : Align(
+                            alignment: Alignment.bottomRight,
+                            child: Padding(
+                              padding: EdgeInsets.all(getSize(8)),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: ColorConstants.white.withOpacity(.8),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                padding: EdgeInsets.all(getSize(8)),
+                                child: Text(
+                                  "Temporarily stopped",
+                                  style: AppStyles.blue000Size12Fw400FfMont,
+                                ),
+                              ),
+                            ),
+                          ),
                   ],
                 ),
               ),

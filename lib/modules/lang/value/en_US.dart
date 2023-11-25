@@ -76,7 +76,7 @@ const Map<String, String> en = {
   //Admin screen
   'allTour': 'All Tour',
   'confirmation': 'Confirmation',
-  'doYouWantDelete': 'Do you want to delete?',
+  'doYouWantDelete': 'Do you want to deactive?',
   'ok': 'OK',
   'approve': 'Approve',
 

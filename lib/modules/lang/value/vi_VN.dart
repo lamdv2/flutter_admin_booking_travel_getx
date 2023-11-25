@@ -68,7 +68,7 @@ const Map<String, String> vi = {
   //Admin screen
   'allTour': 'Tất cả các Tour',
   'confirmation': 'Xác nhận',
-  'doYouWantDelete': 'Bạn có muốn xóa không?',
+  'doYouWantDelete': 'Bạn có muốn tạm dừng không?',
   'ok': 'Đồng ý',
   'approve': 'Phê duyệt',
 
