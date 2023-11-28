@@ -260,7 +260,7 @@ class TourDetailsScreen extends StatelessWidget {
           ),
         ),
         Text(
-          '(${tourModel?.reviews?.length} ${StringConst.review.tr})',
+          '(${tourModel?.reviews} ${StringConst.review.tr})',
           style: TextStyle(
             fontSize: 16,
             color: appController.isDarkModeOn.value

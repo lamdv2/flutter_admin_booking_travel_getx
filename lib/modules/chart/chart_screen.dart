@@ -429,7 +429,7 @@ class _ChartScreenState extends State<ChartScreen> {
             ),
             Obx(
               () => AspectRatio(
-                aspectRatio: 2,
+                aspectRatio: 1.5,
                 child: PieChart(
                   PieChartData(
                     pieTouchData: PieTouchData(

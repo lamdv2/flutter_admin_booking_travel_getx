@@ -906,7 +906,7 @@ class _AdminUpdateScreenState extends State<AdminUpdateScreen> {
                               itinerary: listIti,
                               includedServices: listIti,
                               excludedServices: List.empty(),
-                              reviews: List.empty(),
+                              reviews: 0,
                               rating: double.parse(
                                   adminController.ratingController.text),
                               active: true,

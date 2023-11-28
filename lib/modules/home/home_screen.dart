@@ -14,7 +14,6 @@ import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 import '../../shared/widgets/stateless/drawer_widget.dart';
 import '../auth/user_controller.dart';
-import '../setting/setting_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

@@ -200,8 +200,8 @@ class TourItemWidget extends StatelessWidget {
                           width: getSize(8.0),
                         ),
                         Text(
-                          listTour.reviews!.isNotEmpty
-                              ? '${listTour.reviews?.length} reviews'
+                          listTour.reviews != null 
+                              ? '${listTour.reviews} reviews'
                               : '',
                           style: AppStyles.graySecondSize14Fw400FfMont.copyWith(
                               color: appController.isDarkModeOn.value

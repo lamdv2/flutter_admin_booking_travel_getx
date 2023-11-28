@@ -14,7 +14,7 @@ class TourModel {
   final List<String>? itinerary;
   final List<String>? includedServices;
   final List<String>? excludedServices;
-  final List<String>? reviews;
+  final double? reviews;
   final double? rating;
   bool active;
   final String? status;
@@ -52,10 +52,11 @@ class TourModel {
       nameTour: json['nameTour'],
       description: json['description'],
       idCity: json['idCity'],
-      startDate:
-          json['startDate'] != null ? json['startDate'] as Timestamp : null,
-      endDate: json['endDate'] != null ? json['endDate'] as Timestamp : null,
-      price: json['price']?.toDouble(),
+      startDate: _parseTimestamp(json['startDate']),
+      endDate: _parseTimestamp(json['endDate']),
+
+      // ignore: prefer_null_aware_operators
+      price: json['price'] != null ? json['price'].toDouble() : null,
       images: json['images'] != null ? List<String>.from(json['images']) : null,
       duration: json['duration'],
       accommodation: json['accommodation'],
@@ -68,17 +69,63 @@ class TourModel {
       excludedServices: json['excludedServices'] != null
           ? List<String>.from(json['excludedServices'])
           : null,
-      reviews:
-          json['reviews'] != null ? List<String>.from(json['reviews']) : null,
-      rating: json['rating']?.toDouble(),
+      // ignore: prefer_null_aware_operators
+      reviews: json['reviews'] != null ? json['reviews'].toDouble() : null,
+      // ignore: prefer_null_aware_operators
+      rating: json['rating'] != null ? json['rating'].toDouble() : null,
       active: json['active'] ?? false,
       specialOffers: json['specialOffers'] != null
           ? List<String>.from(json['specialOffers'])
           : null,
       status: json['status'],
-      type: json['type']?.toDouble(),
+      type: json['type'] != null ? json['price'].toDouble() : null,
       imgqr: json['imgqr'],
     );
+  }
+
+  factory TourModel.fromJsonSearch(Map<String, dynamic> json) {
+    return TourModel(
+      idTour: json['idTour'],
+      nameTour: json['nameTour'],
+      description: json['description'],
+      idCity: json['idCity'],
+      startDate: _parseTimestamp(json['startDate']),
+      endDate: _parseTimestamp(json['endDate']),
+      // ignore: prefer_null_aware_operators
+      price: json['price'] != null ? json['price'].toDouble() : null,
+      images: json['images'] != null ? List<String>.from(json['images']) : null,
+      duration: json['duration'],
+      accommodation: json['accommodation'],
+      itinerary: json['itinerary'] != null
+          ? List<String>.from(json['itinerary'])
+          : null,
+      includedServices: json['includedServices'] != null
+          ? List<String>.from(json['includedServices'])
+          : null,
+      excludedServices: json['excludedServices'] != null
+          ? List<String>.from(json['excludedServices'])
+          : null,
+      // ignore: prefer_null_aware_operators
+      reviews: json['reviews'] != null ? json['reviews'].toDouble() : null,
+      // ignore: prefer_null_aware_operators
+      rating: json['rating'] != null ? json['rating'].toDouble() : null,
+      active: json['active'] ?? false,
+      specialOffers: json['specialOffers'] != null
+          ? List<String>.from(json['specialOffers'])
+          : null,
+      status: json['status'],
+      type: json['type'],
+      imgqr: json['imgqr'],
+    );
+  }
+
+  static Timestamp? _parseTimestamp(dynamic timestamp) {
+    if (timestamp is Timestamp) {
+      return timestamp;
+    } else if (timestamp is String) {
+      return Timestamp.fromDate(DateTime.parse(timestamp));
+    }
+    return null;
   }
 
   toJson() {
@@ -87,8 +134,9 @@ class TourModel {
       'nameTour': nameTour,
       'description': description,
       'idCity': idCity,
-      'startDate': startDate,
-      'endDate': endDate,
+      'startDate':
+          startDate != null ? startDate!.toDate().toIso8601String() : null,
+      'endDate': endDate != null ? endDate!.toDate().toIso8601String() : null,
       'price': price,
       'images': images,
       'duration': duration,
