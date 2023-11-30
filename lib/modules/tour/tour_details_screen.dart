@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:doan_clean_achitec/dark_mode.dart';
+import 'package:doan_clean_achitec/modules/tour/chart_item/chart_item.dart';
 import 'package:doan_clean_achitec/shared/constants/constants.dart';
 import 'package:doan_clean_achitec/shared/widgets/image_full_screen_all.dart';
 import 'package:doan_clean_achitec/shared/widgets/stateless/google_map_widget.dart';
@@ -116,6 +117,9 @@ class TourDetailsScreen extends StatelessWidget {
                           _buildPhotoGallery(tourModel),
                           SizedBox(height: getSize(kTop28Padding)),
                           _buildLocation(tourController),
+                          ChartItem(
+                            idTour: tourModel?.idTour ?? "",
+                          ),
                           SizedBox(height: getSize(kMediumPadding)),
                         ],
                       ),
@@ -418,40 +422,27 @@ class TourDetailsScreen extends StatelessWidget {
           children: [
             Text(
               StringConst.location.tr,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
+              style: AppStyles.black000Size18Fw600FfMont,
             ),
             GestureDetector(
-              onTap: () =>
-                  tourController.launchMap(tourModel?.description ?? ''),
+              onTap: () => tourController.launchMap(tourModel?.location ?? ''),
               child: Text(
                 StringConst.showMap.tr,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                ),
+                style: AppStyles.blue000Size16Fw400FfMont,
               ),
             )
           ],
         ),
         SizedBox(height: getSize(kDefaultPadding)),
-        Text(
-          tourController.cityModel.value?.descriptionCity ?? '',
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w400,
+        Obx(
+          () => Text(
+            tourController.cityModel.value?.descriptionCity ?? '',
+            style: AppStyles.blue000Size16Fw400FfMont,
           ),
         ),
-        SizedBox(height: getSize(kDefaultPadding)),
-        GestureDetector(
-          onDoubleTap: () {
-            Get.toNamed(Routes.GOOGLE_MAP_SCREEN);
-          },
-          child: const GoogleMapWidget(),
+        SizedBox(
+          height: getSize(kDefaultPadding),
         ),
-        SizedBox(height: getSize(kMediumPadding)),
       ],
     );
   }

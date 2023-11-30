@@ -20,7 +20,6 @@ class ChartScreen extends StatefulWidget {
 }
 
 class _ChartScreenState extends State<ChartScreen> {
-  bool showAvg = false;
   List<Color> gradientColors = [
     Colors.cyan,
     Colors.blue,
@@ -117,9 +116,13 @@ class _ChartScreenState extends State<ChartScreen> {
                           if (value == "Week") {
                             chartController.isCheckWeek.value = true;
                             chartController.isCheckMonth.value = false;
+                            chartController.titleChartLine.value =
+                                "Chart of the booking each week";
                           } else if (value == "Month") {
                             chartController.isCheckMonth.value = true;
                             chartController.isCheckWeek.value = false;
+                            chartController.titleChartLine.value =
+                                "Chart of the booking each month";
                           }
                         },
                         buttonStyleData: ButtonStyleData(
@@ -297,11 +300,13 @@ class _ChartScreenState extends State<ChartScreen> {
                 ),
               ),
             ),
-            Align(
-              alignment: Alignment.center,
-              child: Text(
-                chartController.titleChartLine.value,
-                style: AppStyles.black000Size12Fw400FfMont,
+            Obx(
+              () => Align(
+                alignment: Alignment.center,
+                child: Text(
+                  chartController.titleChartLine.value,
+                  style: AppStyles.black000Size12Fw400FfMont,
+                ),
               ),
             ),
             SizedBox(
