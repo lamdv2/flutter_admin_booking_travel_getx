@@ -30,4 +30,5 @@ abstract class Routes {
   static const QR_CODE = '/qr_code';
   static const TOUR_REQUEST_DETAILS = '/tour_request_details';
   static const CHART_SCREEN = '/chart_screen';
+  static const EMPLOYEE_SCREEN = '/employee_screen';
 }

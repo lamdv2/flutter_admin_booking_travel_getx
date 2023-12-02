@@ -293,13 +293,13 @@ LineChartData avgData() {
       horizontalInterval: 1,
       getDrawingVerticalLine: (value) {
         return const FlLine(
-          color: Color(0xff37434d),
+          color: ColorConstants.btnCanCel,
           strokeWidth: 1,
         );
       },
       getDrawingHorizontalLine: (value) {
         return const FlLine(
-          color: Color(0xff37434d),
+          color: ColorConstants.btnCanCel,
           strokeWidth: 1,
         );
       },

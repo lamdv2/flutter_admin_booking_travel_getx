@@ -2,6 +2,7 @@ import 'package:doan_clean_achitec/dark_mode.dart';
 import 'package:doan_clean_achitec/models/Destination.dart';
 import 'package:doan_clean_achitec/modules/admin/admin_screen.dart';
 import 'package:doan_clean_achitec/modules/chart/chart.dart';
+import 'package:doan_clean_achitec/modules/employee/employee.dart';
 import 'package:doan_clean_achitec/modules/home/home.dart';
 import 'package:doan_clean_achitec/modules/requests/request.dart';
 import 'package:doan_clean_achitec/modules/tour/tour.dart';
@@ -111,10 +112,10 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             SalomonBottomBarItem(
               icon: const Icon(
-                FontAwesomeIcons.toriiGate,
+                FontAwesomeIcons.userAstronaut,
                 size: kDefaultIconSize,
               ),
-              title: const Text('Tours'),
+              title: const Text('Employee'),
             ),
             SalomonBottomBarItem(
               icon: const Icon(
@@ -133,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return [
       const AdminScreen(),
       const RequestScreen(),
-      const TourScreen(),
+      EmployeeScreen(),
       const ChartScreen(),
     ];
   }

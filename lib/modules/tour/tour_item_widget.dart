@@ -120,8 +120,9 @@ class TourItemWidget extends StatelessWidget {
                                 ),
                                 padding: EdgeInsets.all(getSize(8)),
                                 child: Text(
-                                  "Temporarily stopped",
+                                  "Coming soon",
                                   style: AppStyles.blue000Size12Fw400FfMont,
+                                  textAlign: TextAlign.center,
                                 ),
                               ),
                             ),
@@ -200,7 +201,7 @@ class TourItemWidget extends StatelessWidget {
                           width: getSize(8.0),
                         ),
                         Text(
-                          listTour.reviews != null 
+                          listTour.reviews != null
                               ? '${listTour.reviews} reviews'
                               : '',
                           style: AppStyles.graySecondSize14Fw400FfMont.copyWith(
