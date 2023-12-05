@@ -3,7 +3,6 @@ import 'package:doan_clean_achitec/dark_mode.dart';
 import 'package:doan_clean_achitec/modules/tour/chart_item/chart_item.dart';
 import 'package:doan_clean_achitec/shared/constants/constants.dart';
 import 'package:doan_clean_achitec/shared/widgets/image_full_screen_all.dart';
-import 'package:doan_clean_achitec/shared/widgets/stateless/google_map_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -11,7 +10,6 @@ import 'package:get/get.dart';
 
 import 'package:doan_clean_achitec/models/tour/tour_model.dart';
 import 'package:doan_clean_achitec/modules/tour/tour.dart';
-import 'package:doan_clean_achitec/routes/app_pages.dart';
 import 'package:doan_clean_achitec/shared/constants/app_style.dart';
 import 'package:doan_clean_achitec/shared/utils/size_utils.dart';
 import 'package:doan_clean_achitec/shared/widgets/item_utility_detail_hotel_widget.dart';
@@ -114,9 +112,9 @@ class TourDetailsScreen extends StatelessWidget {
                           _buildTourUtilities(),
                           SizedBox(height: getSize(kPadding)),
                           _buildTripPlan(tourModel),
-                          _buildPhotoGallery(tourModel),
-                          SizedBox(height: getSize(kTop28Padding)),
                           _buildLocation(tourController),
+                          _buildPhotoGallery(tourModel),
+                          SizedBox(height: getSize(16)),
                           ChartItem(
                             idTour: tourModel?.idTour ?? "",
                           ),
@@ -432,16 +430,6 @@ class TourDetailsScreen extends StatelessWidget {
               ),
             )
           ],
-        ),
-        SizedBox(height: getSize(kDefaultPadding)),
-        Obx(
-          () => Text(
-            tourController.cityModel.value?.descriptionCity ?? '',
-            style: AppStyles.blue000Size16Fw400FfMont,
-          ),
-        ),
-        SizedBox(
-          height: getSize(kDefaultPadding),
         ),
       ],
     );

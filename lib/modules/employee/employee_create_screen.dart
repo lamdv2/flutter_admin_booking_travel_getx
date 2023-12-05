@@ -55,7 +55,7 @@ class EmployeeCreateScreen extends StatelessWidget {
                     height: getSize(16),
                   ),
                   MyTextField(
-                    controller: controller.editEmailController,
+                    controller: controller.emplEmailController,
                     hintText: 'Enter your employee',
                     obscureText: false,
                     validatorCheck: (value) {
@@ -85,7 +85,7 @@ class EmployeeCreateScreen extends StatelessWidget {
                     height: getSize(16),
                   ),
                   MyTextField(
-                    controller: controller.editFirstNameController,
+                    controller: controller.emplFirstNameController,
                     hintText: 'Enter your firstname',
                     obscureText: false,
                   ),
@@ -106,7 +106,7 @@ class EmployeeCreateScreen extends StatelessWidget {
                     height: getSize(16),
                   ),
                   MyTextField(
-                    controller: controller.editLastNameController,
+                    controller: controller.emplLastNameController,
                     hintText: 'Enter your last name',
                     obscureText: false,
                   ),
@@ -127,13 +127,16 @@ class EmployeeCreateScreen extends StatelessWidget {
                     height: getSize(16),
                   ),
                   MyTextField(
-                    controller: controller.editPhoneNumberController,
+                    controller: controller.emplPhoneNumberController,
                     hintText: "Enter your phone number",
                     obscureText: false,
                     isTypeNumb: true,
                     validatorCheck: (value) {
-                      if (!Regex.isPasswordNumber(value!.trim())) {
-                        return 'password must contain at least one number';
+                      if (value == null || value.trim().isEmpty) {
+                        return 'Phone number don\'t empty';
+                      }
+                      if (!Regex.isAllDigits(value.trim())) {
+                        return 'Phone number must is number';
                       }
                       return null;
                     },
@@ -155,7 +158,7 @@ class EmployeeCreateScreen extends StatelessWidget {
                     height: getSize(16),
                   ),
                   MyTextField(
-                    controller: controller.editLocationController,
+                    controller: controller.emplLocationController,
                     hintText: "Enter your location",
                     obscureText: false,
                   ),
@@ -166,15 +169,17 @@ class EmployeeCreateScreen extends StatelessWidget {
                     child: MyButton(
                       onTap: () async {
                         final employee = EmployeeModel(
-                          email: controller.editEmailController.text.trim(),
+                          email: controller.emplEmailController.text.trim(),
                           firstName:
-                              controller.editFirstNameController.text.trim(),
+                              controller.emplFirstNameController.text.trim(),
                           lastName:
-                              controller.editLastNameController.text.trim(),
+                              controller.emplLastNameController.text.trim(),
                           phoneNub:
-                              controller.editPhoneNumberController.text.trim(),
+                              controller.emplPhoneNumberController.text.trim(),
                           location:
-                              controller.editLocationController.text.trim(),
+                              controller.emplLocationController.text.trim(),
+                          passWord: "Abc123!@#",
+                          imgAvatar: "",
                           isActive: true,
                         );
                         if (controller.createEmployeeKey.currentState!

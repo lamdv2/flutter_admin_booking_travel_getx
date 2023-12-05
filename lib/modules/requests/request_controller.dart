@@ -85,8 +85,11 @@ class RequestController extends GetxController {
         .where('status', isEqualTo: "waiting")
         .get();
 
-    final listTourHistoryData =
+    List<HistoryModel> listTourHistoryData =
         snapShot.docs.map((doc) => HistoryModel.fromJson(doc)).toList();
+
+    listTourHistoryData.sort((a, b) => b.bookingDate!.millisecondsSinceEpoch
+        .compareTo(a.bookingDate!.millisecondsSinceEpoch));
 
     List<TourModel> listTourModel = [];
 

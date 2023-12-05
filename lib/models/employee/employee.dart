@@ -7,6 +7,8 @@ class EmployeeModel {
   final String? lastName;
   final String phoneNub;
   final String? location;
+  final String? imgAvatar;
+  final String passWord;
   final bool isActive;
 
   EmployeeModel({
@@ -16,6 +18,8 @@ class EmployeeModel {
     this.lastName,
     required this.phoneNub,
     this.location,
+    this.imgAvatar,
+    required this.passWord,
     required this.isActive,
   });
 
@@ -27,21 +31,25 @@ class EmployeeModel {
       'lastName': lastName,
       'phoneNub': phoneNub,
       'location': location,
+      'imgAvatar': imgAvatar,
+      'passWord': passWord,
       'isActive': isActive,
     };
   }
 
-  factory EmployeeModel.fromSnapshot(
+  factory EmployeeModel.fromJson(
       DocumentSnapshot<Map<String, dynamic>> document) {
     final data = document.data()!;
     return EmployeeModel(
       id: document.id,
-      email: data['email'],
-      firstName: data['firstName'],
-      lastName: data['lastName'],
-      phoneNub: data['phoneNub'],
-      location: data['location'],
-      isActive: data['isActive'],
+      email: data['email'] ?? '',
+      firstName: data['firstName'] ?? '',
+      lastName: data['lastName'] ?? '',
+      phoneNub: data['phoneNub'] ?? '',
+      location: data['location'] ?? '',
+      imgAvatar: data['imgAvatar'] ?? '',
+      passWord: data['passWord'] ?? '',
+      isActive: data['isActive'] ?? false,
     );
   }
 }

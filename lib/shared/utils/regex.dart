@@ -33,6 +33,10 @@ class Regex {
     return password.contains(RegExp(r'[0-9]'));
   }
 
+  static bool isAllDigits(String input) {
+    return input.contains(RegExp(r'^[0-9]+$'));
+  }
+
   static bool isPasswordSpecialChar(String password) {
     return password.contains(RegExp(r'[!@#$%^&+=]'));
   }

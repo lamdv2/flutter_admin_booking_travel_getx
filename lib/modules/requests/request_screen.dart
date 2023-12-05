@@ -84,16 +84,7 @@ class HistoryItemFinish extends StatelessWidget {
                             controller.getListHisWaiting.value?.length ?? 2,
                         itemBuilder: (BuildContext context, int rowIndex) {
                           return GestureDetector(
-                            onTap: () {
-                              // Get.toNamed(
-                              //   Routes.TOUR_QR_CODE,
-                              //   arguments: {
-                              //     'arg1': controller
-                              //         .getListHisWaiting.value?[rowIndex],
-                              //     'arg2': "upcoming",
-                              //   },
-                              // );
-                            },
+                            onTap: () {},
                             child: Padding(
                               padding:
                                   EdgeInsets.symmetric(vertical: getSize(12)),

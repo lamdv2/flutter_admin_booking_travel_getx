@@ -84,7 +84,7 @@ class DrawerWidget extends StatelessWidget {
               ],
             ),
             onTap: () {
-              Get.toNamed(Routes.HOTEL);
+              Get.snackbar("Notification", "Feature coming soon!");
             },
           ),
           Divider(
@@ -122,7 +122,7 @@ class DrawerWidget extends StatelessWidget {
               ],
             ),
             onTap: () {
-              Get.toNamed(Routes.ROOM);
+              Get.snackbar("Notification", "Feature coming soon!");
             },
           ),
           Divider(

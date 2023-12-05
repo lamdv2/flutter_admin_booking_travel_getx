@@ -23,6 +23,7 @@ List<Color> gradientColors = [
   Colors.blue,
 ];
 
+// ignore: must_be_immutable
 class ChartItem extends StatelessWidget {
   String idTour;
   ChartItem({
@@ -43,6 +44,18 @@ class ChartItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(
+            height: getSize(16),
+          ),
+          Align(
+            alignment: Alignment.center,
+            child: Text(
+              "Analytics",
+              style: AppStyles.botTitle000Size20Fw500FfMont,
+              textAlign: TextAlign.center,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
           Padding(
             padding: EdgeInsets.only(
               top: getSize(20),
@@ -265,11 +278,13 @@ class ChartItem extends StatelessWidget {
               ),
             ),
           ),
-          Align(
-            alignment: Alignment.center,
-            child: Text(
-              controller.titleChartLine.value,
-              style: AppStyles.black000Size12Fw400FfMont,
+          Obx(
+            () => Align(
+              alignment: Alignment.center,
+              child: Text(
+                controller.titleChartLine.value,
+                style: AppStyles.black000Size12Fw400FfMont,
+              ),
             ),
           ),
           SizedBox(
