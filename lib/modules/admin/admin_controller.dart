@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:doan_clean_achitec/models/employee/employee.dart';
 import 'package:doan_clean_achitec/models/tour/tour_model.dart';
 import 'package:doan_clean_achitec/models/tour/type_service_search.dart';
 import 'package:doan_clean_achitec/shared/constants/colors.dart';
@@ -46,6 +47,7 @@ class AdminController extends GetxController {
   final listImageToursChecked = Rxn<List<Uint8List>>([]);
   final listImageTours = Rxn<List<String>>([]);
   final FirebaseStorage _storage = FirebaseStorage.instance;
+  final listEmployeeOfTour = Rxn<List<EmployeeModel>>([]);
 
   @override
   void onInit() {
@@ -59,12 +61,15 @@ class AdminController extends GetxController {
     } else {
       getListTour.value = filterListTourData.value
           ?.where(
-            (listTour) => listTour.nameTour.toLowerCase().contains(
-                  keyword.toLowerCase(),
-                ),
-          )
+              (listTour) => _containsAllKeywords(listTour.nameTour, keyword))
           .toList();
     }
+  }
+
+  bool _containsAllKeywords(String tourName, String keyword) {
+    List<String> searchTerms = keyword.toLowerCase().split(' ');
+
+    return searchTerms.every((term) => tourName.toLowerCase().contains(term));
   }
 
   Future<List<Uint8List>> assetEntitiesToUint8Lists(
@@ -181,13 +186,11 @@ class AdminController extends GetxController {
   }
 
   // Refresh Tour List
-
   Future<void> refreshTourList() async {
     getAllTourModelData();
   }
 
   // Get All Tour
-
   Future<void> getAllTourModelData() async {
     final snapShot = await _db.collection('tourModel').get();
     final listTourData =
@@ -391,5 +394,34 @@ class AdminController extends GetxController {
     Duration difference = endDateTime.difference(startDateTime);
 
     return (difference.inDays + 1).toString();
+  }
+
+  Future<List<EmployeeModel>> getListEmployee(String idTour) async {
+    try {
+      final snapShot = await _db
+          .collection('tourModel')
+          .doc(idTour)
+          .collection('tourguide')
+          .get();
+
+      List<EmployeeModel> listEmployeeData = [];
+
+      for (var doc in snapShot.docs) {
+        String employeeId = doc.get('employeeId');
+
+        var employeeDoc =
+            await _db.collection('employee').doc(employeeId).get();
+
+        if (employeeDoc.exists) {
+          var employeeModel = EmployeeModel.fromJson(employeeDoc);
+
+          listEmployeeData.add(employeeModel);
+        } else {}
+      }
+
+      return listEmployeeData;
+    } catch (e) {
+      rethrow;
+    }
   }
 }

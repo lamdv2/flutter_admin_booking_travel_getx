@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doan_clean_achitec/models/city/city_model.dart';
+import 'package:doan_clean_achitec/models/employee/employee.dart';
 import 'package:doan_clean_achitec/models/tour/tour_model.dart';
+import 'package:doan_clean_achitec/modules/admin/admin_controller.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,6 +12,7 @@ import '../../shared/widgets/image_full_screen.dart';
 
 class TourController extends GetxController {
   final _db = FirebaseFirestore.instance;
+  final AdminController adminController = Get.put(AdminController());
 
   List<String> detailsHotelList = ["Overview", "Itinerary", "Review & Rating"];
 
@@ -22,9 +25,35 @@ class TourController extends GetxController {
   TextEditingController searchController = TextEditingController();
   final items = Rxn<List<String>>([]);
   final getListTourImages = Rxn<List<String>>([]);
+  final listAllEmployee = Rxn<List<EmployeeModel>>([]);
+  final listAllEmployeeData = Rxn<List<EmployeeModel>>([]);
+  TextEditingController searchEmployeeController = TextEditingController();
+  RxList<bool> checkBoxStates = ([false]).obs;
+
+  @override
+  void onInit() {
+    getAllEmployee();
+    super.onInit();
+  }
+
+  Future<void> getAllEmployee() async {
+    final snapShot = await _db
+        .collection('employee')
+        .where('isActive', isEqualTo: true)
+        .get();
+    final listEmployeeData =
+        snapShot.docs.map((doc) => EmployeeModel.fromJson(doc)).toList();
+
+    listEmployeeData.sort((a, b) => a.firstName!.compareTo(b.firstName ?? ""));
+
+    listAllEmployee.value = listEmployeeData;
+    listAllEmployeeData.value = listEmployeeData;
+    checkBoxStates =
+        List.generate(listAllEmployee.value?.length ?? 0, (index) => false).obs;
+    adminController.refreshTourList();
+  }
 
   // Tour Details Call Firebase
-
   Future<TourModel> getTourDetailsById(String id) async {
     final snapShot = await _db.collection('tourModel').doc(id).get();
 
@@ -234,5 +263,61 @@ class TourController extends GetxController {
       }
     }
     return '';
+  }
+
+  Future<void> setEmployee(String idTour) async {
+    try {
+      final CollectionReference tourModelCollection =
+          FirebaseFirestore.instance.collection('tourModel');
+
+      for (int i = 0; i < checkBoxStates.length; i++) {
+        EmployeeModel selectedEmployee = listAllEmployee.value![i];
+        final DocumentReference tourDocRef = tourModelCollection.doc(idTour);
+        final CollectionReference tourGuideCollection =
+            tourDocRef.collection('tourguide');
+
+        QuerySnapshot querySnapshot = await tourGuideCollection
+            .where('employeeId', isEqualTo: selectedEmployee.id)
+            .get();
+
+        if (checkBoxStates[i]) {
+          if (querySnapshot.docs.isEmpty) {
+            await tourGuideCollection.add({
+              'employeeId': selectedEmployee.id,
+            });
+          }
+        } else {
+          if (querySnapshot.docs.isNotEmpty) {
+            for (QueryDocumentSnapshot document in querySnapshot.docs) {
+              await document.reference.delete();
+            }
+          }
+        }
+      }
+      Get.snackbar("Success", "Add employee successfully");
+      for (int i = 0; i < checkBoxStates.length; i++) {
+        checkBoxStates[i] = false;
+      }
+      getAllEmployee();
+    } catch (e) {
+      Get.snackbar("Error", "Error updating tourguide collection: $e");
+    }
+  }
+
+  Future<void> searchEmployee(String keyword) async {
+    listAllEmployee.value = listAllEmployeeData.value
+        ?.where((employee) => _containsAllKeywords(employee.email, keyword))
+        .toList();
+    checkBoxStates =
+        List.generate(listAllEmployee.value?.length ?? 0, (index) => false).obs;
+  }
+
+  void toggleCheckBox(int index) {
+    checkBoxStates[index] = !checkBoxStates[index];
+  }
+
+  void setInit() {
+    listAllEmployee.value = listAllEmployeeData.value;
+    searchEmployeeController.text = "";
   }
 }

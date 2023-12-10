@@ -50,7 +50,7 @@ class ChartItem extends StatelessWidget {
           Align(
             alignment: Alignment.center,
             child: Text(
-              "Analytics",
+              "Analysis",
               style: AppStyles.botTitle000Size20Fw500FfMont,
               textAlign: TextAlign.center,
               overflow: TextOverflow.ellipsis,

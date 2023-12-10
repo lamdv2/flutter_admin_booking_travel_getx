@@ -52,4 +52,19 @@ class EmployeeModel {
       isActive: data['isActive'] ?? false,
     );
   }
+
+  factory EmployeeModel.fromQueryJson(QueryDocumentSnapshot<Object?> document) {
+    final data = document.data()! as Map<String, dynamic>;
+    return EmployeeModel(
+      id: document.id,
+      email: data['email'] ?? '',
+      firstName: data['firstName'] ?? '',
+      lastName: data['lastName'] ?? '',
+      phoneNub: data['phoneNub'] ?? '',
+      location: data['location'] ?? '',
+      imgAvatar: data['imgAvatar'] ?? '',
+      passWord: data['passWord'] ?? '',
+      isActive: data['isActive'] ?? false,
+    );
+  }
 }

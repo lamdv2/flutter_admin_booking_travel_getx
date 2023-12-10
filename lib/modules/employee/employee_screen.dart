@@ -142,137 +142,60 @@ class EmployeeScreen extends GetView<EmployeeController> {
                               items: <ActionItems>[
                                 ActionItems(
                                   icon: Icon(
-                                    Icons.update_outlined,
-                                    color: Colors.blue,
+                                    Icons.delete,
+                                    color: Colors.red,
                                     size: getSize(28),
                                   ),
                                   onPress: () {
-                                    Get.toNamed(
-                                      Routes.ADMIN_UPDATE_SCREEN,
-                                      arguments: controller
-                                          .listAllEmployee.value?[rowIndex],
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: Text(
+                                            StringConst.confirmation.tr,
+                                            style: AppStyles
+                                                .black000Size14Fw600FfMont,
+                                          ),
+                                          content: Text(
+                                            "Do you want to deactive employee?"
+                                                .tr,
+                                            style: AppStyles
+                                                .black000Size16Fw400FfMont,
+                                          ),
+                                          actions: <Widget>[
+                                            TextButton(
+                                              onPressed: () {
+                                                Get.back();
+                                              },
+                                              child: Text(
+                                                StringConst.cancel.tr,
+                                                style: AppStyles
+                                                    .botTitle000Size14Fw400FfMont,
+                                              ),
+                                            ),
+                                            TextButton(
+                                              onPressed: () {
+                                                Get.back();
+                                                controller.deActiveEmployee(
+                                                    controller
+                                                            .listAllEmployee
+                                                            .value?[rowIndex]
+                                                            .id ??
+                                                        "");
+                                              },
+                                              child: Text(
+                                                StringConst.ok.tr,
+                                                style: AppStyles
+                                                    .blue000Size14Fw600FfMont,
+                                              ),
+                                            ),
+                                          ],
+                                        );
+                                      },
                                     );
                                   },
                                   backgroudColor: Colors.transparent,
-                                ),
-                                controller.listAllEmployee.value?[rowIndex]
-                                            .isActive ==
-                                        true
-                                    ? ActionItems(
-                                        icon: Icon(
-                                          Icons.delete,
-                                          color: Colors.red,
-                                          size: getSize(28),
-                                        ),
-                                        onPress: () {
-                                          showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) {
-                                              return AlertDialog(
-                                                title: Text(
-                                                  StringConst.confirmation.tr,
-                                                  style: AppStyles
-                                                      .black000Size14Fw600FfMont,
-                                                ),
-                                                content: Text(
-                                                  "Do you want to ".tr,
-                                                  style: AppStyles
-                                                      .black000Size16Fw400FfMont,
-                                                ),
-                                                actions: <Widget>[
-                                                  TextButton(
-                                                    onPressed: () {
-                                                      Get.back();
-                                                    },
-                                                    child: Text(
-                                                      StringConst.cancel.tr,
-                                                      style: AppStyles
-                                                          .botTitle000Size14Fw400FfMont,
-                                                    ),
-                                                  ),
-                                                  TextButton(
-                                                    onPressed: () {
-                                                      Get.back();
-                                                      // adminController
-                                                      //     .deActiveTour(
-                                                      //   adminController
-                                                      //       .getListTour
-                                                      //       .value![index],
-                                                      // );
-                                                      // adminController
-                                                      //     .getAllTourModelData();
-                                                    },
-                                                    child: Text(
-                                                      StringConst.ok.tr,
-                                                      style: AppStyles
-                                                          .blue000Size14Fw600FfMont,
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        backgroudColor: Colors.transparent,
-                                      )
-                                    : ActionItems(
-                                        icon: Icon(
-                                          Icons.check,
-                                          color: Colors.green,
-                                          size: getSize(28),
-                                        ),
-                                        onPress: () {
-                                          showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) {
-                                              return AlertDialog(
-                                                title: Text(
-                                                  StringConst.confirmation.tr,
-                                                  style: AppStyles
-                                                      .black000Size14Fw600FfMont,
-                                                ),
-                                                content: Text(
-                                                  "Do you want the tour to operate again?"
-                                                      .tr,
-                                                  style: AppStyles
-                                                      .black000Size16Fw400FfMont,
-                                                ),
-                                                actions: <Widget>[
-                                                  TextButton(
-                                                    onPressed: () {
-                                                      Get.back();
-                                                    },
-                                                    child: Text(
-                                                      StringConst.cancel.tr,
-                                                      style: AppStyles
-                                                          .botTitle000Size14Fw400FfMont,
-                                                    ),
-                                                  ),
-                                                  TextButton(
-                                                    onPressed: () {
-                                                      Get.back();
-                                                      // adminController
-                                                      //     .activeTour(
-                                                      //   adminController
-                                                      //       .getListTour
-                                                      //       .value![index],
-                                                      // );
-                                                      // adminController
-                                                      //     .getAllTourModelData();
-                                                    },
-                                                    child: Text(
-                                                      StringConst.ok.tr,
-                                                      style: AppStyles
-                                                          .blue000Size14Fw600FfMont,
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        backgroudColor: Colors.transparent,
-                                      ),
+                                )
                               ],
                               child: Padding(
                                 padding:
@@ -357,138 +280,61 @@ class EmployeeScreen extends GetView<EmployeeController> {
                               items: <ActionItems>[
                                 ActionItems(
                                   icon: Icon(
-                                    Icons.update_outlined,
-                                    color: Colors.blue,
+                                    Icons.check,
+                                    color: Colors.green,
                                     size: getSize(28),
                                   ),
                                   onPress: () {
-                                    Get.toNamed(
-                                      Routes.ADMIN_UPDATE_SCREEN,
-                                      arguments: controller
-                                          .listAllEmployeeDeactive
-                                          .value?[rowIndex],
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: Text(
+                                            StringConst.confirmation.tr,
+                                            style: AppStyles
+                                                .black000Size14Fw600FfMont,
+                                          ),
+                                          content: Text(
+                                            "Do you want to reactivate your employee?"
+                                                .tr,
+                                            style: AppStyles
+                                                .black000Size16Fw400FfMont,
+                                          ),
+                                          actions: <Widget>[
+                                            TextButton(
+                                              onPressed: () {
+                                                Get.back();
+                                              },
+                                              child: Text(
+                                                StringConst.cancel.tr,
+                                                style: AppStyles
+                                                    .botTitle000Size14Fw400FfMont,
+                                              ),
+                                            ),
+                                            TextButton(
+                                              onPressed: () {
+                                                Get.back();
+                                                controller.reActiveEmployee(
+                                                  controller
+                                                          .listAllEmployeeDeactive
+                                                          .value?[rowIndex]
+                                                          .id ??
+                                                      "",
+                                                );
+                                              },
+                                              child: Text(
+                                                StringConst.ok.tr,
+                                                style: AppStyles
+                                                    .blue000Size14Fw600FfMont,
+                                              ),
+                                            ),
+                                          ],
+                                        );
+                                      },
                                     );
                                   },
                                   backgroudColor: Colors.transparent,
                                 ),
-                                controller.listAllEmployeeDeactive
-                                            .value?[rowIndex].isActive ==
-                                        true
-                                    ? ActionItems(
-                                        icon: Icon(
-                                          Icons.delete,
-                                          color: Colors.red,
-                                          size: getSize(28),
-                                        ),
-                                        onPress: () {
-                                          showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) {
-                                              return AlertDialog(
-                                                title: Text(
-                                                  StringConst.confirmation.tr,
-                                                  style: AppStyles
-                                                      .black000Size14Fw600FfMont,
-                                                ),
-                                                content: Text(
-                                                  "Do you want to deactive".tr,
-                                                  style: AppStyles
-                                                      .black000Size16Fw400FfMont,
-                                                ),
-                                                actions: <Widget>[
-                                                  TextButton(
-                                                    onPressed: () {
-                                                      Get.back();
-                                                    },
-                                                    child: Text(
-                                                      StringConst.cancel.tr,
-                                                      style: AppStyles
-                                                          .botTitle000Size14Fw400FfMont,
-                                                    ),
-                                                  ),
-                                                  TextButton(
-                                                    onPressed: () {
-                                                      Get.back();
-                                                      // adminController
-                                                      //     .deActiveTour(
-                                                      //   adminController
-                                                      //       .getListTour
-                                                      //       .value![index],
-                                                      // );
-                                                      // adminController
-                                                      //     .getAllTourModelData();
-                                                    },
-                                                    child: Text(
-                                                      StringConst.ok.tr,
-                                                      style: AppStyles
-                                                          .blue000Size14Fw600FfMont,
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        backgroudColor: Colors.transparent,
-                                      )
-                                    : ActionItems(
-                                        icon: Icon(
-                                          Icons.check,
-                                          color: Colors.green,
-                                          size: getSize(28),
-                                        ),
-                                        onPress: () {
-                                          showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) {
-                                              return AlertDialog(
-                                                title: Text(
-                                                  StringConst.confirmation.tr,
-                                                  style: AppStyles
-                                                      .black000Size14Fw600FfMont,
-                                                ),
-                                                content: Text(
-                                                  "Do you want the tour to operate again?"
-                                                      .tr,
-                                                  style: AppStyles
-                                                      .black000Size16Fw400FfMont,
-                                                ),
-                                                actions: <Widget>[
-                                                  TextButton(
-                                                    onPressed: () {
-                                                      Get.back();
-                                                    },
-                                                    child: Text(
-                                                      StringConst.cancel.tr,
-                                                      style: AppStyles
-                                                          .botTitle000Size14Fw400FfMont,
-                                                    ),
-                                                  ),
-                                                  TextButton(
-                                                    onPressed: () {
-                                                      Get.back();
-                                                      // adminController
-                                                      //     .activeTour(
-                                                      //   adminController
-                                                      //       .getListTour
-                                                      //       .value![index],
-                                                      // );
-                                                      // adminController
-                                                      //     .getAllTourModelData();
-                                                    },
-                                                    child: Text(
-                                                      StringConst.ok.tr,
-                                                      style: AppStyles
-                                                          .blue000Size14Fw600FfMont,
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        backgroudColor: Colors.transparent,
-                                      ),
                               ],
                               child: Padding(
                                 padding:

@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 
 void sendNotification(
     String content, String? img, String title, String token) async {
-  const String apiUrl = "http://192.168.1.143:8080/user/notification";
+  const String apiUrl = "http://192.168.1.142:8080/user/notification";
 
   Map<String, dynamic> requestData = {
     "body": content,

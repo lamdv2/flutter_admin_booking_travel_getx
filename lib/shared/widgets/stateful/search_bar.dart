@@ -14,11 +14,13 @@ class SearchBarWidget extends StatelessWidget {
     this.hintText,
     this.textEditingController,
     this.onChanged,
+    this.borderColor,
   });
 
   final String? hintText;
   final TextEditingController? textEditingController;
   final Function(String)? onChanged;
+  final Color? borderColor;
   final AppController appController = Get.find();
 
   @override
@@ -29,6 +31,9 @@ class SearchBarWidget extends StatelessWidget {
             ? ColorConstants.darkCard
             : ColorConstants.lightCard,
         borderRadius: BorderRadius.circular(14),
+        border: borderColor != null
+            ? Border.all(color: ColorConstants.accent2, width: 1)
+            : null,
       ),
       padding:
           EdgeInsets.symmetric(horizontal: getSize(16), vertical: getSize(4)),

@@ -202,7 +202,7 @@ class TourItemWidget extends StatelessWidget {
                         ),
                         Text(
                           listTour.reviews != null
-                              ? '${listTour.reviews} reviews'
+                              ? '${listTour.reviews?.toInt()} reviews'
                               : '',
                           style: AppStyles.graySecondSize14Fw400FfMont.copyWith(
                               color: appController.isDarkModeOn.value

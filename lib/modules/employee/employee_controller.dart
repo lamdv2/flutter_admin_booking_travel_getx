@@ -107,6 +107,34 @@ class EmployeeController extends GetxController {
     listAllEmployeeDeactive.value = listEmployeeData;
   }
 
+  Future<void> deActiveEmployee(String employeeId) async {
+    try {
+      final DocumentReference employeeRef =
+          FirebaseFirestore.instance.collection('employee').doc(employeeId);
+
+      await employeeRef.update({'isActive': false});
+      Get.snackbar("Success", "Employee deactivated successfully");
+      getAllEmployee();
+      getAllEmployeeDeactive();
+    } catch (e) {
+      Get.snackbar("Error", "Error deactivating employee");
+    }
+  }
+
+  Future<void> reActiveEmployee(String employeeId) async {
+    try {
+      final DocumentReference employeeRef =
+          FirebaseFirestore.instance.collection('employee').doc(employeeId);
+
+      await employeeRef.update({'isActive': true});
+      Get.snackbar("Success", "Employee reactivated successfully");
+      getAllEmployee();
+      getAllEmployeeDeactive();
+    } catch (e) {
+      Get.snackbar("Error", "Error reactivating employee");
+    }
+  }
+
   void clearTextController() {
     emplEmailController.clear();
     emplFirstNameController.clear();

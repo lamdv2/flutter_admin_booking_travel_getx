@@ -3,9 +3,9 @@ import 'package:doan_clean_achitec/dark_mode.dart';
 import 'package:doan_clean_achitec/modules/tour/chart_item/chart_item.dart';
 import 'package:doan_clean_achitec/shared/constants/constants.dart';
 import 'package:doan_clean_achitec/shared/widgets/image_full_screen_all.dart';
+import 'package:doan_clean_achitec/shared/widgets/stateful/search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 import 'package:doan_clean_achitec/models/tour/tour_model.dart';
@@ -72,7 +72,12 @@ class TourDetailsScreen extends StatelessWidget {
           Positioned(
             top: kMediumPadding * 2,
             right: kPadding,
-            child: _buildFavoriteButton(),
+            child: InkWell(
+              onTap: () async {
+                await showDialogAddEmpl(context);
+              },
+              child: _buildFavoriteButton(),
+            ),
           ),
           DraggableScrollableSheet(
             initialChildSize: 0.4,
@@ -132,6 +137,144 @@ class TourDetailsScreen extends StatelessWidget {
     );
   }
 
+  Future<void> showDialogAddEmpl(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (context) => AlertDialog(
+        content: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: SizedBox(
+            width: double.maxFinite,
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: <Widget>[
+                Positioned(
+                  right: -40,
+                  top: -40,
+                  child: GestureDetector(
+                    onTap: () {
+                      Get.back();
+                      tourController.setInit();
+                    },
+                    child: const CircleAvatar(
+                      backgroundColor: ColorConstants.red,
+                      child: Icon(Icons.close),
+                    ),
+                  ),
+                ),
+                SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: SearchBarWidget(
+                          textEditingController:
+                              tourController.searchEmployeeController,
+                          hintText: "Search your employee",
+                          borderColor: ColorConstants.accent2,
+                          onChanged: (value) =>
+                              tourController.searchEmployee(value),
+                        ),
+                      ),
+                      Obx(
+                        () => tourController.listAllEmployee.value != null &&
+                                tourController.listAllEmployee.value!.isNotEmpty
+                            ? ListView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: tourController
+                                        .listAllEmployee.value?.length ??
+                                    0,
+                                itemBuilder: (
+                                  BuildContext context,
+                                  int rowIndex,
+                                ) {
+                                  return ListTile(
+                                    leading: tourController.listAllEmployee
+                                                .value?[rowIndex].imgAvatar !=
+                                            ""
+                                        ? CircleAvatar(
+                                            backgroundImage:
+                                                CachedNetworkImageProvider(
+                                              tourController
+                                                      .listAllEmployee
+                                                      .value?[rowIndex]
+                                                      .imgAvatar ??
+                                                  "",
+                                            ),
+                                          )
+                                        : CircleAvatar(
+                                            child: SvgPicture.asset(
+                                              AssetHelper.icAddUser,
+                                            ),
+                                          ),
+                                    title: Text(
+                                      "${tourController.listAllEmployee.value?[rowIndex].email}",
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style:
+                                          AppStyles.black000Size14Fw400FfMont,
+                                    ),
+                                    trailing: Obx(
+                                      () => Checkbox(
+                                        value: tourController
+                                            .checkBoxStates[rowIndex],
+                                        onChanged: (bool? value) {
+                                          tourController
+                                              .toggleCheckBox(rowIndex);
+                                        },
+                                        activeColor:
+                                            ColorConstants.primaryButton,
+                                      ),
+                                    ),
+                                  );
+                                },
+                              )
+                            : Center(
+                                child: Lottie.asset(
+                                  AssetHelper.imgLottieNodate,
+                                  width: getSize(200),
+                                  height: getSize(200),
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                      ),
+                      SizedBox(
+                        height: getSize(40),
+                      )
+                    ],
+                  ),
+                ),
+                Positioned(
+                  right: 0,
+                  left: 0,
+                  bottom: -20,
+                  child: InkResponse(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: ElevatedButton(
+                        child: const Text('Submit'),
+                        onPressed: () {
+                          Get.back();
+                          tourController.setEmployee(tourModel?.idTour ?? "");
+                          tourController.setInit();
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget _buildBackButton() {
     return Container(
       height: getSize(36),
@@ -155,18 +298,23 @@ class TourDetailsScreen extends StatelessWidget {
   }
 
   Widget _buildFavoriteButton() {
-    return GestureDetector(
-      onTap: () {},
-      child: Container(
-        padding: EdgeInsets.all(getSize(kItemPadding)),
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(kDefaultPadding)),
+    return Container(
+      height: getSize(36),
+      width: getSize(36),
+      padding: EdgeInsets.all(getSize(kItemPadding)),
+      decoration: const BoxDecoration(
+        color: ColorConstants.white,
+        borderRadius: BorderRadius.all(
+          Radius.circular(kIconRadius),
         ),
-        child: const Icon(
-          FontAwesomeIcons.heart,
-          color: Colors.red,
+      ),
+      child: SvgPicture.asset(
+        AssetHelper.icPlus,
+        colorFilter: const ColorFilter.mode(
+          ColorConstants.titleSearch,
+          BlendMode.srcIn,
         ),
+        fit: BoxFit.fitHeight,
       ),
     );
   }
@@ -208,7 +356,7 @@ class TourDetailsScreen extends StatelessWidget {
             Row(
               children: [
                 SvgPicture.asset(
-                  AssetHelper.icoDestination,
+                  AssetHelper.icLocation,
                   width: getSize(kPadding),
                 ),
                 SizedBox(width: getSize(kItemPadding)),
@@ -225,7 +373,7 @@ class TourDetailsScreen extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  '\$${tourModel?.price.toString()}',
+                  '${tourModel?.price?.toInt()}đ',
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
@@ -262,7 +410,7 @@ class TourDetailsScreen extends StatelessWidget {
           ),
         ),
         Text(
-          '(${tourModel?.reviews} ${StringConst.review.tr})',
+          '(${tourModel?.reviews?.toInt()} ${StringConst.review.tr})',
           style: TextStyle(
             fontSize: 16,
             color: appController.isDarkModeOn.value
@@ -287,9 +435,9 @@ class TourDetailsScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          StringConst.information.tr,
-          style: const TextStyle(
+        const Text(
+          "Description",
+          style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 18,
           ),
