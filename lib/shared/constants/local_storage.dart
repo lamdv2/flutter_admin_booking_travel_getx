@@ -31,4 +31,19 @@ class LocalStorageHelper {
       await _shared._preferences.setStringList(key, value);
     }
   }
+
+  // save email employee
+  static Future<void> setEmail(String value) async {
+    await _shared._preferences.setString("emailEmployee", value);
+  }
+
+  static String getEmail() {
+    return _shared._preferences.getString("emailEmployee") ?? "";
+  }
+
+  static Future<void> clearEmail() async {
+    String email = _shared._preferences.getString("emailEmployee") ?? "";
+    email = "";
+    await _shared._preferences.setString("emailEmployee", email);
+  }
 }

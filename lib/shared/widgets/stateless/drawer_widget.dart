@@ -1,4 +1,5 @@
 import 'package:doan_clean_achitec/modules/home/home.dart';
+import 'package:doan_clean_achitec/modules/profile/profile_controller.dart';
 import 'package:doan_clean_achitec/shared/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -13,6 +14,7 @@ class DrawerWidget extends StatelessWidget {
   });
 
   final HomeController homeController = Get.put(HomeController());
+  final ProfileController profileController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -53,85 +55,6 @@ class DrawerWidget extends StatelessWidget {
           ),
           SizedBox(
             height: getSize(16),
-          ),
-          ListTile(
-            title: Row(
-              children: [
-                SvgPicture.asset(
-                  AssetHelper.icoHotel,
-                  colorFilter: ColorFilter.mode(
-                    appController.isDarkModeOn.value
-                        ? ColorConstants.btnCanCel
-                        : ColorConstants.graySub,
-                    BlendMode.srcIn,
-                  ),
-                  width: getSize(22),
-                  height: getSize(22),
-                ),
-                SizedBox(
-                  width: getSize(24),
-                ),
-                Text(
-                  StringConst.hotels.tr,
-                  style: TextStyle(
-                    color: appController.isDarkModeOn.value
-                        ? ColorConstants.btnCanCel
-                        : Colors.black,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ],
-            ),
-            onTap: () {
-              Get.snackbar("Notification", "Feature coming soon!");
-            },
-          ),
-          Divider(
-            thickness: 0.5,
-            color: appController.isDarkModeOn.value
-                ? ColorConstants.btnCanCel
-                : ColorConstants.black.withOpacity(0.8),
-            indent: 16,
-            endIndent: 80,
-          ),
-          ListTile(
-            title: Row(
-              children: [
-                Image.asset(
-                  AssetHelper.icoRoom,
-                  color: appController.isDarkModeOn.value
-                      ? ColorConstants.btnCanCel
-                      : ColorConstants.graySub,
-                  width: getSize(22),
-                  height: getSize(22),
-                ),
-                SizedBox(
-                  width: getSize(24),
-                ),
-                Text(
-                  StringConst.rooms.tr,
-                  style: TextStyle(
-                    color: appController.isDarkModeOn.value
-                        ? ColorConstants.btnCanCel
-                        : Colors.black,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ],
-            ),
-            onTap: () {
-              Get.snackbar("Notification", "Feature coming soon!");
-            },
-          ),
-          Divider(
-            thickness: 0.5,
-            color: appController.isDarkModeOn.value
-                ? ColorConstants.btnCanCel
-                : ColorConstants.black.withOpacity(0.8),
-            indent: 16,
-            endIndent: 80,
           ),
           ListTile(
             title: Row(
@@ -192,7 +115,7 @@ class DrawerWidget extends StatelessWidget {
                   width: getSize(24),
                 ),
                 Text(
-                  StringConst.request.tr,
+                  "Request",
                   style: TextStyle(
                     color: appController.isDarkModeOn.value
                         ? ColorConstants.btnCanCel
@@ -259,7 +182,7 @@ class DrawerWidget extends StatelessWidget {
           const Spacer(),
           InkWell(
             onTap: () {
-              Get.offNamed(Routes.LOGIN);
+              profileController.signUserOut(context);
             },
             child: Container(
               padding: const EdgeInsets.symmetric(

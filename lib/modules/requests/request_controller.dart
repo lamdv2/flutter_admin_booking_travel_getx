@@ -149,7 +149,7 @@ class RequestController extends GetxController {
     );
 
     AlertDialog alert = AlertDialog(
-      title: Text(StringConst.approve.tr),
+      title: Text("Approve"),
       content: const Text("Would you like to approve this tour?"),
       actions: [
         cancelButton,

@@ -4,6 +4,9 @@ import 'package:doan_clean_achitec/modules/admin/admin_screen.dart';
 import 'package:doan_clean_achitec/modules/admin/admin_update_tour_screen.dart';
 import 'package:doan_clean_achitec/modules/chart/chart.dart';
 import 'package:doan_clean_achitec/modules/detail_place/detail_place.dart';
+import 'package:doan_clean_achitec/modules/employee_role/employee_role.dart';
+import 'package:doan_clean_achitec/modules/employee_role/home_role/home_binding_role.dart';
+import 'package:doan_clean_achitec/modules/employee_role/home_role/home_screen_role.dart';
 import 'package:doan_clean_achitec/modules/google_map/google_map.dart';
 import 'package:doan_clean_achitec/modules/home/home.dart';
 import 'package:doan_clean_achitec/modules/hotel/hotel_all_screen.dart';
@@ -12,6 +15,8 @@ import 'package:doan_clean_achitec/modules/hotel_detail/hotel_detail_binding.dar
 import 'package:doan_clean_achitec/modules/hotel_detail/hotel_detail_screen.dart';
 import 'package:doan_clean_achitec/modules/intro/intro_binding.dart';
 import 'package:doan_clean_achitec/modules/intro/intro_screen.dart';
+import 'package:doan_clean_achitec/modules/profile/edit_profile.dart';
+import 'package:doan_clean_achitec/modules/profile/profile_binding.dart';
 import 'package:doan_clean_achitec/modules/requests/request.dart';
 import 'package:doan_clean_achitec/modules/requests/tour_request_details.dart';
 import 'package:doan_clean_achitec/modules/room/room.dart';
@@ -131,7 +136,7 @@ class AppPages {
     ),
     GetPage(
       name: Routes.QR_CODE,
-      page: () => const ScanQRCodeScreen(),
+      page: () => ScanQRCodeScreen(),
       binding: ScanQrCodeBinding(),
     ),
     GetPage(
@@ -143,6 +148,21 @@ class AppPages {
       name: Routes.CHART_SCREEN,
       page: () => const ChartScreen(),
       binding: ChartBinding(),
+    ),
+    GetPage(
+      name: Routes.HOME_SCREEN_ROLE,
+      page: () => const HomeScreenRole(),
+      binding: HomeRoleBinding(),
+    ),
+    GetPage(
+      name: Routes.EMPLOYEE_SCREEN_ROLE,
+      page: () => EmployeeRoleScreen(),
+      binding: EmployeeRoleBinding(),
+    ),
+    GetPage(
+      name: Routes.EDIT_PROFILE,
+      page: () => const EditProfileScreen(),
+      binding: ProfileBinding(),
     ),
   ];
 }

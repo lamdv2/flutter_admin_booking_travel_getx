@@ -320,7 +320,7 @@ class _buildItemHistory extends GetView<RequestController> {
                           ColorConstants.primaryButton,
                         ),
                       ),
-                      child: Text(StringConst.approve.tr),
+                      child: Text("Approve"),
                     ),
                   ),
                 ],

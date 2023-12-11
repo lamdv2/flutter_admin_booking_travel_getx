@@ -31,4 +31,7 @@ abstract class Routes {
   static const TOUR_REQUEST_DETAILS = '/tour_request_details';
   static const CHART_SCREEN = '/chart_screen';
   static const EMPLOYEE_SCREEN = '/employee_screen';
+  static const EDIT_PROFILE = '/edit_profile';
+  static const HOME_SCREEN_ROLE = '/home_screen_role';
+  static const EMPLOYEE_SCREEN_ROLE = '/employee_role';
 }

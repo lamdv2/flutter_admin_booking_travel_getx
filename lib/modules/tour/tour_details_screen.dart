@@ -18,7 +18,7 @@ import 'package:lottie/lottie.dart';
 
 class TourDetailsScreen extends StatelessWidget {
   TourDetailsScreen({Key? key}) : super(key: key);
-  final TourController tourController = Get.find();
+  final TourController tourController = Get.put(TourController());
   final TourModel? tourModel = Get.arguments;
   final AppController appController = Get.find();
   final int selectedIndex = 0;

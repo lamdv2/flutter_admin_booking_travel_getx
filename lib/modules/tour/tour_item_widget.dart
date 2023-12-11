@@ -21,7 +21,7 @@ class TourItemWidget extends StatelessWidget {
     super.key,
   });
 
-  TourController tourController = Get.find();
+  TourController tourController = Get.put(TourController());
   AppController appController = Get.find();
 
   @override

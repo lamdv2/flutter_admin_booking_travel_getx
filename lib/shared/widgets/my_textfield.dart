@@ -1,5 +1,4 @@
 import 'package:doan_clean_achitec/dark_mode.dart';
-import 'package:doan_clean_achitec/shared/constants/app_style.dart';
 import 'package:doan_clean_achitec/shared/constants/colors.dart';
 import 'package:doan_clean_achitec/shared/shared.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +12,7 @@ class MyTextField extends StatefulWidget {
   final String? Function(String?)? validatorCheck;
   final bool? isTypeNumb;
   final bool? isCheckReadOnly;
+  final Widget? suffixIcon;
 
   const MyTextField({
     Key? key,
@@ -22,6 +22,7 @@ class MyTextField extends StatefulWidget {
     this.validatorCheck,
     this.isTypeNumb,
     this.isCheckReadOnly,
+    this.suffixIcon,
   }) : super(key: key);
 
   @override
@@ -44,11 +45,13 @@ class _MyTextFieldState extends State<MyTextField> {
 
   @override
   Widget build(BuildContext context) {
+    final AppController appController = Get.find();
+
     return TextFormField(
       controller: widget.controller,
       focusNode: _focusNode,
       obscureText: widget.obscureText,
-      style: AppStyles.black000Size14Fw400FfMont,
+      // style: AppStyles.black000Size14Fw400FfMont,
       keyboardType: widget.isTypeNumb != null && widget.isTypeNumb == true
           ? TextInputType.number
           : TextInputType.text,
@@ -64,6 +67,9 @@ class _MyTextFieldState extends State<MyTextField> {
             color: ColorConstants.darkGray.withOpacity(.5),
           ),
         ),
+        suffixIconConstraints:
+            const BoxConstraints(maxHeight: 60, maxWidth: 60),
+        suffixIcon: widget.suffixIcon,
         focusedBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(10),
@@ -72,8 +78,10 @@ class _MyTextFieldState extends State<MyTextField> {
         ),
         fillColor: Colors.grey.shade100,
         labelText: widget.hintText,
-        labelStyle: const TextStyle(
-          color: ColorConstants.accent1,
+        labelStyle: TextStyle(
+          color: appController.isDarkModeOn.value
+              ? ColorConstants.white.withOpacity(.4)
+              : ColorConstants.accent1,
           fontWeight: FontWeight.w400,
         ),
         focusedErrorBorder: OutlineInputBorder(

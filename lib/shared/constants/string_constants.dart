@@ -15,6 +15,14 @@ class StringConst {
   static String popularDestination = 'popularDestination';
   static String seeAll = 'seeAll';
 
+  static String tour = 'tour';
+  static String hotel = 'hotel';
+  static String ticket = 'ticket';
+  static String food = 'food';
+  static String specialForYou = 'specialForYou';
+  static String tourSale = 'tourSale';
+  static String comingSoon = 'comingSoon';
+
   //Favorite
   static String favorite = 'favorite';
 
@@ -57,7 +65,6 @@ class StringConst {
   static String history = 'history';
   static String tours = 'tours';
   static String admins = 'admins';
-  static String request = 'request';
 
   //Profile screen
   static String myProfile = 'myProfile';
@@ -84,7 +91,6 @@ class StringConst {
   static String confirmation = 'confirmation';
   static String doYouWantDelete = 'doYouWantDelete';
   static String ok = 'ok';
-  static String approve = 'approve';
 
   //Detail place screen
   static String letsExplore = 'letsExplore';
@@ -141,9 +147,156 @@ class StringConst {
   static String email = 'email';
   static String phoneNumber = 'phoneNumber';
   static String save = 'save';
+  static String editProfileSuccessfully = 'editProfileSuccessfully';
+  static String editProfileError = 'editProfileError';
 
-  // Admin
+  // QR code
+  static String qrCode = 'qrCode';
+  static String style = 'style';
+  static String smooth = 'smooth';
+  static String roundedRectangle = 'roundedRectangle';
+  static String colored = 'colored';
+  static String roundedCorners = 'roundedCorners';
+  static String image = 'image';
+  static String imagePosition = 'imagePosition';
+  static String embedded = 'embedded';
+  static String foreground = 'foreground';
+  static String background = 'background';
+
+  // Change password
+  static String changePassword = 'changePassword';
+  static String oldPassword = 'oldPassword';
+  static String newPassword = 'newPassword';
+  static String confirmNewPassword = 'confirmNewPassword';
+
+  // About app
+  static String aboutApp = 'aboutApp';
+  static String embark = 'embark';
+  static String unlockAWorld = 'unlockAWorld';
+  static String effortless = 'effortless';
+  static String discoverPlan = 'discoverPlan';
+  static String exculusive = 'exculusive';
+  static String access = 'access';
+  static String discoverLocal = 'discoverLocal';
+  static String immerse = 'immerse';
+  static String capture = 'capture';
+  static String shareAndConnect = 'shareAndConnect';
+  static String experienceTheWorld = 'experienceTheWorld';
+
+  // Search
+  static String searchMost = 'searchMost';
+  static String searchHistory = 'searchHistory';
+  static String currentTour = 'currentTour';
+  static String currentDestination = 'currentDestination';
+
+  // Comment Video
+  static String comment = 'comment';
+  static String send = 'send';
+
+  // Select Date
+  static String select = 'select';
+
+  // Sign in
+  static String signin = 'signin';
+  static String register = 'register';
+  static String notAMember = 'notAMember';
+  static String signup = 'signup';
+  static String alreadly = 'alreadly';
+  static String loginNow = 'loginNow';
+
+  // Get snackbar
+  static String error = 'error';
+  static String success = 'success';
+  static String bookingFail = 'bookingFail';
+  static String bookingSuccessfully = 'bookingSuccessfully';
+  static String warning = 'warning';
+  static String youneedtochoosethenumberofpeople =
+      'youneedtochoosethenumberofpeople';
+  static String saveSuccess = 'saveSuccess';
+  static String saveFailed = 'saveFailed';
+  static String youCanceledTourSuccessfully = 'youCanceledTourSuccessfully';
+  static String cancelTourError = 'cancelTourError';
+  static String otpVerificationSuccessfully = 'otpVerificationSuccessfully';
+  static String otpVerificationFailed = 'otpVerificationFailed';
+  static String pleaseEnterAValidOTP = 'pleaseEnterAValidOTP';
+  static String errorSigningInWithGoogle = 'errorSigningInWithGoogle';
+
+  // booking request
+  static String startAt = 'startAt';
+  static String priceConfirm = 'priceConfirm';
+  static String price = 'price';
+  static String quantity = 'quantity';
+  static String serviceExcluded = 'serviceExcluded';
+  static String noData = 'noData';
+  static String paymentMethod = 'paymentMethod';
+  static String banking = 'banking';
+  static String cash = 'cash';
+  static String choosePeople = 'choosePeople';
+  static String adult = 'adult';
+  static String from141cmtall = 'from141cmtall';
+  static String children = 'children';
+  static String to140cmtallorless = 'to140cmtallorless';
+  static String continue_ = 'continue_';
+  static String startLocation = 'startLocation';
+  static String informationCustomer = 'informationCustomer';
+  static String firstName = 'firstName';
+  static String lastName = 'lastName';
+  static String scanQRCode = 'scanQRCode';
+  static String scannerWithQR = 'scannerWithQR';
+  static String payment = 'payment';
+  static String paymentBanking = 'paymentBanking';
+  static String finish = 'finish';
+  static String notification = 'notification';
+  static String waitForTheAdminToApproveTheTour =
+      'waitForTheAdminToApproveTheTour';
+  static String tourCanceled = 'tourCanceled';
+  static String looksLike = 'looksLike';
+  static String seeTour = 'seeTour';
+  static String likes = 'likes';
+
+  // tour qr code scanner
+  static String takeScreenShot = 'takeScreenShot';
+  static String cancelTour = 'cancelTour';
+  static String tourReview = 'tourReview';
+  static String loginToContinue = 'loginToContinue';
+
+  // change profile
+  static String changeProfile = 'changeProfile';
+  static String enterYourFirstname = 'enterYourFirstname';
+  static String enterYourLastName = 'enterYourLastName';
+  static String enterYourEmail = 'enterYourEmail';
+  static String enterYourLocation = 'enterYourLocation';
+  static String yourAccount = 'yourAccount';
+  static String doLogout = 'doLogout';
+  static String passwordChangedSuccessfully = 'passwordChangedSuccessfully';
+  static String errorUpdatingPassword = 'errorUpdatingPassword';
+  static String documentDoesNotExist = 'documentDoesNotExist';
+  static String errorGettingDocument = 'errorGettingDocument';
+  static String anUnexpectedErrorOccurred = 'anUnexpectedErrorOccurred';
+  static String theTourIsOnHold = 'theTourIsOnHold';
+  static String stopped = 'stopped';
+  static String reviews = 'reviews';
+  static String futureComingSoon = 'futureComingSoon';
+  static String permissionDenied = 'permissionDenied';
+  static String typeTour = 'typeTour';
+  static String date = 'date';
+  static String enterYourPhoneNumber = 'enterYourPhoneNumber';
+
+  // add video
+  static String gallery = 'gallery';
+  static String camera = 'camera';
+
+  // confirm video
+  static String caption = 'caption';
+  static String hashtag = 'hashtag';
+  static String share = 'share';
+
+  // other
+  static String submit = 'submit';
+  static String additionalComment = 'additionalComment';
+  static String searchForUsers = 'searchForUsers';
+
+   // Admin
   static String adminEmail = 'dreamtraveladmin@gmail.com';
   static String adminPassword = 'Admin123!@#';
-
 }

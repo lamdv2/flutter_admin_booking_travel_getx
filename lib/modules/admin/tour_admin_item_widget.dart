@@ -24,7 +24,7 @@ class TourAdminItemWidget extends GetView<AdminController> {
     super.key,
   });
 
-  TourController tourController = Get.find();
+  TourController tourController = Get.put(TourController());
   AppController appController = Get.find();
 
   final listEmployeeOfTour = Rxn<List<EmployeeModel>>([]);

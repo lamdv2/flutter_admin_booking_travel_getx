@@ -9,7 +9,9 @@ import '../../../shared/utils/size_utils.dart';
 import '../../shared/constants/colors.dart';
 
 class ScanQRCodeScreen extends GetView<ScanQrCodeController> {
-  const ScanQRCodeScreen({super.key});
+  ScanQRCodeScreen({super.key});
+
+  final ScanQrCodeController controller = Get.put(ScanQrCodeController());
 
   @override
   Widget build(BuildContext context) {

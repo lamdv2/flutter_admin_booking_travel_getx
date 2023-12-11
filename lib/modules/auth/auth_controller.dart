@@ -1,7 +1,10 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:doan_clean_achitec/models/employee/employee.dart';
 import 'package:doan_clean_achitec/modules/auth/user_controller.dart';
-import 'package:doan_clean_achitec/modules/home/home_controller.dart';
+import 'package:doan_clean_achitec/modules/employee_role/home_role/home_controller_role.dart';
+import 'package:doan_clean_achitec/modules/profile/profile_controller.dart';
 import 'package:doan_clean_achitec/routes/app_pages.dart';
 import 'package:doan_clean_achitec/shared/constants/constants.dart';
 import 'package:doan_clean_achitec/shared/utils/focus.dart';
@@ -21,8 +24,11 @@ class AuthController extends GetxController {
   final UserController userController =
       Get.put<UserController>(UserController());
 
-  final HomeController homeController =
-      Get.put<HomeController>(HomeController());
+  final HomeRoleController homeRoleController =
+      Get.put<HomeRoleController>(HomeRoleController());
+
+  final ProfileController profileController = Get.put(ProfileController());
+  final _db = FirebaseFirestore.instance;
 
   late final Rx<User> firebaseUser;
   RxString veriticationId = ''.obs;
@@ -59,19 +65,42 @@ class AuthController extends GetxController {
           loginPasswordController.text == StringConst.adminPassword) {
         clearControllLogin();
         Get.offNamed(Routes.HOME);
-      } else if (loginEmailController.text != StringConst.adminEmail) {
-        // ignore: use_build_context_synchronously
-        wrongMessage(context, 'Email not found!!!');
-      } else if (loginPasswordController.text != StringConst.adminPassword) {
-        // ignore: use_build_context_synchronously
-        wrongMessage(context, 'Error password!!!');
+        return;
+      }
+
+      final snapShot = await _db
+          .collection('employee')
+          .where('email', isEqualTo: loginEmailController.text)
+          .where('passWord', isEqualTo: loginPasswordController.text)
+          .get();
+
+      if (snapShot.docs.isNotEmpty) {
+        final listEmployeeData =
+            snapShot.docs.map((doc) => EmployeeModel.fromJson(doc)).single;
+
+        final fcmTokenGet = LocalStorageHelper.getValue('fcmToken') ?? "";
+        profileController.createPushNotification(
+          homeRoleController.userModel.value?.id ?? "",
+          fcmTokenGet,
+        );
+        await LocalStorageHelper.setEmail(loginEmailController.text);
+
+        clearControllLogin();
+
+        Get.offAllNamed(Routes.HOME_SCREEN_ROLE);
+        homeRoleController.userModel.value = listEmployeeData;
       } else {
         // ignore: use_build_context_synchronously
-        wrongMessage(context, 'Something went wrong!!!');
+        wrongMessage(context, 'Authentication error');
       }
     } on FirebaseAuthException catch (e) {
-      // ignore: use_build_context_synchronously
-      wrongMessage(context, e.code);
+      if (e.code == 'user-not-found' || e.code == 'wrong-password') {
+        // ignore: use_build_context_synchronously
+        wrongMessage(context, 'Invalid email or password');
+      } else {
+        // ignore: use_build_context_synchronously
+        wrongMessage(context, e.message ?? 'Authentication error');
+      }
     }
   }
 

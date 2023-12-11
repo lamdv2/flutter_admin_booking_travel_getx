@@ -1,11 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doan_clean_achitec/models/employee/employee.dart';
+import 'package:doan_clean_achitec/shared/constants/local_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../models/history/history_model.dart';
+import '../../../models/history/history_model.dart';
 
-class HomeController extends GetxController {
+class HomeRoleController extends GetxController {
   RxInt currentIndex = 0.obs;
   final _db = FirebaseFirestore.instance;
   final userModel = Rxn<EmployeeModel>();
@@ -14,8 +15,18 @@ class HomeController extends GetxController {
   final getListHistoryByUserId = Rxn<List<HistoryModel>>();
   final scaffoldHomeKey = GlobalKey<ScaffoldState>();
 
-// Get All Tour
+  @override
+  Future<void> onInit() async {
+    String emailEmployee = await getEmail();
+    getUserDetails(emailEmployee);
+    super.onInit();
+  }
 
+  Future<String> getEmail() async {
+    return await LocalStorageHelper.getValue("emailEmployee") ?? "";
+  }
+
+// Get All Tour
   Future<void> getAllTourModelData() async {
     final snapShot = await _db.collection('historyModel').get();
     final listTourData =

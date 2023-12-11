@@ -1,4 +1,5 @@
-// ignore: file_names
+// ignore_for_file: file_names
+
 const Map<String, String> vi = {
   //home screen
   'all': 'Tất cả',
@@ -6,8 +7,15 @@ const Map<String, String> vi = {
   'asia': 'Châu Á',
   'europe': 'Châu Âu',
   'american': 'Châu Mỹ',
-  'popularDestination': 'Điểm Đến Phổ Biến',
-  'seeAll': 'Xem Tất Cả',
+  'popularDestination': 'Điểm đến phổ biến',
+  'seeAll': 'Xem tất cả',
+  'tour': 'Tour',
+  'hotel': 'Khách sạn',
+  'ticket': 'Vé',
+  'food': 'Đồ ăn',
+  'specialForYou': 'Đặc biệt dành cho bạn',
+  'tourSale': 'Khuyến mãi tour',
+  'comingSoon': 'Sắp tới',
   //favorite
   'favorite': 'Yêu Thích',
   //Discover
@@ -46,8 +54,6 @@ const Map<String, String> vi = {
   'history': 'Lịch sử',
   'tours': 'Tour du lịch',
   'admins': 'Quản trị viên',
-  'request': 'Các yêu cầu',
-
   //Profile screen
   'myProfile': 'Hồ sơ cá nhân',
   'personalDetail': 'Chi tiết cá nhân',
@@ -68,10 +74,8 @@ const Map<String, String> vi = {
   //Admin screen
   'allTour': 'Tất cả các Tour',
   'confirmation': 'Xác nhận',
-  'doYouWantDelete': 'Bạn có muốn tạm dừng không?',
+  'doYouWantDelete': 'Bạn có muốn xóa không?',
   'ok': 'Đồng ý',
-  'approve': 'Phê duyệt',
-
   //Detail place screen
   'letsExplore': 'Hãy khám phá nơi mới',
   'wind': 'Gió',
@@ -125,4 +129,152 @@ const Map<String, String> vi = {
   'email': 'địa chỉ email',
   'phoneNumber': 'số điện thoại',
   'save': 'Lưu',
+
+  // QR code
+  'qrCode': 'Mã QR',
+  'style': 'Kiểu',
+  'smooth': 'Mượt',
+  'roundedRectangle': 'Hình chữ nhật bo tròn',
+  'colored': 'Màu sắc',
+  'roundedCorners': 'Góc bo tròn',
+  'image': 'Hình ảnh',
+  'imagePosition': 'Vị trí hình ảnh',
+  'embedded': 'Nhúng',
+  'foreground': 'Nền trước',
+  'background': 'Nền sau',
+
+// Change password
+  'changePassword': 'Thay đổi mật khẩu',
+  'oldPassword': 'Mật khẩu cũ',
+  'newPassword': 'Mật khẩu mới',
+  'confirmNewPassword': 'Xác nhận mật khẩu mới',
+
+// About app
+  'aboutApp': 'Về ứng dụng',
+  'embark': 'Bắt đầu hành trình với ứng dụng của chúng tôi',
+  'unlockAWorld': 'Mở khóa một thế giới của các khả năng',
+  'effortless': 'Lập kế hoạch chuyến đi một cách dễ dàng',
+  'discoverPlan':
+      'Khám phá, lập kế hoạch và đặt vé một cách liền mạch. Người bạn du lịch toàn diện của bạn',
+  'exclusive': 'Ưu đãi và khuyến mãi độc quyền',
+  'access': 'Truy cập ưu đãi đặc biệt với đối tác hàng đầu của chúng tôi',
+  'discoverLocal': 'Khám phá những điểm độc đáo địa phương',
+  'immerse': 'Đắm chìm trong văn hóa địa phương với sự tổ chức chọn lọc',
+  'capture': 'Ghi lại từng khoảnh khắc',
+  'shareAndConnect': 'Chia sẻ và kết nối với cộng đồng du khách đồng hành',
+  'experienceTheWorld': 'Trải nghiệm thế giới như chưa bao giờ',
+
+// Search
+  'searchMost': 'Tìm kiếm nhiều nhất',
+  'searchHistory': 'Lịch sử tìm kiếm',
+  'currentTour': 'Tour hiện tại',
+  'currentDestination': 'Điểm đến hiện tại',
+
+// Comment Video
+  'comment': 'Bình luận',
+  'send': 'Gửi',
+
+// Select Date
+  'select': 'Chọn',
+
+  // Sign in
+  'signin': 'Đăng nhập',
+  'register': 'Đăng ký',
+  'notAMember': 'Không phải là thành viên',
+  'signup': 'Đăng ký',
+  'alreadly': 'Đã có tài khoản',
+  'loginNow': 'Đăng nhập ngay',
+
+// Get snackbar
+  'error': 'Lỗi',
+  'success': 'Thành công',
+  'bookingFail': 'Đặt tour thất bại',
+  'bookingSuccessfully': 'Đặt tour thành công',
+  'warning': 'Cảnh báo',
+  'youneedtochoosethenumberofpeople': 'Bạn cần chọn số lượng người',
+  'saveSuccess': 'Lưu thành công',
+  'saveFailed': 'Lưu thất bại',
+  'youCanceledTourSuccessfully': 'Bạn đã hủy tour thành công',
+  'cancelTourError': 'Lỗi hủy tour',
+  'otpVerificationSuccessfully': 'Xác nhận OTP thành công',
+  'otpVerificationFailed': 'Xác nhận OTP thất bại',
+  'pleaseEnterAValidOTP': 'Vui lòng nhập mã OTP hợp lệ',
+  'errorSigningInWithGoogle': 'Lỗi đăng nhập bằng Google',
+
+// Booking request
+  'startAt': 'Bắt đầu từ',
+  'priceConfirm': 'Xác nhận giá',
+  'price': 'giá',
+  'quantity': 'số lượng',
+  'serviceExcluded': 'Dịch vụ không bao gồm',
+  'noData': 'Không có dữ liệu',
+  'paymentMethod': 'Phương thức thanh toán',
+  'banking': 'Chuyển khoản ngân hàng',
+  'cash': 'Thẻ Visa',
+  'choosePeople': 'Chọn số người',
+  'adult': 'Người lớn',
+  'from141cmtall': 'Từ 141 cm trở lên',
+  'children': 'Trẻ em',
+  'to140cmtallorless': '140 cm hoặc ít hơn',
+  'continue_': 'Tiếp tục',
+  'startLocation': 'Điểm xuất phát',
+  'informationCustomer': 'Thông tin khách hàng',
+  'firstName': 'Họ',
+  'lastName': 'Tên',
+  'scanQRCode': 'Quét mã QR',
+  'scannerWithQR': 'Máy quét với mã QR',
+  'payment': 'Thanh toán',
+  'paymentBanking': 'Thanh toán qua ngân hàng',
+  'finish': 'Hoàn thành',
+  'notification': 'Thông báo',
+  'waitForTheAdminToApproveTheTour': 'Chờ Admin phê duyệt tour',
+  'tourCanceled': 'Tour đã bị hủy',
+  'looksLike': 'Trông giống như',
+  'seeTour': 'Xem tour',
+  'likes': 'Thích',
+
+// Tour QR code scanner
+  'takeScreenShot': 'Chụp ảnh màn hình',
+  'cancelTour': 'Hủy tour',
+  'tourReview': 'Đánh giá tour',
+  'loginToContinue': 'Đăng nhập để tiếp tục',
+
+// Change profile
+  'changeProfile': 'Thay đổi hồ sơ',
+  'enterYourFirstname': 'Nhập tên của bạn',
+  'enterYourLastName': 'Nhập họ của bạn',
+  'enterYourEmail': 'Nhập email của bạn',
+  'enterYourPhoneNumber': 'Nhập số điện thoại của bạn',
+
+// Add video
+  'gallery': 'Thư viện ảnh',
+  'camera': 'Máy ảnh',
+
+// Confirm video
+  'caption': 'Chú thích',
+  'hashtag': 'Hashtag',
+  'share': 'Chia sẻ',
+
+// Other
+  'submit': 'Gửi',
+  'additionalComment': 'Bình luận thêm',
+  'searchForUsers': 'Tìm kiếm người dùng',
+
+  'editProfileSuccessfully': 'Chỉnh sửa hồ sơ thành công',
+  'editProfileError': 'Lỗi khi chỉnh sửa hồ sơ',
+  'enterYourLocation': 'Nhập địa chỉ của bạn',
+  'yourAccount': 'Tài khoản của bạn',
+  'doLogout': 'Đăng xuất',
+  'passwordChangedSuccessfully': 'Đổi mật khẩu thành công',
+  'errorUpdatingPassword': 'Lỗi khi cập nhật mật khẩu',
+  'documentDoesNotExist': 'Tài liệu không tồn tại',
+  'errorGettingDocument': 'Lỗi khi truy xuất tài liệu',
+  'anUnexpectedErrorOccurred': 'Có lỗi xảy ra không mong muốn',
+  'theTourIsOnHold': 'Tour đang tạm dừng',
+  'stopped': 'Dừng lại',
+  'reviews': 'Nhận xét',
+  'futureComingSoon': 'Sắp có trong tương lai',
+  'permissionDenied': 'Từ chối quyền',
+  'typeTour': 'Loại hình tour',
+  'date': 'Ngày',
 };

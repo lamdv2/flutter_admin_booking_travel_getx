@@ -4,6 +4,6 @@ import 'package:get/get.dart';
 class ScanQrCodeBinding implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<ScanQrCodeController>(() => ScanQrCodeController());
+    Get.put(ScanQrCodeController());
   }
 }
