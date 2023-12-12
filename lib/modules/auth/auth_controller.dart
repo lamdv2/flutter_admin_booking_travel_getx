@@ -80,7 +80,7 @@ class AuthController extends GetxController {
 
         final fcmTokenGet = LocalStorageHelper.getValue('fcmToken') ?? "";
         profileController.createPushNotification(
-          homeRoleController.userModel.value?.id ?? "",
+          homeRoleController.employeeModel.value?.id ?? "",
           fcmTokenGet,
         );
         await LocalStorageHelper.setEmail(loginEmailController.text);
@@ -88,7 +88,7 @@ class AuthController extends GetxController {
         clearControllLogin();
 
         Get.offAllNamed(Routes.HOME_SCREEN_ROLE);
-        homeRoleController.userModel.value = listEmployeeData;
+        homeRoleController.employeeModel.value = listEmployeeData;
       } else {
         // ignore: use_build_context_synchronously
         wrongMessage(context, 'Authentication error');

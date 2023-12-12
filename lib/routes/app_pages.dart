@@ -7,6 +7,7 @@ import 'package:doan_clean_achitec/modules/detail_place/detail_place.dart';
 import 'package:doan_clean_achitec/modules/employee_role/employee_role.dart';
 import 'package:doan_clean_achitec/modules/employee_role/home_role/home_binding_role.dart';
 import 'package:doan_clean_achitec/modules/employee_role/home_role/home_screen_role.dart';
+import 'package:doan_clean_achitec/modules/employee_role/tour_details/tour_role_binding.dart';
 import 'package:doan_clean_achitec/modules/google_map/google_map.dart';
 import 'package:doan_clean_achitec/modules/home/home.dart';
 import 'package:doan_clean_achitec/modules/hotel/hotel_all_screen.dart';
@@ -31,6 +32,7 @@ import 'package:get/get.dart';
 
 import '../models/history_tour/history_tour_screen.dart';
 import '../modules/auth/auth_login_screen.dart';
+import '../modules/employee_role/tour_details/tour_role_details_screen.dart';
 
 part 'app_routes.dart';
 
@@ -163,6 +165,11 @@ class AppPages {
       name: Routes.EDIT_PROFILE,
       page: () => const EditProfileScreen(),
       binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: Routes.TOUR_ROLE_DETAIL_SCREEN,
+      page: () => TourRoleDetailsScreen(),
+      binding: TourRoleBinding(),
     ),
   ];
 }

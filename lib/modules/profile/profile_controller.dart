@@ -4,9 +4,9 @@ import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:doan_clean_achitec/models/employee/employee.dart';
 import 'package:doan_clean_achitec/models/user/user_model.dart';
 import 'package:doan_clean_achitec/modules/employee_role/home_role/home_controller_role.dart';
-import 'package:doan_clean_achitec/modules/home/home.dart';
 import 'package:doan_clean_achitec/modules/profile/edit_profile.dart';
 import 'package:doan_clean_achitec/modules/profile/image_full_screen.dart';
 import 'package:doan_clean_achitec/shared/constants/constants.dart';
@@ -37,7 +37,6 @@ class ProfileController extends GetxController {
   final editLocationController = TextEditingController();
 
   final UserController userController = Get.find();
-  final HomeController homeController = Get.put(HomeController());
   final HomeRoleController homeRoleController = Get.put(HomeRoleController());
 
   final scaffoldProfileKey = GlobalKey<ScaffoldState>();
@@ -59,7 +58,8 @@ class ProfileController extends GetxController {
     List<String> thumbnails = [];
     var myVideos = await _firestore
         .collection('videos')
-        .where('uid', isEqualTo: homeController.userModel.value?.id ?? "")
+        .where('uid',
+            isEqualTo: homeRoleController.employeeModel.value?.id ?? "")
         .get();
 
     for (int i = 0; i < myVideos.docs.length; i++) {
@@ -189,19 +189,19 @@ class ProfileController extends GetxController {
     throw Exception('Failed to read asset data');
   }
 
-  Future<void> updateUserProfile(UserModel userModel) async {
+  Future<void> updateUserProfile(EmployeeModel employeeModel) async {
     await _firestore
         .collection('employee')
-        .doc(userModel.id)
-        .update(userModel.toJson())
+        .doc(employeeModel.id)
+        .update(employeeModel.toJson())
         .then((value) {
       Get.back();
       Get.snackbar(
           "${StringConst.success.tr}!", StringConst.editProfileSuccessfully.tr,
           snackPosition: SnackPosition.BOTTOM, colorText: Colors.black87);
       Future.wait([
-        homeController
-            .getUserDetails(homeController.userModel.value?.email ?? '')
+        homeRoleController
+            .getUserDetails(homeRoleController.employeeModel.value?.email ?? '')
       ]);
     }).catchError((onError) {
       Get.snackbar("${StringConst.error.tr}!!!",
@@ -360,15 +360,15 @@ class ProfileController extends GetxController {
 
           userController.userName.value = '';
           userController.userEmail.value = '';
-          homeController.userModel.value = null;
-          homeRoleController.userModel.value = null;
+          homeRoleController.employeeModel.value = null;
+          homeRoleController.employeeModel.value = null;
           profileController.imageFonts.value = [];
 
           clearEditController();
 
           LocalStorageHelper.clearEmail();
 
-          Get.offNamed(Routes.LOGIN);
+          Get.offAllNamed(Routes.LOGIN);
         } catch (e) {
           wrongMessage("Logout failed: $e");
         }
@@ -393,20 +393,21 @@ class ProfileController extends GetxController {
   }
 
   void getEditProfile() {
-    if (homeController.userModel.value != null) {
-      editEmailController.text = homeController.userModel.value?.email ?? '';
+    if (homeRoleController.employeeModel.value != null) {
+      editEmailController.text =
+          homeRoleController.employeeModel.value?.email ?? '';
       editFirstNameController.text =
-          homeController.userModel.value?.firstName ?? '';
+          homeRoleController.employeeModel.value?.firstName ?? '';
       editLastNameController.text =
-          homeController.userModel.value?.lastName ?? '';
+          homeRoleController.employeeModel.value?.lastName ?? '';
       editPassWordController.text =
-          homeController.userModel.value?.passWord ?? '';
+          homeRoleController.employeeModel.value?.passWord ?? '';
       editImageAvatarController.text =
-          homeController.userModel.value?.imgAvatar ?? '';
+          homeRoleController.employeeModel.value?.imgAvatar ?? '';
       editPhoneNumberController.text =
-          homeController.userModel.value?.phoneNub ?? '';
+          homeRoleController.employeeModel.value?.phoneNub ?? '';
       editLocationController.text =
-          homeController.userModel.value?.location ?? '';
+          homeRoleController.employeeModel.value?.location ?? '';
     }
   }
 

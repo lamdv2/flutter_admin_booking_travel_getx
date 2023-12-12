@@ -233,6 +233,56 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   const SizedBox(
                     height: 16,
                   ),
+                  InkWell(
+                    onTap: () {
+                      profileController.signUserOut(context);
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 16,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: appController.isDarkModeOn.value
+                                      ? ColorConstants.btnCanCel
+                                      : ColorConstants.black.withOpacity(0.8),
+                                  width: 1,
+                                ),
+                              ),
+                            ),
+                            padding: EdgeInsets.only(bottom: getSize(8)),
+                            child: Text(
+                              StringConst.logout.tr,
+                              style: TextStyle(
+                                color: appController.isDarkModeOn.value
+                                    ? ColorConstants.btnCanCel
+                                    : ColorConstants.black,
+                                fontSize: 22,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 16,
+                          ),
+                          Image.asset(
+                            AssetHelper.icoLogout,
+                            color: appController.isDarkModeOn.value
+                                ? ColorConstants.btnCanCel
+                                : ColorConstants.graySub,
+                            width: 24,
+                            height: 24,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),

@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:doan_clean_achitec/dark_mode.dart';
-import 'package:doan_clean_achitec/models/user/user_model.dart';
+import 'package:doan_clean_achitec/models/employee/employee.dart';
 import 'package:doan_clean_achitec/modules/employee_role/home_role/home_controller_role.dart';
 import 'package:doan_clean_achitec/modules/profile/profile_controller.dart';
 import 'package:doan_clean_achitec/shared/shared.dart';
@@ -86,19 +86,19 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   ),
                                 ),
                               )
-                            : homeRoleController.userModel.value != null &&
+                            : homeRoleController.employeeModel.value != null &&
                                     homeRoleController
-                                            .userModel.value?.imgAvatar !=
+                                            .employeeModel.value?.imgAvatar !=
                                         null &&
                                     homeRoleController
-                                            .userModel.value?.imgAvatar !=
+                                            .employeeModel.value?.imgAvatar !=
                                         ""
                                 ? GestureDetector(
                                     onTap: () async {
                                       profileController.showFullImageDialog(
                                           context,
                                           homeRoleController
-                                                  .userModel.value?.imgAvatar ??
+                                                  .employeeModel.value?.imgAvatar ??
                                               "");
                                     },
                                     child: CircleAvatar(
@@ -106,7 +106,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                       backgroundImage:
                                           CachedNetworkImageProvider(
                                         homeRoleController
-                                                .userModel.value?.imgAvatar ??
+                                                .employeeModel.value?.imgAvatar ??
                                             "",
                                       ),
                                     ),
@@ -290,26 +290,26 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               ),
                             );
                             profileController.urlImageOld.value =
-                                homeRoleController.userModel.value?.imgAvatar ??
+                                homeRoleController.employeeModel.value?.imgAvatar ??
                                     '';
 
                             profileController.getDeleteImage(
                                 profileController.urlImageOld.value);
-                          } else if (homeRoleController.userModel.value !=
+                          } else if (homeRoleController.employeeModel.value !=
                                   null &&
-                              homeRoleController.userModel.value?.imgAvatar !=
+                              homeRoleController.employeeModel.value?.imgAvatar !=
                                   "" &&
-                              homeRoleController.userModel.value?.imgAvatar !=
+                              homeRoleController.employeeModel.value?.imgAvatar !=
                                   null) {
                             profileController.imageUrl.value =
-                                homeRoleController.userModel.value?.imgAvatar ??
+                                homeRoleController.employeeModel.value?.imgAvatar ??
                                     '';
                           }
 
-                          final userModel = UserModel(
-                            id: homeRoleController.userModel.value?.id ?? '',
+                          final employeeModel = EmployeeModel(
+                            id: homeRoleController.employeeModel.value?.id ?? '',
                             email:
-                                homeRoleController.userModel.value?.email ?? '',
+                                homeRoleController.employeeModel.value?.email ?? '',
                             firstName: profileController
                                 .editFirstNameController.text
                                 .trim(),
@@ -317,7 +317,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 .editLastNameController.text
                                 .trim(),
                             passWord:
-                                homeRoleController.userModel.value?.passWord ??
+                                homeRoleController.employeeModel.value?.passWord ??
                                     '',
                             imgAvatar: profileController.imageUrl.value,
                             phoneNub: profileController
@@ -328,7 +328,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 .trim(),
                             isActive: true,
                           );
-                          await profileController.updateUserProfile(userModel);
+                          await profileController.updateUserProfile(employeeModel);
                         },
                         textBtn: StringConst.save.tr,
                         colorBgr: ColorConstants.primaryButton,

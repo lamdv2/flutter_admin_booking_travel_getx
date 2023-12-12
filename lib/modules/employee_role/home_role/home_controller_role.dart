@@ -9,7 +9,7 @@ import '../../../models/history/history_model.dart';
 class HomeRoleController extends GetxController {
   RxInt currentIndex = 0.obs;
   final _db = FirebaseFirestore.instance;
-  final userModel = Rxn<EmployeeModel>();
+  final employeeModel = Rxn<EmployeeModel>();
 
   final getAllListHistory = Rxn<List<HistoryModel>>();
   final getListHistoryByUserId = Rxn<List<HistoryModel>>();
@@ -40,7 +40,7 @@ class HomeRoleController extends GetxController {
         await _db.collection('employee').where('email', isEqualTo: email).get();
 
     if (snapShot.docs.isNotEmpty) {
-      userModel.value =
+      employeeModel.value =
           snapShot.docs.map((e) => EmployeeModel.fromJson(e)).single;
     }
   }

@@ -33,20 +33,20 @@ class ProfileWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Obx(
-              () => homeRoleController.userModel.value != null &&
-                      homeRoleController.userModel.value?.imgAvatar != null &&
-                      homeRoleController.userModel.value?.imgAvatar != ""
+              () => homeRoleController.employeeModel.value != null &&
+                      homeRoleController.employeeModel.value?.imgAvatar != null &&
+                      homeRoleController.employeeModel.value?.imgAvatar != ""
                   ? GestureDetector(
                       onTap: () async {
                         profileController.showFullImageDialog(
                           context,
-                          homeRoleController.userModel.value?.imgAvatar ?? "",
+                          homeRoleController.employeeModel.value?.imgAvatar ?? "",
                         );
                       },
                       child: CircleAvatar(
                         radius: 64,
                         backgroundImage: CachedNetworkImageProvider(
-                          homeRoleController.userModel.value?.imgAvatar ?? "",
+                          homeRoleController.employeeModel.value?.imgAvatar ?? "",
                         ),
                       ),
                     )
@@ -79,7 +79,7 @@ class ProfileWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    homeRoleController.userModel.value?.email.substring(0, 5) ??
+                    homeRoleController.employeeModel.value?.email.substring(0, 5) ??
                         "",
                     style: TextStyle(
                         color: appController.isDarkModeOn.value
@@ -92,7 +92,7 @@ class ProfileWidget extends StatelessWidget {
                     height: 16,
                   ),
                   Text(
-                    homeRoleController.userModel.value?.email ?? "",
+                    homeRoleController.employeeModel.value?.email ?? "",
                     style: TextStyle(
                       color: appController.isDarkModeOn.value
                           ? ColorConstants.white
@@ -112,10 +112,10 @@ class ProfileWidget extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    homeRoleController.userModel.value?.phoneNub == null ||
-                            homeRoleController.userModel.value?.phoneNub == ""
+                    homeRoleController.employeeModel.value?.phoneNub == null ||
+                            homeRoleController.employeeModel.value?.phoneNub == ""
                         ? "-"
-                        : "+84 ${homeRoleController.userModel.value?.phoneNub}",
+                        : "+84 ${homeRoleController.employeeModel.value?.phoneNub}",
                     style: TextStyle(
                       color: appController.isDarkModeOn.value
                           ? ColorConstants.white
@@ -135,10 +135,10 @@ class ProfileWidget extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    homeRoleController.userModel.value?.location == null ||
-                            homeRoleController.userModel.value?.location == ""
+                    homeRoleController.employeeModel.value?.location == null ||
+                            homeRoleController.employeeModel.value?.location == ""
                         ? "-"
-                        : '${homeRoleController.userModel.value?.location}',
+                        : '${homeRoleController.employeeModel.value?.location}',
                     style: TextStyle(
                       color: appController.isDarkModeOn.value
                           ? ColorConstants.white

@@ -20,7 +20,7 @@ class HomeHeader extends StatelessWidget {
   final bool? avatar;
 
   final AppController appController = Get.find();
-  final HomeController homeController = Get.find();
+  final HomeController homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {

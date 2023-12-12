@@ -25,7 +25,7 @@ class HomeScreen extends StatefulWidget {
 final user = FirebaseAuth.instance.currentUser!;
 final userName = user.email.toString().substring(0, 3);
 final UserController userController = Get.find();
-final HomeController homeController = Get.find();
+final HomeController homeController = Get.put(HomeController());
 final TourController tourController = Get.put(TourController());
 final AppController appController = Get.find();
 

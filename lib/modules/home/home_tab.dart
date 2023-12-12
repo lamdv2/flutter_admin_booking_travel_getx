@@ -14,7 +14,7 @@ class HomeTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    final HomeController homecontroller = Get.find();
+    final HomeController homecontroller = Get.put(HomeController());
     return Obx(
       () => Scaffold(
         backgroundColor: appController.isDarkModeOn.value

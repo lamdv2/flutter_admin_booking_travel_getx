@@ -1,6 +1,5 @@
 import 'package:doan_clean_achitec/dark_mode.dart';
 import 'package:doan_clean_achitec/models/Destination.dart';
-import 'package:doan_clean_achitec/modules/admin/admin_screen.dart';
 import 'package:doan_clean_achitec/modules/home/home.dart';
 import 'package:doan_clean_achitec/modules/profile/profile.dart';
 import 'package:doan_clean_achitec/modules/scan_screen/scan_qr_code_screen.dart';
@@ -14,6 +13,7 @@ import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 import '../../../shared/widgets/stateless/drawer_widget.dart';
 import '../../auth/user_controller.dart';
+import '../home_tab/home_employee_screen.dart';
 
 class HomeScreenRole extends StatefulWidget {
   const HomeScreenRole({super.key});
@@ -24,7 +24,6 @@ class HomeScreenRole extends StatefulWidget {
 final user = FirebaseAuth.instance.currentUser!;
 final userName = user.email.toString().substring(0, 3);
 final UserController userController = Get.find();
-final HomeController homeController = Get.find();
 final TourController tourController = Get.put(TourController());
 final AppController appController = Get.find();
 
@@ -124,7 +123,7 @@ class _HomeScreenRoleState extends State<HomeScreenRole> {
 
   List<Widget> _widgetOptions() {
     return [
-      const AdminScreen(),
+      const HomeEmployeeScreen(),
       ScanQRCodeScreen(),
       const ProfileScreen(),
     ];
