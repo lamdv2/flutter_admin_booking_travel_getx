@@ -1,13 +1,9 @@
 // ignore_for_file: library_private_types_in_public_api
-
-import 'dart:typed_data';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doan_clean_achitec/models/employee/employee.dart';
 import 'package:doan_clean_achitec/models/employee/tour_guide.dart';
 import 'package:doan_clean_achitec/models/tour/tour_model.dart';
 import 'package:doan_clean_achitec/models/tour/type_service_search.dart';
-import 'package:doan_clean_achitec/modules/profile/edit_profile.dart';
 import 'package:doan_clean_achitec/shared/constants/colors.dart';
 import 'package:doan_clean_achitec/shared/constants/local_storage.dart';
 import 'package:firebase_storage/firebase_storage.dart';

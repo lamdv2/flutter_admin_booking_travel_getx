@@ -74,7 +74,10 @@ class TourRoleDetailsScreen extends StatelessWidget {
             right: kPadding,
             child: InkWell(
               onTap: () async {
-                // Get.toNamed(Routes.ADMIN_CREATE_SCREEN);
+                Get.toNamed(
+                  Routes.USER_IN_TOUR,
+                  arguments: tourModel,
+                );
               },
               child: _buildFavoriteButton(),
             ),

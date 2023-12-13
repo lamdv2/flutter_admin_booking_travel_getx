@@ -7,7 +7,6 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       width: double.infinity,
       decoration: const BoxDecoration(
@@ -22,7 +21,7 @@ class SplashScreen extends StatelessWidget {
         alignment: Alignment.bottomCenter,
         child: Container(
           width: double.infinity,
-          height: getSize(250),
+          height: getSize(300),
           decoration: BoxDecoration(
             color: ColorConstants.blur,
             borderRadius: const BorderRadius.only(
@@ -35,6 +34,7 @@ class SplashScreen extends StatelessWidget {
               top: getSize(16),
             ),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 const Center(
                   child: Text(
@@ -81,7 +81,7 @@ class SplashScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: getSize(10),
+                  height: getSize(16),
                 ),
                 CircleAvatar(
                   backgroundColor: ColorConstants.primaryColor,
@@ -91,6 +91,9 @@ class SplashScreen extends StatelessWidget {
                     height: getSize(32),
                     width: getSize(32),
                   ),
+                ),
+                SizedBox(
+                  height: getSize(16),
                 ),
               ],
             ),

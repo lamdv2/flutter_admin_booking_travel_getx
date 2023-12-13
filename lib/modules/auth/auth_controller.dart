@@ -17,6 +17,7 @@ class AuthController extends GetxController {
   final registerPasswordController = TextEditingController();
   final registerConfirmPasswordController = TextEditingController();
   bool registerTermsChecked = false;
+  RxBool isLoginPasswordVisible = true.obs;
 
   final loginEmailController = TextEditingController();
   final loginPasswordController = TextEditingController();
@@ -39,6 +40,10 @@ class AuthController extends GetxController {
     registerEmailController.clear();
     registerPasswordController.clear();
     registerConfirmPasswordController.clear();
+  }
+
+  void togglePasswordVisibility(RxBool isVisible) {
+    isVisible.value = !isVisible.value;
   }
 
   void login(BuildContext context) async {

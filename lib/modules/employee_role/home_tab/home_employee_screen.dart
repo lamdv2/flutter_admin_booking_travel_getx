@@ -12,6 +12,7 @@ import 'package:slideable/slideable.dart';
 
 import '../../../shared/constants/assets_helper.dart';
 import '../../../shared/constants/string_constants.dart';
+import '../../../shared/utils/app_bar_widget.dart';
 import '../../../shared/utils/size_utils.dart';
 import 'tour_home_employee_item_widget.dart';
 
@@ -70,12 +71,12 @@ class _HomeEmployeeScreenState extends State<HomeEmployeeScreen> {
     return WillPopScope(
       onWillPop: () => homeEmployeeController.onWillPop(context),
       child: Scaffold(
-        appBar: AppBar(
+        appBar: CustomAppBar(
           backgroundColor: appController.isDarkModeOn.value
               ? ColorConstants.darkAppBar
               : ColorConstants.primaryButton,
-          title: const Text("Employee"),
-          centerTitle: true,
+          leading: const SizedBox.shrink(),
+          titles: "Employee",
         ),
         body: RefreshIndicator(
           onRefresh: homeEmployeeController.refreshTourList,

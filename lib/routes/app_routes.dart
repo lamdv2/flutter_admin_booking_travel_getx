@@ -35,5 +35,5 @@ abstract class Routes {
   static const HOME_SCREEN_ROLE = '/home_screen_role';
   static const EMPLOYEE_SCREEN_ROLE = '/employee_role';
   static const TOUR_ROLE_DETAIL_SCREEN = '/tour_role_detail_screen';
-  static const AllEmployee = '/tour_role_detail_screen';
+  static const USER_IN_TOUR = '/user_in_tour_screen';
 }

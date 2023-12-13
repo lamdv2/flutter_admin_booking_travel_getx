@@ -97,16 +97,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     onTap: () async {
                                       profileController.showFullImageDialog(
                                           context,
-                                          homeRoleController
-                                                  .employeeModel.value?.imgAvatar ??
+                                          homeRoleController.employeeModel.value
+                                                  ?.imgAvatar ??
                                               "");
                                     },
                                     child: CircleAvatar(
                                       radius: 64,
                                       backgroundImage:
                                           CachedNetworkImageProvider(
-                                        homeRoleController
-                                                .employeeModel.value?.imgAvatar ??
+                                        homeRoleController.employeeModel.value
+                                                ?.imgAvatar ??
                                             "",
                                       ),
                                     ),
@@ -140,7 +140,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             backgroundColor: ColorConstants.white,
                             child: IconButton(
                               onPressed: () {
-                                profileController.pickImages(context);
+                                profileController.pickImagess(context);
                               },
                               icon: const Icon(Icons.add_a_photo),
                               color: ColorConstants.primary,
@@ -290,35 +290,42 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               ),
                             );
                             profileController.urlImageOld.value =
-                                homeRoleController.employeeModel.value?.imgAvatar ??
+                                homeRoleController
+                                        .employeeModel.value?.imgAvatar ??
                                     '';
 
                             profileController.getDeleteImage(
                                 profileController.urlImageOld.value);
-                          } else if (homeRoleController.employeeModel.value !=
+                          } else if (homeRoleController
+                                      .employeeModel.value !=
                                   null &&
-                              homeRoleController.employeeModel.value?.imgAvatar !=
+                              homeRoleController
+                                      .employeeModel.value?.imgAvatar !=
                                   "" &&
-                              homeRoleController.employeeModel.value?.imgAvatar !=
+                              homeRoleController
+                                      .employeeModel.value?.imgAvatar !=
                                   null) {
                             profileController.imageUrl.value =
-                                homeRoleController.employeeModel.value?.imgAvatar ??
+                                homeRoleController
+                                        .employeeModel.value?.imgAvatar ??
                                     '';
                           }
 
                           final employeeModel = EmployeeModel(
-                            id: homeRoleController.employeeModel.value?.id ?? '',
+                            id: homeRoleController.employeeModel.value?.id ??
+                                '',
                             email:
-                                homeRoleController.employeeModel.value?.email ?? '',
+                                homeRoleController.employeeModel.value?.email ??
+                                    '',
                             firstName: profileController
                                 .editFirstNameController.text
                                 .trim(),
                             lastName: profileController
                                 .editLastNameController.text
                                 .trim(),
-                            passWord:
-                                homeRoleController.employeeModel.value?.passWord ??
-                                    '',
+                            passWord: homeRoleController
+                                    .employeeModel.value?.passWord ??
+                                '',
                             imgAvatar: profileController.imageUrl.value,
                             phoneNub: profileController
                                 .editPhoneNumberController.text
@@ -328,7 +335,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 .trim(),
                             isActive: true,
                           );
-                          await profileController.updateUserProfile(employeeModel);
+                          await profileController
+                              .updateUserProfile(employeeModel);
                         },
                         textBtn: StringConst.save.tr,
                         colorBgr: ColorConstants.primaryButton,

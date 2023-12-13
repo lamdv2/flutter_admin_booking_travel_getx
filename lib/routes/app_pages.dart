@@ -8,6 +8,7 @@ import 'package:doan_clean_achitec/modules/employee_role/employee_role.dart';
 import 'package:doan_clean_achitec/modules/employee_role/home_role/home_binding_role.dart';
 import 'package:doan_clean_achitec/modules/employee_role/home_role/home_screen_role.dart';
 import 'package:doan_clean_achitec/modules/employee_role/tour_details/tour_role_binding.dart';
+import 'package:doan_clean_achitec/modules/employee_role/user_in_tour/user_in_tour.dart';
 import 'package:doan_clean_achitec/modules/google_map/google_map.dart';
 import 'package:doan_clean_achitec/modules/home/home.dart';
 import 'package:doan_clean_achitec/modules/hotel/hotel_all_screen.dart';
@@ -170,6 +171,11 @@ class AppPages {
       name: Routes.TOUR_ROLE_DETAIL_SCREEN,
       page: () => TourRoleDetailsScreen(),
       binding: TourRoleBinding(),
+    ),
+    GetPage(
+      name: Routes.USER_IN_TOUR,
+      page: () => UserInTourScreen(),
+      binding: UserInTourBinding(),
     ),
   ];
 }

@@ -110,7 +110,8 @@ dependencies:
   image_gallery_saver: ^2.0.3
   pretty_qr_code: ^3.0.0
   qr_code_scanner: ^1.0.1
-  photo_manager: ^2.8.1
+  photo_manager: ^3.0.0-dev.2
+  photo_manager_image_provider: ^2.1.0
 
 dev_dependencies:
   flutter_test:

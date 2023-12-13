@@ -5,6 +5,7 @@ class HistoryModel {
   final String? idUser;
   final String? idTour;
   final bool isActive;
+  bool? isCheckUserParti;
   final Timestamp? bookingDate;
   String? status;
   double? adult;
@@ -20,6 +21,7 @@ class HistoryModel {
     this.adult,
     this.children,
     this.totalPrice,
+    this.isCheckUserParti,
     required this.isActive,
   });
 
@@ -37,6 +39,7 @@ class HistoryModel {
       children: json['children']?.toDouble(),
       totalPrice: json['totalPrice']?.toDouble(),
       isActive: json['isActive'] ?? true,
+      isCheckUserParti: json['isCheckUserParti'] ?? false,
     );
   }
 
@@ -51,6 +54,7 @@ class HistoryModel {
       'adult': adult,
       'children': children,
       'totalPrice': totalPrice,
+      'isCheckUserParti': isCheckUserParti,
     };
   }
 }
