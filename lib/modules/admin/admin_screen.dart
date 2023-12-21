@@ -71,7 +71,10 @@ class _AdminScreenState extends State<AdminScreen> {
         backgroundColor: appController.isDarkModeOn.value
             ? ColorConstants.darkAppBar
             : ColorConstants.primaryButton,
-        title: Text(StringConst.admins.tr),
+        title: Text(
+          StringConst.admins.tr,
+          style: AppStyles.white000Size18Fw500FfMont,
+        ),
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
@@ -82,6 +85,7 @@ class _AdminScreenState extends State<AdminScreen> {
         child: Icon(
           Icons.add,
           size: getSize(24),
+          color: ColorConstants.lightCard,
         ),
       ),
       drawer: DrawerWidget(),
@@ -295,8 +299,8 @@ class ListViewTour extends StatelessWidget {
                                       ),
                               ],
                               child: TourAdminItemWidget(
-                                listTour: adminController
-                                    .getListTour.value![index],
+                                listTour:
+                                    adminController.getListTour.value![index],
                               ),
                             );
                           },

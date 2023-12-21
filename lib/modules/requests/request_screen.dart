@@ -320,7 +320,10 @@ class _buildItemHistory extends GetView<RequestController> {
                           ColorConstants.primaryButton,
                         ),
                       ),
-                      child: Text("Approve"),
+                      child: Text(
+                        "Approve",
+                        style: AppStyles.white000Size14Fw500FfMont,
+                      ),
                     ),
                   ),
                 ],
