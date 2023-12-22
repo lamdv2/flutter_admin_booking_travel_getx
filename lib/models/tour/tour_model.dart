@@ -80,7 +80,8 @@ class TourModel {
           ? List<String>.from(json['specialOffers'])
           : null,
       status: json['status'],
-      type: json['type'] != null ? json['price'].toDouble() : null,
+      // ignore: prefer_null_aware_operators
+      type: json['type'] != null ? json['type'].toDouble() : null,
       imgqr: json['imgqr'],
       location: json['location'],
     );
