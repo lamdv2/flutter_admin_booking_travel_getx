@@ -13,11 +13,9 @@ import 'package:doan_clean_achitec/shared/constants/constants.dart';
 import 'package:doan_clean_achitec/shared/utils/focus.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:uuid/uuid.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 
@@ -94,63 +92,63 @@ class ProfileController extends GetxController {
     }
   }
 
-  Future<void> pickImagess(BuildContext context) async {
-    var status = await Permission.photos.status;
+  // Future<void> pickImagess(BuildContext context) async {
+  //   var status = await Permission.photos.status;
 
-    if (status.isGranted) {
-      final resultList = await AssetPicker.pickAssets(
-        context,
-        pickerConfig: AssetPickerConfig(
-          maxAssets: 1,
-          selectedAssets: imageFonts.value,
-          requestType: RequestType.image,
-        ),
-      );
-      if (resultList != null && resultList.isNotEmpty) {
-        imageFonts.value = resultList;
-      }
-    } else {
-      final status = await Permission.photos.request();
-      if (status.isGranted) {
-        final resultList = await AssetPicker.pickAssets(
-          context,
-          pickerConfig: AssetPickerConfig(
-            maxAssets: 1,
-            selectedAssets: imageFonts.value,
-            requestType: RequestType.image,
-          ),
-        );
-        if (resultList != null && resultList.isNotEmpty) {
-          imageFonts.value = resultList;
-        }
-      } else {
-        Get.snackbar(
-          "${StringConst.warning.tr}!!!",
-          StringConst.permissionDenied.tr,
-        );
-        showAdaptiveDialog(
-          context: context,
-          builder: (BuildContext context) => CupertinoAlertDialog(
-            title: const Text("Permission Denied"),
-            content: const Text(
-                "To pick images, allow access to gallery and photos in app settings."),
-            actions: [
-              CupertinoDialogAction(
-                child: Text(StringConst.cancel.tr),
-                onPressed: () => Get.back(),
-              ),
-              CupertinoDialogAction(
-                child: Text(StringConst.settingSystem.tr),
-                onPressed: () async {
-                  await openAppSettings();
-                },
-              ),
-            ],
-          ),
-        );
-      }
-    }
-  }
+  //   if (status.isGranted) {
+  //     final resultList = await AssetPicker.pickAssets(
+  //       context,
+  //       pickerConfig: AssetPickerConfig(
+  //         maxAssets: 1,
+  //         selectedAssets: imageFonts.value,
+  //         requestType: RequestType.image,
+  //       ),
+  //     );
+  //     if (resultList != null && resultList.isNotEmpty) {
+  //       imageFonts.value = resultList;
+  //     }
+  //   } else {
+  //     final status = await Permission.photos.request();
+  //     if (status.isGranted) {
+  //       final resultList = await AssetPicker.pickAssets(
+  //         context,
+  //         pickerConfig: AssetPickerConfig(
+  //           maxAssets: 1,
+  //           selectedAssets: imageFonts.value,
+  //           requestType: RequestType.image,
+  //         ),
+  //       );
+  //       if (resultList != null && resultList.isNotEmpty) {
+  //         imageFonts.value = resultList;
+  //       }
+  //     } else {
+  //       Get.snackbar(
+  //         "${StringConst.warning.tr}!!!",
+  //         StringConst.permissionDenied.tr,
+  //       );
+  //       showAdaptiveDialog(
+  //         context: context,
+  //         builder: (BuildContext context) => CupertinoAlertDialog(
+  //           title: const Text("Permission Denied"),
+  //           content: const Text(
+  //               "To pick images, allow access to gallery and photos in app settings."),
+  //           actions: [
+  //             CupertinoDialogAction(
+  //               child: Text(StringConst.cancel.tr),
+  //               onPressed: () => Get.back(),
+  //             ),
+  //             CupertinoDialogAction(
+  //               child: Text(StringConst.settingSystem.tr),
+  //               onPressed: () async {
+  //                 await openAppSettings();
+  //               },
+  //             ),
+  //           ],
+  //         ),
+  //       );
+  //     }
+  //   }
+  // }
 
   Future<String> uploadImageToStorage(String childName, Uint8List file) async {
     var uuid = const Uuid();

@@ -111,7 +111,7 @@ class ChartItem extends StatelessWidget {
                       },
                       buttonStyleData: ButtonStyleData(
                         height: getSize(50),
-                        width: getSize(120),
+                        width: getSize(100),
                         padding: EdgeInsets.symmetric(
                           horizontal: getSize(16),
                           vertical: getSize(8),

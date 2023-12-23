@@ -140,7 +140,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             backgroundColor: ColorConstants.white,
                             child: IconButton(
                               onPressed: () {
-                                profileController.pickImagess(context);
+                                profileController.pickImages(context);
                               },
                               icon: const Icon(Icons.add_a_photo),
                               color: ColorConstants.primary,

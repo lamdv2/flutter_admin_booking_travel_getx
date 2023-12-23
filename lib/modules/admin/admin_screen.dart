@@ -90,7 +90,10 @@ class _AdminScreenState extends State<AdminScreen> {
       ),
       drawer: DrawerWidget(),
       body: RefreshIndicator(
-        onRefresh: adminController.refreshTourList,
+        onRefresh: () async {
+          adminController.refreshTourList();
+          tourController.getAllEmployee();
+        },
         child: isShowLoading
             ? Center(
                 child: SizedBox(
